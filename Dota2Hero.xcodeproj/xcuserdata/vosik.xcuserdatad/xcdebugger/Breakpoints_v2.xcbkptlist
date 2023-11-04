@@ -3,4 +3,741 @@
    uuid = "F507A7C9-9C73-47AC-A51C-8FF0AC19C21E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D22046FF-67B3-4B27-9D58-9DE49708F431"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101 - cae138053e861307"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "1236">
+               </Location>
+               <Location
+                  uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101 - cae138053e861307"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "1240">
+               </Location>
+               <Location
+                  uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101 - cae138053e861364"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "816">
+               </Location>
+               <Location
+                  uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101 - cae138053e861364"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101 - cae138053e861364"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "720">
+               </Location>
+               <Location
+                  uuid = "2B95648A-933E-4384-8BD8-6D2D564C1101 - 5121f25634c18485"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1000">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF5A090E-3E9D-4BFB-B9A7-EF0D3F8113FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DF5A090E-3E9D-4BFB-B9A7-EF0D3F8113FB - cae138053e8612e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1084">
+               </Location>
+               <Location
+                  uuid = "DF5A090E-3E9D-4BFB-B9A7-EF0D3F8113FB - cae138053e8612e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1100">
+               </Location>
+               <Location
+                  uuid = "DF5A090E-3E9D-4BFB-B9A7-EF0D3F8113FB - cae138053e861364"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "816">
+               </Location>
+               <Location
+                  uuid = "DF5A090E-3E9D-4BFB-B9A7-EF0D3F8113FB - cae138053e861364"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "DF5A090E-3E9D-4BFB-B9A7-EF0D3F8113FB - cae138053e861364"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "720">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594 - cae138053e8612c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594 - cae138053e8612c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "944">
+               </Location>
+               <Location
+                  uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594 - cae138053e8612c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "660">
+               </Location>
+               <Location
+                  uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594 - cae138053e8612c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "832">
+               </Location>
+               <Location
+                  uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594 - cae138053e8612c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  uuid = "C4F719FE-B349-4E51-B348-A6DAFBE38594 - 5121f25634c184c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "704">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4 - cae138053e8612a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "832">
+               </Location>
+               <Location
+                  uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4 - cae138053e8612a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "848">
+               </Location>
+               <Location
+                  uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4 - cae138053e8612a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4 - cae138053e8612a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "744">
+               </Location>
+               <Location
+                  uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4 - cae138053e8612a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2Hero&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "544">
+               </Location>
+               <Location
+                  uuid = "EF033A8D-E2CD-4424-B4C7-DBBBF6F4B9D4 - 5121f25634c184e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "608">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8FDB17A-F3E1-474B-AF06-E1602B17F7F8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A8FDB17A-F3E1-474B-AF06-E1602B17F7F8 - 2fc3ff708e43a1a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "A8FDB17A-F3E1-474B-AF06-E1602B17F7F8 - 5121f25634c185ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Dota2Hero.Dota2HeroFetcher.fetch(page: Swift.Int, pageSize: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "284">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E86AB10E-DC07-475B-B24C-118CD743CFC8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "fetch(page:pageSize:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B769C37-E929-4FD7-8AA3-A6DD44C22CBE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/Controllers/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "configureRolesLabel(with:and:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81744E92-666B-4327-9BB2-75FBE87E8449"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/Utilities.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "fetchImage(from:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "81744E92-666B-4327-9BB2-75FBE87E8449 - eff08b3cd3c26119"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "81744E92-666B-4327-9BB2-75FBE87E8449 - eff08b3cd3c26119"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "81744E92-666B-4327-9BB2-75FBE87E8449 - eff08b3cd3c26136"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "81744E92-666B-4327-9BB2-75FBE87E8449 - eff08b3cd3c26136"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "312">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0DA3B8A-2230-4D7C-BC60-E582D9CC41BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/Utilities.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchImage(from:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F0DA3B8A-2230-4D7C-BC60-E582D9CC41BF - eff08b3cd3c26136"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "F0DA3B8A-2230-4D7C-BC60-E582D9CC41BF - eff08b3cd3c260d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "412">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87ED39AB-CE46-4854-A209-91BF8930CBFD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/Utilities.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetchImage(from:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "87ED39AB-CE46-4854-A209-91BF8930CBFD - eff08b3cd3c260d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "87ED39AB-CE46-4854-A209-91BF8930CBFD - eff08b3cd3c260f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "572">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9BBC544C-1CE7-4C27-BC4A-B18BC9ADBA05"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/API/Utilities.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "fetchImage(from:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9BBC544C-1CE7-4C27-BC4A-B18BC9ADBA05 - eff08b3cd3c26095"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "668">
+               </Location>
+               <Location
+                  uuid = "9BBC544C-1CE7-4C27-BC4A-B18BC9ADBA05 - eff08b3cd3c260b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/Utilities.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "668">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

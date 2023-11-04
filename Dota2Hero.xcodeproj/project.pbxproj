@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3803EC932AF5251B0001C1EC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EC922AF5251B0001C1EC /* Utilities.swift */; };
+		3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EC942AF5AA620001C1EC /* CircleValueView.swift */; };
+		38316C382AF44B31007E77F1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* APICaller.swift */; };
+		38AA23022AF6FABB008A2D68 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA23012AF6FABB008A2D68 /* Extension.swift */; };
 		38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */; };
 		38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */; };
 		38EF84132AF2E99B00D0F5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38EF84122AF2E99B00D0F5D1 /* Assets.xcassets */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3803EC922AF5251B0001C1EC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		3803EC942AF5AA620001C1EC /* CircleValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleValueView.swift; sourceTree = "<group>"; };
+		38316C372AF44B31007E77F1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		38AA23012AF6FABB008A2D68 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		38EF84062AF2E99900D0F5D1 /* Dota2Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dota2Hero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +51,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38316C332AF438C9007E77F1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				38EF84232AF2EEB100D0F5D1 /* LikedHeroesViewController.swift */,
+				38EF84212AF2EE7D00D0F5D1 /* HomeViewController.swift */,
+				38EF841F2AF2EA6000D0F5D1 /* MainTabBarViewController.swift */,
+				38AA23012AF6FABB008A2D68 /* Extension.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		38316C342AF438FE007E77F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		38316C352AF4390D007E77F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				38EF84252AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift */,
+				3803EC942AF5AA620001C1EC /* CircleValueView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		38316C362AF44B11007E77F1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				38316C372AF44B31007E77F1 /* APICaller.swift */,
+				3803EC922AF5251B0001C1EC /* Utilities.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		38EF83FD2AF2E99900D0F5D1 = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +107,15 @@
 		38EF84082AF2E99900D0F5D1 /* Dota2Hero */ = {
 			isa = PBXGroup;
 			children = (
-				38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */,
-				38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */,
-				38EF841F2AF2EA6000D0F5D1 /* MainTabBarViewController.swift */,
-				38EF84212AF2EE7D00D0F5D1 /* HomeViewController.swift */,
-				38EF84232AF2EEB100D0F5D1 /* LikedHeroesViewController.swift */,
-				38EF84252AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift */,
-				38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */,
+				38316C362AF44B11007E77F1 /* API */,
+				38316C352AF4390D007E77F1 /* View */,
+				38316C342AF438FE007E77F1 /* Model */,
+				38316C332AF438C9007E77F1 /* Controllers */,
 				38EF84122AF2E99B00D0F5D1 /* Assets.xcassets */,
 				38EF84142AF2E99B00D0F5D1 /* LaunchScreen.storyboard */,
 				38EF84172AF2E99B00D0F5D1 /* Info.plist */,
+				38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */,
+				38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */,
 			);
 			path = Dota2Hero;
 			sourceTree = "<group>";
@@ -150,9 +194,13 @@
 				38EF84242AF2EEB100D0F5D1 /* LikedHeroesViewController.swift in Sources */,
 				38EF84262AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift in Sources */,
 				38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */,
+				38AA23022AF6FABB008A2D68 /* Extension.swift in Sources */,
 				38EF84282AF30A1500D0F5D1 /* Dota2HeroModel.swift in Sources */,
 				38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */,
+				3803EC932AF5251B0001C1EC /* Utilities.swift in Sources */,
 				38EF84222AF2EE7D00D0F5D1 /* HomeViewController.swift in Sources */,
+				3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */,
+				38316C382AF44B31007E77F1 /* APICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

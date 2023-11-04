@@ -19,8 +19,11 @@ class MainTabBarViewController: UITabBarController {
     }
     
     private func setTabBar() {
-        let vc1 = UINavigationController(rootViewController: HomeViewController()) 
-        let vc2 = UINavigationController(rootViewController: LikedHeroesViewController()) 
+        
+        let dota2API: Dota2HeroFetcher = Dota2HeroFetcher()
+        let imageFetcher: ImageFetcher = ImageFetcher()
+        let vc1 = UINavigationController(rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher))
+        let vc2 = UINavigationController(rootViewController: LikedHeroesViewController())
         
         vc1.tabBarItem = createTabBarItem(imageName: "house", selectedImageName: "house.fill")
         vc2.tabBarItem = createTabBarItem(imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
