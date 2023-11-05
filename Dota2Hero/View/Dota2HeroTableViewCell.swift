@@ -7,26 +7,20 @@
 
 import UIKit
 
-protocol Dota2HeroTableViewCellProtocol {
-    var dispalyHeroName: UILabel { get set }
-    var imageHeroView: UIImageView { get set }
-    var rolesLabel: UILabel { get set }
-}
 
-
-class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
+class Dota2HeroTableViewCell: UITableViewCell, MakeRolesLabel {
     
     static let identifier = "Dota2HeroTableViewCell"
     
-    var strenghtIndicator: CircleValueView = {
+   private var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x:0, y: 0, width: 90, height: 10),
+            frame: CGRect(x: 0, y: 0, width: 90, height: 10),
             circleColor: .red, labelColor: .black,
             labelTextSize: 12)
         return circle
     }()
     
-    var agilityIndicator: CircleValueView = {
+    private var agilityIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(x:0, y: 0, width: 90, height: 10),
             circleColor: .green,
@@ -35,7 +29,7 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         return circle
     }()
     
-    var intelligenceIndicator: CircleValueView = {
+    private var intelligenceIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(x:0, y: 0, width: 90, height: 10),
             circleColor: .blue,
@@ -44,7 +38,7 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         return circle
     }()
    
-    var baseStackView: UIStackView = {
+    private var baseStackView: UIStackView = {
            let stackView = UIStackView()
            stackView.translatesAutoresizingMaskIntoConstraints = false
            stackView.axis = .vertical
@@ -55,14 +49,14 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
     
     
     
-    var rolesLabel: UILabel = {
+    private var rolesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false 
         label.numberOfLines = 0
         return label
     }()
     
-    var dispalyHeroName: UILabel = {
+    private var dispalyHeroName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Dota 2"
@@ -70,7 +64,7 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         return label
     }()
     
-    var imageHeroView: UIImageView = {
+    private var imageHeroView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "dota2_logo")
@@ -78,7 +72,17 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         imageView.clipsToBounds = true
         return imageView
     }()
+    
+    var likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "unlike"), for: .normal)
+        button.tintColor = .systemGray
+        button.isSelected = false
+        return button
+    }()
 
+    var registrationHandler: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -87,10 +91,11 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         contentView.addSubview(imageHeroView)
         contentView.addSubview(rolesLabel)
         contentView.addSubview(baseStackView)
+        contentView.addSubview(likeButton)
         baseStackView.addArrangedSubview(strenghtIndicator)
         baseStackView.addArrangedSubview(agilityIndicator)
         baseStackView.addArrangedSubview(intelligenceIndicator)
-        
+        likeButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         configureConstraints()
     }
     
@@ -98,7 +103,11 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    @objc func didTapButton() {
+        print(likeButton)
+      
+        registrationHandler?()
+    }
     
     private func configureConstraints() {
         
@@ -123,9 +132,14 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
             baseStackView.leadingAnchor.constraint(equalTo: rolesLabel.leadingAnchor),
             baseStackView.topAnchor.constraint(equalTo: rolesLabel.bottomAnchor, constant: 15),
             baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
-           
         ]
         
+        let likeButtonConstraints = [
+            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ]
+        
+        NSLayoutConstraint.activate(likeButtonConstraints)
         NSLayoutConstraint.activate(stackConstraints)
         NSLayoutConstraint.activate(rolesLabelViewConstraints)
         NSLayoutConstraint.activate(imageHeroViewConstraints)
@@ -133,9 +147,9 @@ class Dota2HeroTableViewCell: UITableViewCell, Dota2HeroTableViewCellProtocol {
         
     }
     
-    func configure(model: Dota2HeroModel, with image: UIImage, textForRoles: NSAttributedString) {
-        rolesLabel.attributedText = textForRoles
+    func configure(model: Dota2HeroModel, with image: UIImage) {
         imageHeroView.image = image
+        rolesLabel.attributedText = configureLabel(with: model.attackType, and: model.roles)
         dispalyHeroName.text = model.localizedName
         intelligenceIndicator.label.text = String("\(model.baseInt) + \(model.intGain)")
         agilityIndicator.label.text = String("\(model.baseAgi) + \(model.agiGain)")

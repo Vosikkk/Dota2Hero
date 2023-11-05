@@ -33,6 +33,14 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private var likedHero: Heroes = [] {
+        didSet {
+            print(likedHero)
+        }
+    }
+    
+    private var likedStates: [Int: Bool] = [:]
+    
     
     init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher) {
         self.dota2API = dota2API
@@ -58,13 +66,14 @@ class HomeViewController: UIViewController {
         
         configureNavigationBarWithLogo()
         
+        dota2HeroesTableView.allowsSelection = false
         dota2HeroesTableView.delegate = self
         dota2HeroesTableView.dataSource = self
     }
     
     
     private func fetch() {
-        dota2API.fetch(page: 1, pageSize: 10) { [weak self] result in
+        dota2API.fetch(page: 1, pageSize: 11) { [weak self] result in
             switch result {
             case .success(let heroes):
                 self?.heroes = heroes
@@ -78,31 +87,12 @@ class HomeViewController: UIViewController {
            super.viewDidLayoutSubviews()
            dota2HeroesTableView.frame = view.frame
        }
-    
-    
-    func configureRolesLabel(with attackType: String, and roles: [String]) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString()
-        let attackTypeString = NSMutableAttributedString(string: "\(attackType.uppercased()) - ", attributes: [
-            .font: UIFont.systemFont(ofSize: 12, weight: .bold),
-            .foregroundColor: UIColor.black
-        ])
-        attributedString.append(attackTypeString)
-        if !roles.isEmpty {
-            let rolesString = roles.map { $0.uppercased() }.joined(separator: ", ")
-            let rolesAttributedString = NSAttributedString(string: rolesString, attributes: [
-                .font: UIFont.systemFont(ofSize: 12),
-                .foregroundColor: UIColor.lightGray
-            ])
-            attributedString.append(rolesAttributedString)
-        }
-        
-        return attributedString
-    }
 }
 
 
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return heroes.count
     }
@@ -110,12 +100,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         let model = heroes[indexPath.row]
-        let atrributedText = configureRolesLabel(with: model.attackType, and: model.roles)
-        imageFetcher.fetchImage(from: model.imageURL ) { result in
+        cell.likeButton.isSelected = likedStates[indexPath.row] ?? false
+        
+        cell.registrationHandler = { [weak self] in
+            let isLiked = !(self?.likedStates[indexPath.row] ?? false)
+            self?.likedStates[indexPath.row] = isLiked
+            cell.likeButton.isSelected = isLiked
+        }
+        
+        imageFetcher.fetchImage(from: model.imageURL) { result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    cell.configure(model: model, with: image, textForRoles: atrributedText)
+                    cell.configure(model: model, with: image)
                 }
             case .failure(let error):
                 print(error.localizedDescription)

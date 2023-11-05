@@ -25,3 +25,4 @@ extension UIScreen {
         UIWindow.current?.screen
     }
 }
+

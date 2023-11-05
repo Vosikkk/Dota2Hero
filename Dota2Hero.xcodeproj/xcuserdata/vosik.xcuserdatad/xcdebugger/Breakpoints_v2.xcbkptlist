@@ -504,22 +504,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0B769C37-E929-4FD7-8AA3-A6DD44C22CBE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dota2Hero/Controllers/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "configureRolesLabel(with:and:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "81744E92-666B-4327-9BB2-75FBE87E8449"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -527,8 +511,8 @@
             filePath = "Dota2Hero/API/Utilities.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "fetchImage(from:completion:)"
             landmarkType = "7">
             <Locations>
@@ -605,8 +589,8 @@
             filePath = "Dota2Hero/API/Utilities.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "fetchImage(from:completion:)"
             landmarkType = "7">
             <Locations>
@@ -653,8 +637,8 @@
             filePath = "Dota2Hero/API/Utilities.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "fetchImage(from:completion:)"
             landmarkType = "7">
             <Locations>
@@ -701,8 +685,8 @@
             filePath = "Dota2Hero/API/Utilities.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "fetchImage(from:completion:)"
             landmarkType = "7">
             <Locations>

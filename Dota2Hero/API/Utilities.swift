@@ -8,9 +8,6 @@
 import Foundation
 import UIKit
 
-
-
-
 class ImageFetcher {
    
     private let cache = NSCache<NSString, UIImage>()
@@ -38,4 +35,30 @@ class ImageFetcher {
 enum ImageFetcherError: Error {
     case networkError
     case badURL
+}
+
+protocol MakeRolesLabel {
+    func configureLabel(with attackType: String, and roles: [String]) -> NSMutableAttributedString
+}
+
+extension MakeRolesLabel where Self: UITableViewCell {
+   
+    func configureLabel(with attackType: String, and roles: [String]) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString()
+        let attackTypeString = NSMutableAttributedString(string: "\(attackType.uppercased()) - ", attributes: [
+            .font: UIFont.systemFont(ofSize: 12, weight: .bold),
+            .foregroundColor: UIColor.black
+        ])
+        attributedString.append(attackTypeString)
+        if !roles.isEmpty {
+            let rolesString = roles.map { $0.uppercased() }.joined(separator: ", ")
+            let rolesAttributedString = NSAttributedString(string: rolesString, attributes: [
+                .font: UIFont.systemFont(ofSize: 12),
+                .foregroundColor: UIColor.lightGray
+            ])
+            attributedString.append(rolesAttributedString)
+        }
+        
+        return attributedString
+    }
 }
