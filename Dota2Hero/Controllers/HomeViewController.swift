@@ -11,6 +11,9 @@ class HomeViewController: UIViewController {
 
     private let dota2API: Dota2HeroFetcher
     private let imageFetcher: ImageFetcher
+    private let heroesStorage: TemporaryStorageForHeroes
+    
+    
    
     private let dota2HeroesTableView: UITableView = {
         let tableView = UITableView()
@@ -18,11 +21,8 @@ class HomeViewController: UIViewController {
         return tableView
     }()
     
-    private var screenSize: CGFloat {
-        if let size = UIScreen.current?.bounds.height {
-            return size
-        }
-        return 1000
+    private var screenSize: CGFloat? {
+       return UIScreen.current?.bounds.height
     }
     
     private var heroes: Heroes = [] {
@@ -33,18 +33,14 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private var likedHero: Heroes = [] {
-        didSet {
-            print(likedHero)
-        }
-    }
     
     private var likedStates: [Int: Bool] = [:]
     
     
-    init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher) {
+    init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: TemporaryStorageForHeroes) {
         self.dota2API = dota2API
         self.imageFetcher = imageFetcher
+        self.heroesStorage = heroesStorage
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -69,7 +65,9 @@ class HomeViewController: UIViewController {
         dota2HeroesTableView.allowsSelection = false
         dota2HeroesTableView.delegate = self
         dota2HeroesTableView.dataSource = self
+        
     }
+    
     
     
     private func fetch() {
@@ -99,12 +97,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
-        let model = heroes[indexPath.row]
-        cell.likeButton.isSelected = likedStates[indexPath.row] ?? false
+        var model = heroes[indexPath.row]
+        cell.likeButton.isSelected = model.isLiked
         
         cell.registrationHandler = { [weak self] in
-            let isLiked = !(self?.likedStates[indexPath.row] ?? false)
-            self?.likedStates[indexPath.row] = isLiked
+            let isLiked = !model.isLiked
+            model.isLiked = isLiked
+            if isLiked {
+                self?.heroesStorage.addLiked(hero: model)
+            } else {
+                self?.heroesStorage.changeModel(by: model.heroID)
+                self?.heroesStorage.removeLikedHero()
+            }
             cell.likeButton.isSelected = isLiked
         }
         
@@ -122,8 +126,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if UIDevice.current.orientation.isPortrait {
-            return screenSize / 5
+        if let size = screenSize, UIDevice.current.orientation.isPortrait {
+            return size / 5
         }
         return 150
     }

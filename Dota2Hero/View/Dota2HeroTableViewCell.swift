@@ -8,7 +8,7 @@
 import UIKit
 
 
-class Dota2HeroTableViewCell: UITableViewCell, MakeRolesLabel {
+class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     static let identifier = "Dota2HeroTableViewCell"
     
@@ -104,8 +104,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeRolesLabel {
     }
     
     @objc func didTapButton() {
-        print(likeButton)
-      
         registrationHandler?()
     }
     
@@ -149,7 +147,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeRolesLabel {
     
     func configure(model: Dota2HeroModel, with image: UIImage) {
         imageHeroView.image = image
-        rolesLabel.attributedText = configureLabel(with: model.attackType, and: model.roles)
+        rolesLabel.attributedText = createLabel(with: model.attackType, and: model.roles)
         dispalyHeroName.text = model.localizedName
         intelligenceIndicator.label.text = String("\(model.baseInt) + \(model.intGain)")
         agilityIndicator.label.text = String("\(model.baseAgi) + \(model.agiGain)")

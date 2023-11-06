@@ -20,6 +20,8 @@ struct Dota2HeroModel: Codable {
    
     let heroID: Int
     
+    var isLiked: Bool = false
+    
     var imageURL: URL? {
             let baseURLString = "https://api.opendota.com"
             let fullURLString = baseURLString + img
