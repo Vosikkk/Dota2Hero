@@ -54,7 +54,6 @@ class HomeViewController: UIViewController {
         fetch()
     }
     
-    
     private func setupUI() {
         view.backgroundColor = .systemBackground
         
@@ -67,8 +66,6 @@ class HomeViewController: UIViewController {
         dota2HeroesTableView.dataSource = self
         
     }
-    
-    
     
     private func fetch() {
         dota2API.fetch(page: 1, pageSize: 11) { [weak self] result in

@@ -13,6 +13,8 @@
 		380539AE2AFA5F4B0035A75F /* FaveIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539AD2AFA5F4B0035A75F /* FaveIcon.swift */; };
 		380539B22AFA6BA00035A75F /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B12AFA6BA00035A75F /* Constraints.swift */; };
 		380539B42AFA7D5B0035A75F /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B32AFA7D5B0035A75F /* Easing.swift */; };
+		380539B62AFACE460035A75F /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B52AFACE460035A75F /* Ring.swift */; };
+		380539B82AFAD1FD0035A75F /* Spark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B72AFAD1FD0035A75F /* Spark.swift */; };
 		38316C382AF44B31007E77F1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* APICaller.swift */; };
 		3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */; };
 		3884CAB42AF9814A00C06AFD /* TemporaryStorageForHeroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB32AF9814A00C06AFD /* TemporaryStorageForHeroes.swift */; };
@@ -35,6 +37,8 @@
 		380539AD2AFA5F4B0035A75F /* FaveIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveIcon.swift; sourceTree = "<group>"; };
 		380539B12AFA6BA00035A75F /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		380539B32AFA7D5B0035A75F /* Easing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
+		380539B52AFACE460035A75F /* Ring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
+		380539B72AFAD1FD0035A75F /* Spark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark.swift; sourceTree = "<group>"; };
 		38316C372AF44B31007E77F1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		3884CAB32AF9814A00C06AFD /* TemporaryStorageForHeroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryStorageForHeroes.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				38EF84252AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift */,
 				3803EC942AF5AA620001C1EC /* CircleValueView.swift */,
 				380539AB2AFA5B4E0035A75F /* FaveButton.swift */,
+				380539B52AFACE460035A75F /* Ring.swift */,
+				380539B72AFAD1FD0035A75F /* Spark.swift */,
 				380539AD2AFA5F4B0035A75F /* FaveIcon.swift */,
 			);
 			path = View;
@@ -223,10 +229,12 @@
 				380539B22AFA6BA00035A75F /* Constraints.swift in Sources */,
 				38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */,
 				3884CAB42AF9814A00C06AFD /* TemporaryStorageForHeroes.swift in Sources */,
+				380539B62AFACE460035A75F /* Ring.swift in Sources */,
 				38AA23022AF6FABB008A2D68 /* Extension.swift in Sources */,
 				38EF84282AF30A1500D0F5D1 /* Dota2HeroModel.swift in Sources */,
 				380539B42AFA7D5B0035A75F /* Easing.swift in Sources */,
 				380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */,
+				380539B82AFAD1FD0035A75F /* Spark.swift in Sources */,
 				38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */,
 				3803EC932AF5251B0001C1EC /* Utilities.swift in Sources */,
 				38EF84222AF2EE7D00D0F5D1 /* HomeViewController.swift in Sources */,

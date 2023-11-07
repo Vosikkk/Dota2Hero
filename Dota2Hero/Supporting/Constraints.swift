@@ -72,6 +72,9 @@ func ->>- <T: UIView> (lhs: T, apply: (inout Constraint) -> ()) -> NSLayoutConst
     return constraint
 }
 
+func attributes(_ attrs: NSLayoutConstraint.Attribute...) -> [NSLayoutConstraint.Attribute]{
+    return attrs
+}
 
 func ->>- <T:UIView> (lhs: (T,T), attributes: [NSLayoutConstraint.Attribute]) {
     for attribute in attributes {

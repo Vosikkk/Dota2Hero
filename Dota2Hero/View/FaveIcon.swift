@@ -31,6 +31,9 @@ class FaveIcon: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - Create
+    
     class func createFaveIcon(_ onView: UIView, icon: UIImage, color: UIColor) -> FaveIcon {
         
         let faveIcon = Init(FaveIcon(region: onView.bounds, icon: icon, color: color)) {
@@ -79,11 +82,32 @@ class FaveIcon: UIView {
         let animate = duration > 0.0
         
         if nil == tweenValues && animate {
-            //tweenValues =
+            tweenValues = generateTweenValues(from: 0, to: 1.0, duration: CGFloat(duration))
         }
         
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        iconLayer.fillColor = fillColor.cgColor
+        CATransaction.commit()
         
+        let selectedDelay = isSelected ? delay : 0
         
+        if isSelected {
+            self.alpha = 0
+            UIView.animate(withDuration: 0, delay: selectedDelay, options: .curveLinear) {
+                self.alpha = 1
+            }
+        }
+        
+        guard animate else { return }
+        
+        let scaleAnimation = Init(CAKeyframeAnimation(keyPath: "transform.scale")) {
+            $0.values = tweenValues!
+            $0.duration = duration
+            $0.beginTime = CACurrentMediaTime() + selectedDelay
+        }
+        
+        iconMask.add(scaleAnimation, forKey: nil)
         
     }
     
@@ -95,7 +119,13 @@ class FaveIcon: UIView {
         let c = to - from
         let d = duration
         var t = CGFloat(0.0)
+        var tweenFunction = Elastic.ExtendedEaseOut
         
-        
+        while (t < d) {
+            let scale = tweenFunction(t, from, c, d, c + 0.001, 0.39988)
+            values.append(scale)
+            t += tpf
+        }
+        return values
     }
 }

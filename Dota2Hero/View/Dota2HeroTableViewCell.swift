@@ -12,6 +12,10 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     static let identifier = "Dota2HeroTableViewCell"
     
+    private var screenSize: CGFloat? {
+       return UIScreen.current?.bounds.width
+    }
+    
    private var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(x: 0, y: 0, width: 90, height: 10),
@@ -73,15 +77,19 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return imageView
     }()
     
-    var likeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "unlike"), for: .normal)
-        button.tintColor = .systemGray
-        button.isSelected = false
+    lazy var likeButton: FaveButton = {
+        let button = FaveButton(frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: 0, width: 38, height: 38),
+                                faveIconNormal: UIImage(named: "unlike"))
         return button
     }()
 
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+   
+    
     var registrationHandler: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -95,7 +103,15 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         baseStackView.addArrangedSubview(strenghtIndicator)
         baseStackView.addArrangedSubview(agilityIndicator)
         baseStackView.addArrangedSubview(intelligenceIndicator)
-        likeButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        let action = UIAction { [weak self] _ in
+            self?.didTapButton()
+        }
+        likeButton.addAction(action, for: .primaryActionTriggered)
+        
+      
+        likeButton.delegate = self
+        
         configureConstraints()
     }
     
@@ -103,7 +119,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func didTapButton() {
+     func didTapButton() {
         registrationHandler?()
     }
     
@@ -123,8 +139,8 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         
         let rolesLabelViewConstraints = [
             rolesLabel.leadingAnchor.constraint(equalTo: dispalyHeroName.leadingAnchor),
-            rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: 5),
-            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -2)
+            rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: 30),
+            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ]
         let stackConstraints = [
             baseStackView.leadingAnchor.constraint(equalTo: rolesLabel.leadingAnchor),
@@ -132,12 +148,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
             baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
         ]
         
-        let likeButtonConstraints = [
-            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        ]
-        
-        NSLayoutConstraint.activate(likeButtonConstraints)
         NSLayoutConstraint.activate(stackConstraints)
         NSLayoutConstraint.activate(rolesLabelViewConstraints)
         NSLayoutConstraint.activate(imageHeroViewConstraints)
