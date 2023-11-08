@@ -43,7 +43,7 @@ class Ring: UIView {
            
            faveButton.superview?.insertSubview(ring, belowSubview: faveButton)
            
-           (ring,faveButton) ->>- [.centerX, .centerY]
+           (ring, faveButton) ->>- [.centerX, .centerY]
            
            attributes(.width, .height).forEach{ attr in
                ring ->>- {

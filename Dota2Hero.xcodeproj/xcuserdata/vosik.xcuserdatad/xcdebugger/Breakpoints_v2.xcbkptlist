@@ -504,22 +504,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7A2C0FBD-4C49-47D1-850A-D660FA617855"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dota2Hero/Controllers/LikedHeroesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1C73E7A7-0BE1-4BEA-BCAD-8E77C735F267"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -527,119 +511,10 @@
             filePath = "Dota2Hero/Supporting/TemporaryStorageForHeroes.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "likedDota2Hero"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "93BFFECC-F404-4FAC-9CE5-F060A209A58F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dota2Hero/Controllers/LikedHeroesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "likedHeroes"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "93BFFECC-F404-4FAC-9CE5-F060A209A58F - 88ee4ea97d981e20"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dota2Hero.LikedHeroesViewController.likedHeroes.getter : Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "164">
-               </Location>
-               <Location
-                  uuid = "93BFFECC-F404-4FAC-9CE5-F060A209A58F - bf55d87127ee7214"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dota2Hero.LikedHeroesViewController.likedHeroes.setter : Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "93BFFECC-F404-4FAC-9CE5-F060A209A58F - 625e2e924d88727"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dota2Hero.LikedHeroesViewController.likedHeroes.modify : Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "93BFFECC-F404-4FAC-9CE5-F060A209A58F - 3bd37d514bf3771c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dota2Hero.LikedHeroesViewController.likedHeroes.modify : Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "93BFFECC-F404-4FAC-9CE5-F060A209A58F - 88ee4ea97d981e20"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dota2Hero.LikedHeroesViewController.likedHeroes.getter : Swift.Array&lt;Dota2Hero.Dota2HeroModel&gt;"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "168">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "163FD5A1-BC1F-4821-B2F3-300AD36AD4D3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dota2Hero/Controllers/LikedHeroesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "likedHeroes"
-            landmarkType = "24">
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "TemporaryStorageForHeroes"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -652,8 +527,8 @@
             filePath = "Dota2Hero/Controllers/LikedHeroesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -730,8 +605,8 @@
             filePath = "Dota2Hero/Controllers/LikedHeroesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -764,6 +639,132 @@
                   startingLineNumber = "67"
                   endingLineNumber = "67"
                   offsetFromSymbolStart = "500">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25B88F88-9006-4C0F-A805-A0D86A89CAF4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/Controllers/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "25B88F88-9006-4C0F-A805-A0D86A89CAF4 - b57e28572e2c96d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dota2Hero.HomeViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "960">
+               </Location>
+               <Location
+                  uuid = "25B88F88-9006-4C0F-A805-A0D86A89CAF4 - b57e28572e2c96d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dota2Hero.HomeViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "968">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6271AF39-C49E-4736-AB26-259AC5F42501"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dota2Hero/Controllers/LikedHeroesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6271AF39-C49E-4736-AB26-259AC5F42501 - 5f55d6ce5bec1452"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dota2Hero.LikedHeroesViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "796">
+               </Location>
+               <Location
+                  uuid = "6271AF39-C49E-4736-AB26-259AC5F42501 - eebeb0c7790b7084"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Dota2Hero.LikedHeroesViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "6271AF39-C49E-4736-AB26-259AC5F42501 - 40d631e48b4f10ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in Dota2Hero.LikedHeroesViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "6271AF39-C49E-4736-AB26-259AC5F42501 - 43c1beb80b6d0bbc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Bool) -&gt; () in closure #1 () -&gt; () in Dota2Hero.LikedHeroesViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Dota2Hero"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/Controllers/LikedHeroesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>

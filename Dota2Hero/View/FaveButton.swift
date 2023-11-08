@@ -44,6 +44,7 @@ class FaveButton: UIButton {
     private var faveIcon: FaveIcon!
     private var animationsEnabled = true
     
+   
     override var isSelected: Bool {
         didSet {
             guard self.animationsEnabled else { return }
@@ -104,10 +105,10 @@ class FaveButton: UIButton {
         let offset = 10.0
         
         for index in 0..<sparkGroupCount {
-            let theta  = step * Double(index) + offset
+            let theta = step * Double(index) + offset
             let colors = dotColors(at: index)
             
-            let spark  = Spark.createSpark(self, radius: radius, firstColor: colors.first,secondColor: colors.second, angle: theta,
+            let spark = Spark.createSpark(self, radius: radius, firstColor: colors.first,secondColor: colors.second, angle: theta,
                                            dotRadius: dotRadius)
             sparks.append(spark)
         }
@@ -161,7 +162,7 @@ class FaveButton: UIButton {
         let action = UIAction { [weak self] _ in
             self?.toggle(self!)
         }
-        self.addAction(action, for: .touchUpInside)
+        self.addAction(action, for: .primaryActionTriggered)
     }
     
     func toggle(_ sender: FaveButton) {

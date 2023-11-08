@@ -7,41 +7,20 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
 
     private let dota2API: Dota2HeroFetcher
-    private let imageFetcher: ImageFetcher
-    private let heroesStorage: TemporaryStorageForHeroes
-    
-    
    
-    private let dota2HeroesTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(Dota2HeroTableViewCell.self, forCellReuseIdentifier: Dota2HeroTableViewCell.identifier)
-        return tableView
-    }()
-    
-    private var screenSize: CGFloat? {
-       return UIScreen.current?.bounds.height
-    }
-    
-    private var heroes: Heroes = [] {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.dota2HeroesTableView.reloadData()
-            }
-        }
-    }
-    
-    
-    private var likedStates: [Int: Bool] = [:]
-    
     
     init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: TemporaryStorageForHeroes) {
         self.dota2API = dota2API
-        self.imageFetcher = imageFetcher
-        self.heroesStorage = heroesStorage
-        super.init(nibName: nil, bundle: nil)
+        super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
+       
+        heroesStorage.allHeroesDidChangeHandler = { [weak self] hero in
+            if let index = self?.heroes.firstIndex(where: { $0.heroID == hero.heroID } ) {
+                self?.heroes[index].isLiked = hero.isLiked
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -54,17 +33,10 @@ class HomeViewController: UIViewController {
         fetch()
     }
     
-    private func setupUI() {
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(dota2HeroesTableView)
-        
-        configureNavigationBarWithLogo()
-        
-        dota2HeroesTableView.allowsSelection = false
-        dota2HeroesTableView.delegate = self
-        dota2HeroesTableView.dataSource = self
-        
+    override func setupUI() {
+        super.setupUI()
+        heroesTableView.delegate = self
+        heroesTableView.dataSource = self
     }
     
     private func fetch() {
@@ -72,16 +44,12 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let heroes):
                 self?.heroes = heroes
+                self?.heroesStorage.addAllHero(heroes: heroes)
             case .failure(let error):
                 print(error)
             }
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-           super.viewDidLayoutSubviews()
-           dota2HeroesTableView.frame = view.frame
-       }
 }
 
 
@@ -94,26 +62,30 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
-        var model = heroes[indexPath.row]
-        cell.likeButton.isSelected = model.isLiked
-        
-        cell.registrationHandler = { [weak self] in
-            let isLiked = !model.isLiked
-            model.isLiked = isLiked
-            if isLiked {
-                self?.heroesStorage.addLiked(hero: model)
-            } else {
-                self?.heroesStorage.changeModel(by: model.heroID)
-                self?.heroesStorage.removeLikedHero()
+
+           
+            cell.likeButton.isSelected = heroes[indexPath.row].isLiked
+
+            cell.registrationHandler = { [weak self] in
+                guard let self = self, heroes.indices.contains(indexPath.row) else { return }
+                
+                let isLiked = !self.heroes[indexPath.row].isLiked
+
+                self.heroes[indexPath.row].isLiked = isLiked
+
+                if isLiked {
+                    self.heroesStorage.addLiked(hero: self.heroes[indexPath.row])
+                } else {
+                    self.heroesStorage.removeLikedHero(by: self.heroes[indexPath.row].heroID)
+                }
             }
-            cell.likeButton.isSelected = isLiked
-        }
         
-        imageFetcher.fetchImage(from: model.imageURL) { result in
+        imageFetcher.fetchImage(from: heroes[indexPath.row].imageURL) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    cell.configure(model: model, with: image)
+                    cell.configure(model: self.heroes[indexPath.row], with: image)
                 }
             case .failure(let error):
                 print(error.localizedDescription)

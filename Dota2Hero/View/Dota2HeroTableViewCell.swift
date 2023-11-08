@@ -115,6 +115,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         configureConstraints()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -7,48 +7,19 @@
 
 import UIKit
 
-class LikedHeroesViewController: UIViewController {
+class LikedHeroesViewController: BaseViewController {
 
-    
-    private let heroesStorage: TemporaryStorageForHeroes
-    private let imageFetcher: ImageFetcher
-    
-    
-    private lazy var likedHeroes: Heroes = heroesStorage.getHeroes() {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.dota2LikedHeroesTableView.reloadData()
-            }
-        }
-    }
-    
-    private let dota2LikedHeroesTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(Dota2HeroTableViewCell.self, forCellReuseIdentifier: Dota2HeroTableViewCell.identifier)
-        return tableView
-    }()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBarWithLogo()
-        view.backgroundColor = .systemBackground
-        view.addSubview(dota2LikedHeroesTableView)
-        
-        dota2LikedHeroesTableView.delegate = self
-        dota2LikedHeroesTableView.dataSource = self
+        setupUI()
     }
     
-    
-    init(heroesStorage: TemporaryStorageForHeroes, imageFetcher: ImageFetcher) {
-        self.heroesStorage = heroesStorage
-        self.imageFetcher = imageFetcher
-        super.init(nibName: nil, bundle: nil)
-        
-        heroesStorage.likedHeroesDidChangeHandler = { [weak self] in
-            self?.likedHeroes = heroesStorage.getHeroes()
-           
+   override init(heroesStorage: TemporaryStorageForHeroes, imageFetcher: ImageFetcher) {
+        super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
+       
+       heroesStorage.likedHeroesDidChangeHandler = { [weak self] in
+            self?.heroes = heroesStorage.getLikedHeroes()
         }
     }
     
@@ -56,29 +27,47 @@ class LikedHeroesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLayoutSubviews() {
-           super.viewDidLayoutSubviews()
-           dota2LikedHeroesTableView.frame = view.frame
-       }
-
+    override func setupUI() {
+        super.setupUI()
+        heroesTableView.delegate = self
+        heroesTableView.dataSource = self
+    }
 }
 
 
 extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likedHeroes.count
+        return heroes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
-        let model = likedHeroes[indexPath.row]
+    
+           
+        cell.likeButton.isSelected = heroes[indexPath.row].isLiked
+       
+        cell.registrationHandler = { [weak self] in
+            guard let self = self, heroes.indices.contains(indexPath.row) else { return }
+            
+            let heroID = self.heroes[indexPath.row].heroID
+            
+            tableView.performBatchUpdates {
+                self.heroes.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } completion: { finished in
+                self.heroesStorage.removeLikedHero(by: heroID)
+                self.heroesStorage.changeSimpleModels(by: heroID)
+            }
+        }
         
-        imageFetcher.fetchImage(from: model.imageURL) { result in
+        imageFetcher.fetchImage(from: heroes[indexPath.row].imageURL) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    cell.configure(model: model, with: image)
+                    cell.configure(model: self.heroes[indexPath.row], with: image)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
