@@ -10,46 +10,43 @@ import Foundation
 
 final class TemporaryStorageForHeroes {
     
-    private var likedDota2Hero: Heroes = [] {
+    private(set) var likedHeroes: Heroes = [] {
         didSet {
             likedHeroesDidChangeHandler?()
         }
     }
     
-    private var allDota2Hero: Heroes = [] 
+    private(set) var allHeroes: Heroes = []
        
     
     var likedHeroesDidChangeHandler: (() -> Void)?
-    var allHeroesDidChangeHandler: ((Dota2HeroModel) -> Void)?
+    var allHeroesChangedHandler: ((Dota2HeroModel) -> Void)?
     
     
-    func addAllHero(heroes: Heroes) {
-        allDota2Hero = heroes
+    func addAllHeroes(heroes: Heroes) {
+        allHeroes = heroes
     }
     
-    func changeSimpleModels(by ID: Int) {
-        if let index = allDota2Hero.firstIndex(where: { $0.heroID == ID }) {
-            allDota2Hero[index].isLiked = false
-            allHeroesDidChangeHandler?(allDota2Hero[index])
+    func resetLikedState(for heroID: Int) {
+        if let index = allHeroes.firstIndex(where: { $0.heroID == heroID }) {
+            allHeroes[index].isLiked = false
+            allHeroesChangedHandler?(allHeroes[index])
         }
     }
     
     func addLiked(hero: Dota2HeroModel) {
-        likedDota2Hero.append(hero)
+        likedHeroes.append(hero)
     }
     
     func removeLikedHero(by ID: Int) {
-        if let index = likedDota2Hero.firstIndex(where: { $0.heroID == ID }) {
-            likedDota2Hero[index].isLiked = false
-            likedDota2Hero = likedDota2Hero.filter { $0.isLiked }
-        }
+        likedHeroes.removeAll { $0.heroID == ID }
     }
     
     func getAllHeroes() -> Heroes {
-        return allDota2Hero
+        return allHeroes
     }
     
     func getLikedHeroes() -> Heroes {
-        return likedDota2Hero
+        return likedHeroes
     }
 }

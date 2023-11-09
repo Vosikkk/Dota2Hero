@@ -16,12 +16,14 @@ class HomeViewController: BaseViewController {
         self.dota2API = dota2API
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
        
-        heroesStorage.allHeroesDidChangeHandler = { [weak self] hero in
+        heroesStorage.allHeroesChangedHandler = { [weak self] hero in
             if let index = self?.heroes.firstIndex(where: { $0.heroID == hero.heroID } ) {
                 self?.heroes[index].isLiked = hero.isLiked
             }
         }
     }
+    
+    
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -30,7 +32,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetch()
+        fetchHeroes()
     }
     
     override func setupUI() {
@@ -39,12 +41,12 @@ class HomeViewController: BaseViewController {
         heroesTableView.dataSource = self
     }
     
-    private func fetch() {
+    private func fetchHeroes() {
         dota2API.fetch(page: 1, pageSize: 11) { [weak self] result in
             switch result {
             case .success(let heroes):
                 self?.heroes = heroes
-                self?.heroesStorage.addAllHero(heroes: heroes)
+                self?.heroesStorage.addAllHeroes(heroes: heroes)
             case .failure(let error):
                 print(error)
             }
@@ -63,20 +65,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
 
-           
+      
             cell.likeButton.isSelected = heroes[indexPath.row].isLiked
 
             cell.registrationHandler = { [weak self] in
                 guard let self = self, heroes.indices.contains(indexPath.row) else { return }
                 
                 let isLiked = !self.heroes[indexPath.row].isLiked
-
                 self.heroes[indexPath.row].isLiked = isLiked
+                
+                let hero = self.heroes[indexPath.row]
 
                 if isLiked {
-                    self.heroesStorage.addLiked(hero: self.heroes[indexPath.row])
+                    self.heroesStorage.addLiked(hero: hero)
                 } else {
-                    self.heroesStorage.removeLikedHero(by: self.heroes[indexPath.row].heroID)
+                    self.heroesStorage.removeLikedHero(by: hero.heroID)
                 }
             }
         

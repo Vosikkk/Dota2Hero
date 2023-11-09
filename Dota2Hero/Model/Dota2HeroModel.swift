@@ -13,11 +13,16 @@ struct Dota2HeroModel: Codable {
     let name, localizedName, primaryAttr, attackType: String
     let roles: [String]
     let img: String
+    let baseMana, baseHealth, baseHealthRegen: Double
+    let baseManaRegen: Double
+    
+    let baseAttackMin, baseAttackMax, attackRange, attackSpeed: Double
+    let moveSpeed: Double
    
+    let baseStr, baseAgi, baseInt: Double
+    let agiGain, intGain, strGain: Double
    
-    let baseStr, baseAgi, baseInt, strGain: Double
-    let agiGain, intGain: Double
-   
+    
     let heroID: Int
     
     var isLiked: Bool = false
@@ -42,8 +47,28 @@ struct Dota2HeroModel: Codable {
         case agiGain = "agi_gain"
         case intGain = "int_gain"
         case heroID = "hero_id"
-       
+        case baseMana = "base_mana"
+        case baseManaRegen = "base_mana_regen"
+        case baseHealth = "base_health"
+        case baseHealthRegen = "base_health_regen"
+        case baseAttackMin = "base_attack_min"
+        case baseAttackMax = "base_attack_max"
+        case attackRange = "attack_range"
+        case moveSpeed = "move_speed"
+        case attackSpeed = "base_attack_time"
     }
 }
 
 typealias Heroes = [Dota2HeroModel]
+//"base_health": 0,
+//"base_health_regen": 0,
+//"base_mana": 0,
+//"base_mana_regen": 0,
+//"base_armor": 0,
+//"base_mr": 0,
+//"base_attack_min": 0,
+//"base_attack_max": 0,
+//"attack_range": 0,
+//"attack_rate": 0,
+//"base_attack_time": 0,
+//"move_speed": 0,

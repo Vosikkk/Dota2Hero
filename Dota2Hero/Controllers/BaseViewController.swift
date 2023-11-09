@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
         }
     }
     
+    
     var screenSize: CGFloat? {
         return UIScreen.current?.bounds.height
     }

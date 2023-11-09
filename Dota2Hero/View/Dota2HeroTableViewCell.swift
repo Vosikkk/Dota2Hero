@@ -7,16 +7,27 @@
 
 import UIKit
 
+protocol Dota2HeroTableViewCellDelegate: AnyObject {
+    func didTapOnImageHeroView(heroID: Int, image: UIImage)
+}
+
+
 
 class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
+    
+    
+   private(set) var tapHeroID: Int?
+   private(set) var imageTap: UIImage?
+    
+    weak var delegate: Dota2HeroTableViewCellDelegate?
     
     static let identifier = "Dota2HeroTableViewCell"
     
     private var screenSize: CGFloat? {
-       return UIScreen.current?.bounds.width
+        return UIScreen.current?.bounds.width
     }
     
-   private var strenghtIndicator: CircleValueView = {
+    private var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(x: 0, y: 0, width: 90, height: 10),
             circleColor: .red, labelColor: .black,
@@ -51,8 +62,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
            return stackView
        }()
     
-    
-    
     private var rolesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false 
@@ -74,6 +83,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         imageView.image = UIImage(named: "dota2_logo")
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -104,6 +114,9 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         baseStackView.addArrangedSubview(agilityIndicator)
         baseStackView.addArrangedSubview(intelligenceIndicator)
         
+        imageHeroView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapImageView)))
+        
+        
         let action = UIAction { [weak self] _ in
             self?.didTapButton()
         }
@@ -123,6 +136,11 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
      func didTapButton() {
         registrationHandler?()
     }
+    
+    @objc func didTapImageView() {
+        delegate?.didTapOnImageHeroView(heroID: tapHeroID!, image: imageTap!)
+    }
+    
     
     private func configureConstraints() {
         
@@ -157,6 +175,8 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     }
     
     func configure(model: Dota2HeroModel, with image: UIImage) {
+        tapHeroID = model.heroID
+        imageTap = image
         imageHeroView.image = image
         rolesLabel.attributedText = createLabel(with: model.attackType, and: model.roles)
         dispalyHeroName.text = model.localizedName

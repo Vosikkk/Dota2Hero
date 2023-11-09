@@ -29,6 +29,8 @@
 		38EF84242AF2EEB100D0F5D1 /* LikedHeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84232AF2EEB100D0F5D1 /* LikedHeroesViewController.swift */; };
 		38EF84262AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84252AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift */; };
 		38EF84282AF30A1500D0F5D1 /* Dota2HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */; };
+		38F8003D2AFD04B500820623 /* HeroDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8003C2AFD04B500820623 /* HeroDetailsViewController.swift */; };
+		38F8003F2AFD171B00820623 /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8003E2AFD171B00820623 /* LabelFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		38EF84232AF2EEB100D0F5D1 /* LikedHeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedHeroesViewController.swift; sourceTree = "<group>"; };
 		38EF84252AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2HeroTableViewCell.swift; sourceTree = "<group>"; };
 		38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2HeroModel.swift; sourceTree = "<group>"; };
+		38F8003C2AFD04B500820623 /* HeroDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsViewController.swift; sourceTree = "<group>"; };
+		38F8003E2AFD171B00820623 /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 				38EF84212AF2EE7D00D0F5D1 /* HomeViewController.swift */,
 				38EF841F2AF2EA6000D0F5D1 /* MainTabBarViewController.swift */,
 				385AF7332AFC264200523B11 /* BaseViewController.swift */,
+				38F8003C2AFD04B500820623 /* HeroDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 				380539B12AFA6BA00035A75F /* Constraints.swift */,
 				3884CAB32AF9814A00C06AFD /* TemporaryStorageForHeroes.swift */,
 				380539B32AFA7D5B0035A75F /* Easing.swift */,
+				38F8003E2AFD171B00820623 /* LabelFactory.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -227,6 +233,8 @@
 			files = (
 				38EF84202AF2EA6000D0F5D1 /* MainTabBarViewController.swift in Sources */,
 				380539AE2AFA5F4B0035A75F /* FaveIcon.swift in Sources */,
+				38F8003D2AFD04B500820623 /* HeroDetailsViewController.swift in Sources */,
+				38F8003F2AFD171B00820623 /* LabelFactory.swift in Sources */,
 				38EF84242AF2EEB100D0F5D1 /* LikedHeroesViewController.swift in Sources */,
 				38EF84262AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift in Sources */,
 				380539B22AFA6BA00035A75F /* Constraints.swift in Sources */,

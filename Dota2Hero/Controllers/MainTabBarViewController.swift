@@ -23,9 +23,9 @@ class MainTabBarViewController: UITabBarController {
         let dota2API: Dota2HeroFetcher = Dota2HeroFetcher()
         let imageFetcher: ImageFetcher = ImageFetcher()
         let heroesStorage: TemporaryStorageForHeroes = TemporaryStorageForHeroes()
-        
+        let factory: LabelFactory = LabelFactory()
         let vc1 = UINavigationController(rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher, heroesStorage: heroesStorage))
-        let vc2 = UINavigationController(rootViewController: LikedHeroesViewController(heroesStorage: heroesStorage,imageFetcher: imageFetcher))
+        let vc2 = UINavigationController(rootViewController: LikedHeroesViewController(heroesStorage: heroesStorage, imageFetcher: imageFetcher, factory: factory))
         
         vc1.tabBarItem = createTabBarItem(imageName: "house", selectedImageName: "house.fill")
         vc2.tabBarItem = createTabBarItem(imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
