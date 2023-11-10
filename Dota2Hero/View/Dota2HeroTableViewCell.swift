@@ -15,9 +15,9 @@ protocol Dota2HeroTableViewCellDelegate: AnyObject {
 
 class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
-    
-   private(set) var tapHeroID: Int?
-   private(set) var imageTap: UIImage?
+    var registrationHandler: (() -> Void)?
+    private(set) var tapHeroID: Int?
+    private(set) var imageTap: UIImage?
     
     weak var delegate: Dota2HeroTableViewCellDelegate?
     
@@ -64,7 +64,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     private var rolesLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false 
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
@@ -98,9 +98,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         super.layoutSubviews()
     }
     
-   
-    
-    var registrationHandler: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

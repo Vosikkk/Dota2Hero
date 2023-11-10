@@ -10,12 +10,14 @@ import UIKit
 
 class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDelegate {
     
+    
+    private let factory: LabelFactory
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
-    let factory: LabelFactory
     
     init(heroesStorage: TemporaryStorageForHeroes, imageFetcher: ImageFetcher, factory: LabelFactory) {
        self.factory = factory
@@ -39,12 +41,12 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     func didTapOnImageHeroView(heroID: Int, image: UIImage) {
         let model = heroes.filter { $0.heroID == heroID }
-        let vc = HeroDetailsViewController(factory: factory)
-        vc.configureUI(with: model.first!, and: image)
-        navigationController?.pushViewController(vc, animated: true)
+        if let hero = model.first {
+            let vc = HeroDetailsViewController(factory: factory, heroesStorage: heroesStorage)
+            vc.configureUI(with: hero, and: image)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
-    
 }
 
 
@@ -64,15 +66,14 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
         cell.registrationHandler = { [weak self] in
             guard let self = self, heroes.indices.contains(indexPath.row) else { return }
             
-            let heroID = self.heroes[indexPath.row].heroID
+            let hero = self.heroes[indexPath.row]
             
             tableView.performBatchUpdates {
                 self.heroes.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 
             } completion: { finished in
-                self.heroesStorage.removeLikedHero(by: heroID)
-                self.heroesStorage.resetLikedState(for: heroID)
+                self.heroesStorage.removeLiked(hero: hero)
             }
         }
         

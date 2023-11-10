@@ -27,19 +27,14 @@ final class TemporaryStorageForHeroes {
         allHeroes = heroes
     }
     
-    func resetLikedState(for heroID: Int) {
-        if let index = allHeroes.firstIndex(where: { $0.heroID == heroID }) {
-            allHeroes[index].isLiked = false
-            allHeroesChangedHandler?(allHeroes[index])
-        }
-    }
-    
     func addLiked(hero: Dota2HeroModel) {
+        updateHeroLikedStatus(hero)
         likedHeroes.append(hero)
     }
     
-    func removeLikedHero(by ID: Int) {
-        likedHeroes.removeAll { $0.heroID == ID }
+    func removeLiked(hero: Dota2HeroModel) {
+        updateHeroLikedStatus(hero)
+        likedHeroes.removeAll { $0.heroID == hero.heroID }
     }
     
     func getAllHeroes() -> Heroes {
@@ -48,5 +43,11 @@ final class TemporaryStorageForHeroes {
     
     func getLikedHeroes() -> Heroes {
         return likedHeroes
+    }
+    
+    private func updateHeroLikedStatus(_ hero: Dota2HeroModel) {
+        guard let index = allHeroes.firstIndex(where: { $0.heroID == hero.heroID }) else { return }
+        allHeroes[index].isLiked = hero.isLiked
+        allHeroesChangedHandler?(allHeroes[index])
     }
 }

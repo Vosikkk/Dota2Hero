@@ -17,7 +17,12 @@ class HeroDetailsViewController: UIViewController {
         static let firstLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
         static let secondLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
     }
-   
+    
+    private var hero: Dota2HeroModel!
+      
+    
+    
+    let heroesStorage: TemporaryStorageForHeroes
     let gradientLayer = CAGradientLayer()
     
     let factory: LabelFactory
@@ -45,8 +50,6 @@ class HeroDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        likedButton.isSelected = true
-        likedButton.isEnabled = false
     }
     
     
@@ -142,7 +145,8 @@ class HeroDetailsViewController: UIViewController {
         return stack
     }()
     
-    init(factory: LabelFactory) {
+    init(factory: LabelFactory, heroesStorage: TemporaryStorageForHeroes) {
+        self.heroesStorage = heroesStorage
         self.factory = factory
         super.init(nibName: nil, bundle: nil)
     }
@@ -163,6 +167,21 @@ class HeroDetailsViewController: UIViewController {
         configureGradientLayer()
         configureConstraints()
         likedButton.delegate = self
+        let action = UIAction { [weak self] _ in
+            self?.didTapLikeButton()
+        }
+        likedButton.isSelected = hero.isLiked
+        
+        likedButton.addAction(action, for: .touchUpInside)
+    }
+    
+    func didTapLikeButton() {
+        hero.isLiked = !hero.isLiked
+        if !hero.isLiked {
+            heroesStorage.removeLiked(hero: hero)
+        } else {
+            heroesStorage.addLiked(hero: hero)
+        }
     }
     
     private func configureGradientLayer() {
@@ -189,20 +208,19 @@ class HeroDetailsViewController: UIViewController {
     
     
     func configureUI(with model: Dota2HeroModel, and image: UIImage ) {
-        
+        hero = model
         imageHeroView.image = image
-        heroNameLabel.text = model.localizedName
-      //  likedButton.isSelected = model.isLiked
+        heroNameLabel.text = hero.localizedName
         
         let labelsToUpdate: [(UILabel, String, String)] = [
-            (baseManaLabel, baseManaLabel.text!, String(model.baseMana)),
-            (baseManaRegenLabel, baseManaRegenLabel.text!, String(model.baseManaRegen)),
-            (baseHealthLabel, baseHealthLabel.text!, String(model.baseHealth)),
-            (baseHealthRegenLabel, baseHealthRegenLabel.text!, String(model.baseHealthRegen)),
-            (baseAttack,baseAttack.text!, "\(model.baseAttackMin) - \(model.baseAttackMax)"),
-            (attackRangeLabel, attackRangeLabel.text!, String(model.attackRange)),
-            (moveSpeedLabel, moveSpeedLabel.text!, String(model.moveSpeed)),
-            (attackSpeedLabel, attackSpeedLabel.text!, String(model.attackSpeed))
+            (baseManaLabel, baseManaLabel.text!, String(hero.baseMana)),
+            (baseManaRegenLabel, baseManaRegenLabel.text!, String(hero.baseManaRegen)),
+            (baseHealthLabel, baseHealthLabel.text!, String(hero.baseHealth)),
+            (baseHealthRegenLabel, baseHealthRegenLabel.text!, String(hero.baseHealthRegen)),
+            (baseAttack,baseAttack.text!, "\(hero.baseAttackMin) - \(hero.baseAttackMax)"),
+            (attackRangeLabel, attackRangeLabel.text!, String(hero.attackRange)),
+            (moveSpeedLabel, moveSpeedLabel.text!, String(hero.moveSpeed)),
+            (attackSpeedLabel, attackSpeedLabel.text!, String(hero.attackSpeed))
         ]
         for (label, prefix, value) in labelsToUpdate {
             updateLabelWithPrefix(label: label, prefix: prefix, value: value)
@@ -242,13 +260,13 @@ class HeroDetailsViewController: UIViewController {
     
     
     private struct TextConstants {
-        static let health = NSLocalizedString("HEALTH", comment: "")
-        static let healthRegen = NSLocalizedString("HEALTH REGEN", comment: "")
-        static let mana = NSLocalizedString("MANA", comment: "")
-        static let manaRegen = NSLocalizedString("MANA REGEN", comment: "")
-        static let baseAttack = NSLocalizedString("BASE ATTACK", comment: "")
-        static let attackRange = NSLocalizedString("ATTACK RANGE", comment: "")
-        static let attackSpeed = NSLocalizedString("ATTACK SPEED", comment: "")
-        static let moveSpeed = NSLocalizedString("MOVE SPEED", comment: "")
+        static let health = NSLocalizedString("HEALTH:", comment: "")
+        static let healthRegen = NSLocalizedString("HEALTH REGEN:", comment: "")
+        static let mana = NSLocalizedString("MANA:", comment: "")
+        static let manaRegen = NSLocalizedString("MANA REGEN:", comment: "")
+        static let baseAttack = NSLocalizedString("BASE ATTACK:", comment: "")
+        static let attackRange = NSLocalizedString("ATTACK RANGE:", comment: "")
+        static let attackSpeed = NSLocalizedString("ATTACK SPEED:", comment: "")
+        static let moveSpeed = NSLocalizedString("MOVE SPEED:", comment: "")
     }
 }
