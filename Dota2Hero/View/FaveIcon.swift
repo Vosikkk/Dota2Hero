@@ -119,7 +119,7 @@ class FaveIcon: UIView {
         let c = to - from
         let d = duration
         var t = CGFloat(0.0)
-        var tweenFunction = Elastic.ExtendedEaseOut
+        let tweenFunction = Elastic.ExtendedEaseOut
         
         while (t < d) {
             let scale = tweenFunction(t, from, c, d, c + 0.001, 0.39988)

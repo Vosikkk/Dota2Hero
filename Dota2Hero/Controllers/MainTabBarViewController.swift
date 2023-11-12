@@ -12,10 +12,7 @@ class MainTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setTabBar()
-
-        
     }
     
     private func setTabBar() {
@@ -30,7 +27,8 @@ class MainTabBarViewController: UITabBarController {
         vc1.tabBarItem = createTabBarItem(imageName: "house", selectedImageName: "house.fill")
         vc2.tabBarItem = createTabBarItem(imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
         
-        
+        tabBar.tintColor = .systemOrange
+        tabBar.unselectedItemTintColor = .systemOrange
         setViewControllers([vc1, vc2], animated: true)
     }
     

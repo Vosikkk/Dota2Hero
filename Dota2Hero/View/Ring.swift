@@ -20,7 +20,7 @@ class Ring: UIView {
     var lineWidth: CGFloat!
     var ringLayer: CAShapeLayer!
     
-    init(radius: CGFloat, lineWidth:CGFloat, fillColor: UIColor) {
+    init(radius: CGFloat, lineWidth: CGFloat, fillColor: UIColor) {
         self.fillColor = fillColor
         self.radius    = radius
         self.lineWidth = lineWidth

@@ -10,7 +10,8 @@ import UIKit
 
 class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDelegate {
     
-    
+    private var likedObserver: NSObjectProtocol?
+   
     private let factory: LabelFactory
     
     override func viewDidLoad() {
@@ -20,16 +21,28 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     
     init(heroesStorage: TemporaryStorageForHeroes, imageFetcher: ImageFetcher, factory: LabelFactory) {
-       self.factory = factory
-       super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
-       
-       heroesStorage.likedHeroesDidChangeHandler = { [weak self] in
-            self?.heroes = heroesStorage.getLikedHeroes()
-        }
+        self.factory = factory
+        super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
+        
+        likedObserver = NotificationCenter.default.addObserver(
+            forName: .changeInLiked,
+            object: nil,
+            queue: OperationQueue.main) { [weak self] notification in
+                if let heroes = notification.userInfo?["hero"] as? [Dota2HeroModel] {
+                    self?.heroes = heroes
+                }
+            }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+   
+    deinit {
+        if let observer = likedObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     override func setupUI() {
@@ -60,13 +73,16 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
     
         cell.delegate = self
-       
+        
         cell.likeButton.isSelected = heroes[indexPath.row].isLiked
-       
+        
         cell.registrationHandler = { [weak self] in
             guard let self = self, heroes.indices.contains(indexPath.row) else { return }
             
-            let hero = self.heroes[indexPath.row]
+           
+            var hero = self.heroes[indexPath.row]
+            hero.isLiked = !hero.isLiked
+          
             
             tableView.performBatchUpdates {
                 self.heroes.remove(at: indexPath.row)
@@ -92,6 +108,9 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let size = screenSize, UIDevice.current.orientation.isPortrait {
+            return size / 5
+        }
         return 150
     }
 }

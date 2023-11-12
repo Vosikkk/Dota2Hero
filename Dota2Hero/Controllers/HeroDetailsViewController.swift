@@ -20,9 +20,8 @@ class HeroDetailsViewController: UIViewController {
     
     private var hero: Dota2HeroModel!
       
-    
-    
     let heroesStorage: TemporaryStorageForHeroes
+    
     let gradientLayer = CAGradientLayer()
     
     let factory: LabelFactory
@@ -37,7 +36,7 @@ class HeroDetailsViewController: UIViewController {
     private lazy var imageHeroView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
@@ -48,10 +47,7 @@ class HeroDetailsViewController: UIViewController {
         return imageView
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+   
     
     private lazy var heroNameLabel: UILabel = {
         return factory.createMainLabel()
@@ -235,7 +231,7 @@ class HeroDetailsViewController: UIViewController {
             imageHeroView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 2),
             imageHeroView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
             imageHeroView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -2),
-            imageHeroView.heightAnchor.constraint(equalToConstant: 300)
+            imageHeroView.heightAnchor.constraint(equalToConstant: 400)
         ]
     
         

@@ -10,22 +10,20 @@ import UIKit
 class HomeViewController: BaseViewController {
 
     private let dota2API: Dota2HeroFetcher
+    
     private let imageLoadQueue = OperationQueue()
+    
     private var operations: [IndexPath: Operation] = [:]
+    
+    private var likedObserver: NSObjectProtocol?
+   
+    
     
     init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: TemporaryStorageForHeroes) {
         self.dota2API = dota2API
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
-       
-        heroesStorage.allHeroesChangedHandler = { [weak self] hero in
-            if let index = self?.heroes.firstIndex(where: { $0.heroID == hero.heroID } ) {
-                self?.heroes[index].isLiked = hero.isLiked
-            }
-        }
     }
     
-    
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,6 +32,29 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setupUI()
         fetchHeroes()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        likedObserver = NotificationCenter.default.addObserver(
+            forName: .changeLikeOnAllHeroes,
+            object: nil,
+            queue: OperationQueue.main) { notification in
+                if let heroChanged = notification.userInfo?["hero"] as? Dota2HeroModel {
+                    self.updateUI(by: heroChanged)
+                }
+            }
+    }
+    
+    private func updateUI(by hero: Dota2HeroModel) {
+        guard let index = heroes.firstIndex(where: { $0.heroID == hero.heroID }) else { return }
+        heroes[index].isLiked = hero.isLiked
+    }
+    
+    deinit {
+        if let observer = likedObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     override func setupUI() {
@@ -66,7 +87,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         
         cell.likeButton.isSelected = heroes[indexPath.row].isLiked
-        
+       
         cell.registrationHandler = { [weak self] in
             guard let self = self, heroes.indices.contains(indexPath.row) else { return }
             
@@ -101,6 +122,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         imageLoadQueue.addOperation(loadOperation)
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let size = screenSize, UIDevice.current.orientation.isPortrait {

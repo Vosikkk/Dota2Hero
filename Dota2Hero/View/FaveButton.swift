@@ -39,16 +39,20 @@ class FaveButton: UIButton {
     
     private(set) var sparkGroupCount: Int = 7
     
+    
+    
     weak var delegate: AnyObject?
     private var faveIconImage: UIImage?
-    private var faveIcon: FaveIcon!
+    var faveIcon: FaveIcon!
     private var animationsEnabled = true
-    
+   
+    private var isSelectedAnimated: Bool = false
    
     override var isSelected: Bool {
         didSet {
             guard self.animationsEnabled else { return }
             animateSelect(self.isSelected, duration: Constants.duration)
+            isSelectedAnimated = false
         }
     }
     
@@ -68,12 +72,13 @@ class FaveButton: UIButton {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        applyInit()
+       
     }
     
+   
     private func applyInit(){
             
-            if nil == faveIconImage{
+            if nil == faveIconImage {
                 faveIconImage = image(for: UIControl.State())
             }
             
@@ -86,7 +91,7 @@ class FaveButton: UIButton {
             setTitle(nil, for: UIControl.State())
            
             
-            faveIcon  = createFaveIcon(faveIconImage)
+            faveIcon = createFaveIcon(faveIconImage)
             
             addActions()
         }
@@ -155,7 +160,6 @@ class FaveButton: UIButton {
     }
     
     
-    
     // MARK: Action
     
     func addActions() {
@@ -166,7 +170,7 @@ class FaveButton: UIButton {
     }
     
     func toggle(_ sender: FaveButton) {
-        
+       
         sender.isSelected = !sender.isSelected
         guard case let delegate as FaveButtonDelegate = self.delegate else { return }
         

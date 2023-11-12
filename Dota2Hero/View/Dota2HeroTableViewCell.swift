@@ -16,8 +16,8 @@ protocol Dota2HeroTableViewCellDelegate: AnyObject {
 class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     var registrationHandler: (() -> Void)?
-    private(set) var tapHeroID: Int?
-    private(set) var imageTap: UIImage?
+    private var heroID: Int?
+    private var tapedImage: UIImage?
     
     weak var delegate: Dota2HeroTableViewCellDelegate?
     
@@ -29,27 +29,27 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     private var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x: 0, y: 0, width: 90, height: 10),
+            frame: CGRect(x: 0, y: 0, width: 100, height: 15),
             circleColor: .red, labelColor: .black,
-            labelTextSize: 12)
+            labelTextSize: 13)
         return circle
     }()
     
     private var agilityIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x:0, y: 0, width: 90, height: 10),
+            frame: CGRect(x:0, y: 0, width: 100, height: 15),
             circleColor: .green,
             labelColor: .black,
-            labelTextSize: 12)
+            labelTextSize: 13)
         return circle
     }()
     
     private var intelligenceIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x:0, y: 0, width: 90, height: 10),
+            frame: CGRect(x:0, y: 0, width: 100, height: 15),
             circleColor: .blue,
             labelColor: .black,
-            labelTextSize: 12)
+            labelTextSize: 13)
         return circle
     }()
    
@@ -66,6 +66,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping 
         return label
     }()
     
@@ -87,16 +88,18 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return imageView
     }()
     
+    
+    
     lazy var likeButton: FaveButton = {
         let button = FaveButton(frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: 0, width: 38, height: 38),
                                 faveIconNormal: UIImage(named: "unlike"))
+        
+        button.delegate = self
+        
         return button
     }()
 
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
+
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -119,23 +122,22 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         }
         likeButton.addAction(action, for: .primaryActionTriggered)
         
-      
-        likeButton.delegate = self
-        
         configureConstraints()
     }
-    
+   
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-     func didTapButton() {
+     private func didTapButton() {
         registrationHandler?()
     }
     
     @objc func didTapImageView() {
-        delegate?.didTapOnImageHeroView(heroID: tapHeroID!, image: imageTap!)
+        if let heroID = heroID, let image = tapedImage {
+            delegate?.didTapOnImageHeroView(heroID: heroID, image: image)
+        }
     }
     
     
@@ -156,14 +158,18 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         let rolesLabelViewConstraints = [
             rolesLabel.leadingAnchor.constraint(equalTo: dispalyHeroName.leadingAnchor),
             rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: 30),
-            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            rolesLabel.bottomAnchor.constraint(lessThanOrEqualTo: baseStackView.topAnchor, constant: -5)
+            
         ]
+        
+       
         let stackConstraints = [
             baseStackView.leadingAnchor.constraint(equalTo: rolesLabel.leadingAnchor),
             baseStackView.topAnchor.constraint(equalTo: rolesLabel.bottomAnchor, constant: 15),
             baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
         ]
-        
+       
         NSLayoutConstraint.activate(stackConstraints)
         NSLayoutConstraint.activate(rolesLabelViewConstraints)
         NSLayoutConstraint.activate(imageHeroViewConstraints)
@@ -172,8 +178,8 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     }
     
     func configure(model: Dota2HeroModel, with image: UIImage) {
-        tapHeroID = model.heroID
-        imageTap = image
+        heroID = model.heroID
+        tapedImage = image
         imageHeroView.image = image
         rolesLabel.attributedText = createLabel(with: model.attackType, and: model.roles)
         dispalyHeroName.text = model.localizedName

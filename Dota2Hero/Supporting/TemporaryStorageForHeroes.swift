@@ -8,21 +8,23 @@
 import Foundation
 
 
+extension Notification.Name {
+    static let changeInLiked = Notification.Name("like")
+    static let changeLikeOnAllHeroes = Notification.Name("allHeroesChanged")
+}
+
+
 final class TemporaryStorageForHeroes {
     
     private(set) var likedHeroes: Heroes = [] {
         didSet {
-            likedHeroesDidChangeHandler?()
+            postNotification(for: .changeInLiked, with: "hero", data: likedHeroes)
         }
     }
     
     private(set) var allHeroes: Heroes = []
        
-    
-    var likedHeroesDidChangeHandler: (() -> Void)?
-    var allHeroesChangedHandler: ((Dota2HeroModel) -> Void)?
-    
-    
+
     func addAllHeroes(heroes: Heroes) {
         allHeroes = heroes
     }
@@ -48,6 +50,16 @@ final class TemporaryStorageForHeroes {
     private func updateHeroLikedStatus(_ hero: Dota2HeroModel) {
         guard let index = allHeroes.firstIndex(where: { $0.heroID == hero.heroID }) else { return }
         allHeroes[index].isLiked = hero.isLiked
-        allHeroesChangedHandler?(allHeroes[index])
+        postNotification(for: .changeLikeOnAllHeroes, with: "hero", data: allHeroes[index])
     }
+    
+    private func postNotification(for name: Notification.Name, with key: String, data: Any) {
+           NotificationCenter.default.post(
+               name: name,
+               object: nil,
+               userInfo: [key: data]
+           )
+       }
 }
+
+
