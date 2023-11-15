@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3803EC932AF5251B0001C1EC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EC922AF5251B0001C1EC /* Utilities.swift */; };
 		3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EC942AF5AA620001C1EC /* CircleValueView.swift */; };
 		380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539AB2AFA5B4E0035A75F /* FaveButton.swift */; };
 		380539AE2AFA5F4B0035A75F /* FaveIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539AD2AFA5F4B0035A75F /* FaveIcon.swift */; };
@@ -19,7 +18,7 @@
 		385AF7342AFC264200523B11 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385AF7332AFC264200523B11 /* BaseViewController.swift */; };
 		3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */; };
 		3884CAB42AF9814A00C06AFD /* HeroDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB32AF9814A00C06AFD /* HeroDataManager.swift */; };
-		38AA23022AF6FABB008A2D68 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA23012AF6FABB008A2D68 /* Extension.swift */; };
+		38AA23022AF6FABB008A2D68 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA23012AF6FABB008A2D68 /* Extensions.swift */; };
 		38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */; };
 		38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */; };
 		38EF84132AF2E99B00D0F5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38EF84122AF2E99B00D0F5D1 /* Assets.xcassets */; };
@@ -34,7 +33,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3803EC922AF5251B0001C1EC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3803EC942AF5AA620001C1EC /* CircleValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleValueView.swift; sourceTree = "<group>"; };
 		380539AB2AFA5B4E0035A75F /* FaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveButton.swift; sourceTree = "<group>"; };
 		380539AD2AFA5F4B0035A75F /* FaveIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveIcon.swift; sourceTree = "<group>"; };
@@ -46,7 +44,7 @@
 		385AF7332AFC264200523B11 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		3884CAB32AF9814A00C06AFD /* HeroDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDataManager.swift; sourceTree = "<group>"; };
-		38AA23012AF6FABB008A2D68 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		38AA23012AF6FABB008A2D68 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		38EF84062AF2E99900D0F5D1 /* Dota2Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dota2Hero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +92,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		38316C352AF4390D007E77F1 /* View */ = {
+		38316C352AF4390D007E77F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				38EF84252AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift */,
@@ -104,7 +102,7 @@
 				380539B72AFAD1FD0035A75F /* Spark.swift */,
 				380539AD2AFA5F4B0035A75F /* FaveIcon.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		38316C362AF44B11007E77F1 /* API */ = {
@@ -119,8 +117,7 @@
 		3884CAB02AF97F9F00C06AFD /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				3803EC922AF5251B0001C1EC /* Utilities.swift */,
-				38AA23012AF6FABB008A2D68 /* Extension.swift */,
+				38AA23012AF6FABB008A2D68 /* Extensions.swift */,
 				380539B12AFA6BA00035A75F /* Constraints.swift */,
 				380539B32AFA7D5B0035A75F /* Easing.swift */,
 				38F8003E2AFD171B00820623 /* LabelFactory.swift */,
@@ -149,7 +146,7 @@
 			children = (
 				3884CAB02AF97F9F00C06AFD /* Supporting */,
 				38316C362AF44B11007E77F1 /* API */,
-				38316C352AF4390D007E77F1 /* View */,
+				38316C352AF4390D007E77F1 /* Views */,
 				38316C342AF438FE007E77F1 /* Model */,
 				38316C332AF438C9007E77F1 /* Controllers */,
 				38EF84122AF2E99B00D0F5D1 /* Assets.xcassets */,
@@ -242,13 +239,12 @@
 				38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */,
 				3884CAB42AF9814A00C06AFD /* HeroDataManager.swift in Sources */,
 				380539B62AFACE460035A75F /* Ring.swift in Sources */,
-				38AA23022AF6FABB008A2D68 /* Extension.swift in Sources */,
+				38AA23022AF6FABB008A2D68 /* Extensions.swift in Sources */,
 				38EF84282AF30A1500D0F5D1 /* Dota2HeroModel.swift in Sources */,
 				380539B42AFA7D5B0035A75F /* Easing.swift in Sources */,
 				380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */,
 				380539B82AFAD1FD0035A75F /* Spark.swift in Sources */,
 				38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */,
-				3803EC932AF5251B0001C1EC /* Utilities.swift in Sources */,
 				38EF84222AF2EE7D00D0F5D1 /* HomeViewController.swift in Sources */,
 				3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */,
 				3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */,
@@ -394,6 +390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -419,6 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

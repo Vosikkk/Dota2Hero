@@ -108,7 +108,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let size = screenSize, UIDevice.current.orientation.isPortrait {
+        if let size = screenSize {
             return size / 5
         }
         return 150

@@ -9,14 +9,9 @@ import UIKit
 import QuartzCore
 
 class HeroDetailsViewController: UIViewController {
+
     
-    enum AppColors {
-        static let background = UIColor(red: 25/255, green: 32/255, blue: 35/255, alpha: 1.0)
-        static let gradientStart = UIColor(red: 26/255, green: 43/255, blue: 62/255, alpha: 1.0).cgColor
-        static let gradientEnd = UIColor(red: 20/255, green: 30/255, blue: 48/255, alpha: 1.0).cgColor
-        static let firstLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
-        static let secondLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
-    }
+    // MARK: - Properties
     
     private var hero: Dota2HeroModel!
       
@@ -27,9 +22,12 @@ class HeroDetailsViewController: UIViewController {
     let factory: LabelFactory
     
     
+    // MARK: - UI Components
+   
     private lazy var likedButton: FaveButton = {
-        let button = FaveButton(frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: 100, width: 38, height: 38),
-                                faveIconNormal: UIImage(named: "unlike"))
+        let button = FaveButton(
+            frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: .likedButtonYOffset, width: .buttonSize, height: .buttonSize),
+            faveIconNormal: UIImage(named: "unlike"))
         return button
     }()
     
@@ -38,16 +36,14 @@ class HeroDetailsViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10.0
+        imageView.layer.cornerRadius = .cornerRadius
         imageView.layer.masksToBounds = true
         imageView.layer.shadowColor = UIColor.black.cgColor
         imageView.layer.shadowOpacity = 0.5
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        imageView.layer.shadowRadius = 4.0
+        imageView.layer.shadowOffset = CGSize(width: .shadowOffsetWidth, height: .shadowOffsetHeight)
+        imageView.layer.shadowRadius = .shadowRadius
         return imageView
     }()
-    
-   
     
     private lazy var heroNameLabel: UILabel = {
         return factory.createMainLabel()
@@ -106,13 +102,13 @@ class HeroDetailsViewController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [baseAttack, attackRangeLabel, attackSpeedLabel, moveSpeedLabel])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.spacing = 10
+        stack.spacing = .spacingForSupportStacks
         stack.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         stack.isLayoutMarginsRelativeArrangement = true
         
-        stack.layer.borderWidth = 1.0
+        stack.layer.borderWidth = .borderStackWidth
         stack.layer.borderColor = UIColor.white.cgColor
-        stack.layer.cornerRadius = 10.0
+        stack.layer.cornerRadius = .cornerRadius
         stack.clipsToBounds = true
         return stack
     }()
@@ -121,13 +117,13 @@ class HeroDetailsViewController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [baseHealthLabel, baseHealthRegenLabel, baseManaLabel, baseManaRegenLabel])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.spacing = 10
+        stack.spacing = .spacingForSupportStacks
         stack.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         stack.isLayoutMarginsRelativeArrangement = true
         
-        stack.layer.borderWidth = 1.0
+        stack.layer.borderWidth = .borderStackWidth
         stack.layer.borderColor = UIColor.white.cgColor
-        stack.layer.cornerRadius = 10.0
+        stack.layer.cornerRadius = .cornerRadius
         stack.clipsToBounds = true
         return stack
     }()
@@ -137,9 +133,12 @@ class HeroDetailsViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.distribution = .fillEqually
-        stack.spacing = 3
+        stack.spacing = .spacingForMainStacks
         return stack
     }()
+    
+    
+    // MARK: - Initialization
     
     init(factory: LabelFactory, heroesStorage: HeroDataManager) {
         self.heroesStorage = heroesStorage
@@ -152,10 +151,11 @@ class HeroDetailsViewController: UIViewController {
     }
     
     
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = AppColors.background
+        view.backgroundColor = .backgroundColorForDetail
         view.addSubview(imageHeroView)
         view.addSubview(mainStack)
         view.addSubview(heroNameLabel)
@@ -171,7 +171,10 @@ class HeroDetailsViewController: UIViewController {
         likedButton.addAction(action, for: .touchUpInside)
     }
     
-    func didTapLikeButton() {
+    
+    // MARK: - Helper Methods
+    
+    private func didTapLikeButton() {
         hero.isLiked = !hero.isLiked
         heroesStorage.completeHero(withID: hero.heroID)
         likedButton.isSelected = hero.isLiked
@@ -225,23 +228,23 @@ class HeroDetailsViewController: UIViewController {
     private func configureConstraints() {
         
         let imageHeroViewConstraints = [
-            imageHeroView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 2),
-            imageHeroView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
-            imageHeroView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -2),
-            imageHeroView.heightAnchor.constraint(equalToConstant: 400)
+            imageHeroView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .imageLeadingConstraint),
+            imageHeroView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: .imageTopConstraint),
+            imageHeroView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: .imageTrailingConstraint),
+            imageHeroView.heightAnchor.constraint(equalToConstant: .imageHeightConstraint)
         ]
     
         
         let heroNameLabelConstraints = [
             heroNameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            heroNameLabel.topAnchor.constraint(equalTo: imageHeroView.bottomAnchor, constant: 20)
+            heroNameLabel.topAnchor.constraint(equalTo: imageHeroView.bottomAnchor, constant: .nameLabelTopConstraint)
         ]
         
         let mainStackConstraints = [
             mainStack.leadingAnchor.constraint(equalTo: imageHeroView.leadingAnchor),
-            mainStack.topAnchor.constraint(lessThanOrEqualTo: heroNameLabel.bottomAnchor, constant: 20),
-            mainStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -2),
-            mainStack.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -2)
+            mainStack.topAnchor.constraint(lessThanOrEqualTo: heroNameLabel.bottomAnchor, constant: .mainStackTopConstraint),
+            mainStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: .mainStackTrailingConstraint),
+            mainStack.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: .mainStackBottomConstraint)
             
         ]
        
@@ -251,6 +254,8 @@ class HeroDetailsViewController: UIViewController {
         
     }
     
+    
+    // MARK: - Constants
     
     private struct TextConstants {
         static let health = NSLocalizedString("HEALTH:", comment: "")
@@ -262,4 +267,36 @@ class HeroDetailsViewController: UIViewController {
         static let attackSpeed = NSLocalizedString("ATTACK SPEED:", comment: "")
         static let moveSpeed = NSLocalizedString("MOVE SPEED:", comment: "")
     }
+    
+    enum AppColors {
+        static let gradientStart = UIColor(red: 26/255, green: 43/255, blue: 62/255, alpha: 1.0).cgColor
+        static let gradientEnd = UIColor(red: 20/255, green: 30/255, blue: 48/255, alpha: 1.0).cgColor
+        static let firstLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
+        static let secondLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
+    }
+}
+
+// MARK: - Constants for Constraints
+
+private extension CGFloat {
+    static let imageLeadingConstraint: CGFloat = 2.0
+    static let imageTopConstraint: CGFloat = 2.0
+    static let imageTrailingConstraint: CGFloat = -2.0
+    static let imageHeightConstraint: CGFloat = 400.0
+    static let nameLabelTopConstraint: CGFloat = 20.0
+    static let mainStackTopConstraint: CGFloat = 20.0
+    static let mainStackTrailingConstraint: CGFloat = -2.0
+    static let mainStackBottomConstraint: CGFloat = -2.0
+    static let likedButtonYOffset: CGFloat = 100
+}
+
+private extension CGFloat {
+    static let cornerRadius: CGFloat = 10.0
+    static let borderStackWidth: CGFloat = 1
+    static let shadowOffsetHeight: CGFloat = 2.0
+    static let shadowRadius: CGFloat = 4.0
+    static let buttonSize: CGFloat = 38.0
+    static let shadowOffsetWidth: CGFloat = 0
+    static let spacingForSupportStacks: CGFloat = 10
+    static let spacingForMainStacks: CGFloat = 3
 }

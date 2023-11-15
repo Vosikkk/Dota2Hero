@@ -11,11 +11,13 @@ protocol Dota2HeroTableViewCellDelegate: AnyObject {
     func didTapOnImageHeroView(heroID: Int, image: UIImage)
 }
 
-
-
 class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
+    
+    // MARK: - Properties
+    
     var registrationHandler: (() -> Void)?
+    
     private var heroID: Int?
     private var tapedImage: UIImage?
     
@@ -27,28 +29,43 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return UIScreen.current?.bounds.width
     }
     
+    // MARK: - UI Components
+    
     private var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x: 0, y: 0, width: 100, height: 15),
-            circleColor: .red, labelColor: .black,
+            frame: CGRect(
+                x: ConstantsConstraints.indicatorXOffset,
+                y: ConstantsConstraints.indicatorYOffset,
+                width: ConstantsSize.indicatorWidth,
+                height: ConstantsSize.indicatorHeight),
+            circleColor: .red,
+            labelColor: .tintColorForHeroStatsLabel,
             labelTextSize: 13)
         return circle
     }()
     
     private var agilityIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x:0, y: 0, width: 100, height: 15),
+            frame: CGRect(
+                x: ConstantsConstraints.indicatorXOffset,
+                y: ConstantsConstraints.indicatorYOffset,
+                width: ConstantsSize.indicatorWidth,
+                height: ConstantsSize.indicatorHeight),
             circleColor: .green,
-            labelColor: .black,
+            labelColor: .tintColorForHeroStatsLabel,
             labelTextSize: 13)
         return circle
     }()
     
     private var intelligenceIndicator: CircleValueView = {
         let circle = CircleValueView(
-            frame: CGRect(x:0, y: 0, width: 100, height: 15),
+            frame: CGRect(
+                x: ConstantsConstraints.indicatorXOffset,
+                y: ConstantsConstraints.indicatorYOffset,
+                width: ConstantsSize.indicatorWidth,
+                height: ConstantsSize.indicatorHeight),
             circleColor: .blue,
-            labelColor: .black,
+            labelColor: .tintColorForHeroStatsLabel,
             labelTextSize: 13)
         return circle
     }()
@@ -91,14 +108,18 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     
     lazy var likeButton: FaveButton = {
-        let button = FaveButton(frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: 0, width: 38, height: 38),
-                                faveIconNormal: UIImage(named: "unlike"))
-        
+        let button = FaveButton(
+            frame: CGRect(
+                x: UIScreen.current!.bounds.width - 50,
+                y: ConstantsConstraints.likeButtonYOffset,
+                width: ConstantsSize.buttonWidth,
+                height: ConstantsSize.buttonHeight),
+            faveIconNormal: UIImage(named: "unlike"))
         return button
     }()
 
 
-    
+    // MARK: - Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -130,9 +151,14 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Button Action
+    
      private func didTapButton() {
         registrationHandler?()
     }
+    
+    
+    // MARK: - Image View Tap Action
     
     @objc func didTapImageView() {
         if let heroID = heroID, let image = tapedImage {
@@ -141,33 +167,35 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     }
     
     
+    // MARK: - Constraints
+    
     private func configureConstraints() {
         
         let imageHeroViewConstraints = [
             imageHeroView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageHeroView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            imageHeroView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            imageHeroView.widthAnchor.constraint(equalToConstant: 150)
+            imageHeroView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: ConstantsConstraints.imageTopOffset),
+            imageHeroView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: ConstantsConstraints.imageBottomOffset),
+            imageHeroView.widthAnchor.constraint(equalToConstant: ConstantsSize.imageWidth)
         ]
       
         let dispalyHeroNameConstraints = [
-            dispalyHeroName.leftAnchor.constraint(equalTo: imageHeroView.rightAnchor, constant: 5),
-            dispalyHeroName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
+            dispalyHeroName.leftAnchor.constraint(equalTo: imageHeroView.rightAnchor, constant: ConstantsConstraints.dispalyHeroNameLeftOffset),
+            dispalyHeroName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: ConstantsConstraints.dispalyHeroNameTopOffset)
         ]
         
         let rolesLabelViewConstraints = [
             rolesLabel.leadingAnchor.constraint(equalTo: dispalyHeroName.leadingAnchor),
-            rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: 30),
-            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            rolesLabel.bottomAnchor.constraint(lessThanOrEqualTo: baseStackView.topAnchor, constant: -5)
+            rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: ConstantsConstraints.rolesLabelTopOffset),
+            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: ConstantsConstraints.rolesLabelTrailingOffset),
+            rolesLabel.bottomAnchor.constraint(lessThanOrEqualTo: baseStackView.topAnchor, constant: ConstantsConstraints.rolesLabelBottomOffset)
             
         ]
         
        
         let stackConstraints = [
             baseStackView.leadingAnchor.constraint(equalTo: rolesLabel.leadingAnchor),
-            baseStackView.topAnchor.constraint(equalTo: rolesLabel.bottomAnchor, constant: 15),
-            baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
+            baseStackView.topAnchor.constraint(equalTo: rolesLabel.bottomAnchor, constant: ConstantsConstraints.stackTopOffset),
+            baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: ConstantsConstraints.stackBottomOffset),
         ]
        
         NSLayoutConstraint.activate(stackConstraints)
@@ -176,6 +204,9 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         NSLayoutConstraint.activate(dispalyHeroNameConstraints)
         
     }
+    
+    
+    // MARK: - Method
     
     func configure(model: Dota2HeroModel, with image: UIImage) {
         heroID = model.heroID
@@ -186,5 +217,33 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         intelligenceIndicator.label.text = String("\(model.baseInt) + \(model.intGain)")
         agilityIndicator.label.text = String("\(model.baseAgi) + \(model.agiGain)")
         strenghtIndicator.label.text = String("\(model.baseStr) + \(model.strGain)")
+    }
+    
+    
+    // MARK: - Constants
+        
+    private enum ConstantsConstraints {
+        
+        static let imageTopOffset: CGFloat = 5.0
+        static let imageBottomOffset: CGFloat = -5.0
+        static let dispalyHeroNameLeftOffset: CGFloat = 5.0
+        static let dispalyHeroNameTopOffset: CGFloat = 5.0
+        static let rolesLabelTrailingOffset: CGFloat = -5.0
+        static let rolesLabelBottomOffset: CGFloat = -5.0
+        static let rolesLabelTopOffset: CGFloat = 30.0
+        static let stackTopOffset: CGFloat = 15.0
+        static let stackBottomOffset: CGFloat = -20.0
+        static let indicatorYOffset: CGFloat = 0
+        static let indicatorXOffset: CGFloat = 0
+        static let likeButtonYOffset: CGFloat = 0
+        
+    }
+    
+    private enum ConstantsSize {
+        static let imageWidth: CGFloat = 150.0
+        static let buttonWidth: CGFloat = 38.0
+        static let buttonHeight: CGFloat = 38.0
+        static let indicatorWidth: CGFloat = 100.0
+        static let indicatorHeight: CGFloat = 15.0
     }
 }

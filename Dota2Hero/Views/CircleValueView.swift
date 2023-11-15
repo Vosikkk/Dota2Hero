@@ -1,6 +1,7 @@
 import UIKit
 
 class CircleValueView: UIView {
+    
     let circleView = UIView()
     let label = UILabel()
 
@@ -22,7 +23,6 @@ class CircleValueView: UIView {
         label.frame = CGRect(x: labelX, y: (frame.size.height - label.frame.size.height) / 2, width: frame.size.width - labelX, height: label.frame.size.height)
         
         addSubview(label)
-        
         
     }
     

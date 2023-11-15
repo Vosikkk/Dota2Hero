@@ -16,8 +16,8 @@ struct Dota2HeroModel: Codable {
     let name, localizedName, primaryAttr, attackType: String
     let roles: [String]
     let img: String
-    let baseMana, baseHealth, baseHealthRegen: Double
-    let baseManaRegen: Double
+    let baseMana, baseHealth: Double
+    let baseManaRegen, baseHealthRegen: Double
     
     let baseAttackMin, baseAttackMax, attackRange, attackSpeed: Double
     let moveSpeed: Double

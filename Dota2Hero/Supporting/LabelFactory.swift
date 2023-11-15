@@ -21,7 +21,7 @@ final class LabelFactory: LabelFactoryProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .lightGray
+        label.textColor = .tintColorForNameLabel
         label.backgroundColor = backgroundColor
         label.layer.cornerRadius = 5.0
         label.layer.masksToBounds = true
@@ -36,6 +36,4 @@ final class LabelFactory: LabelFactoryProtocol {
         label.textColor = .white
         return label
     }
-    
-    
 }
