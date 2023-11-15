@@ -7,6 +7,9 @@
 
 import Foundation
 
+typealias Heroes = [Dota2HeroModel]
+
+
 struct Dota2HeroModel: Codable {
    
     let id: Int
@@ -59,16 +62,11 @@ struct Dota2HeroModel: Codable {
     }
 }
 
-typealias Heroes = [Dota2HeroModel]
-//"base_health": 0,
-//"base_health_regen": 0,
-//"base_mana": 0,
-//"base_mana_regen": 0,
-//"base_armor": 0,
-//"base_mr": 0,
-//"base_attack_min": 0,
-//"base_attack_max": 0,
-//"attack_range": 0,
-//"attack_rate": 0,
-//"base_attack_time": 0,
-//"move_speed": 0,
+extension Heroes {
+    
+    func indexOfHero(withID id: Int) -> Self.Index {
+        guard let index = firstIndex(where: { $0.heroID == id }) else { fatalError() }
+        return index
+    }
+}
+

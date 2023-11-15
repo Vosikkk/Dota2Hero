@@ -94,8 +94,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         let button = FaveButton(frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: 0, width: 38, height: 38),
                                 faveIconNormal: UIImage(named: "unlike"))
         
-        button.delegate = self
-        
         return button
     }()
 
@@ -121,6 +119,8 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
             self?.didTapButton()
         }
         likeButton.addAction(action, for: .primaryActionTriggered)
+        
+        likeButton.delegate = self
         
         configureConstraints()
     }

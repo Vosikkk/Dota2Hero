@@ -10,18 +10,15 @@ import UIKit
 class HomeViewController: BaseViewController {
 
     private let dota2API: Dota2HeroFetcher
-    
-    private let imageLoadQueue = OperationQueue()
-    
-    private var operations: [IndexPath: Operation] = [:]
-    
+
     private var likedObserver: NSObjectProtocol?
-   
     
+    let imageLoadQueue = OperationQueue()
     
-    init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: TemporaryStorageForHeroes) {
+    init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: HeroDataManager) {
         self.dota2API = dota2API
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
+       
     }
     
     required init?(coder: NSCoder) {
@@ -34,41 +31,36 @@ class HomeViewController: BaseViewController {
         fetchHeroes()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         likedObserver = NotificationCenter.default.addObserver(
-            forName: .changeLikeOnAllHeroes,
+            forName: .changeInAllHeroes,
             object: nil,
-            queue: OperationQueue.main) { notification in
-                if let heroChanged = notification.userInfo?["hero"] as? Dota2HeroModel {
-                    self.updateUI(by: heroChanged)
-                }
+            queue: OperationQueue.main) { [weak self] notification in
+                self?.updateTable()
             }
     }
     
-    private func updateUI(by hero: Dota2HeroModel) {
-        guard let index = heroes.firstIndex(where: { $0.heroID == hero.heroID }) else { return }
-        heroes[index].isLiked = hero.isLiked
-    }
-    
-    deinit {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let observer = likedObserver {
             NotificationCenter.default.removeObserver(observer)
         }
     }
+    
     
     override func setupUI() {
         super.setupUI()
         heroesTableView.delegate = self
         heroesTableView.dataSource = self
     }
-    
+   
     private func fetchHeroes() {
         dota2API.fetch(page: 1, pageSize: 11) { [weak self] result in
             switch result {
             case .success(let heroes):
-                self?.heroes = heroes
                 self?.heroesStorage.addAllHeroes(heroes: heroes)
+                self?.updateTable()
             case .failure(let error):
                 print(error)
             }
@@ -78,48 +70,39 @@ class HomeViewController: BaseViewController {
 
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroes.count
+        return heroesStorage.allHeroes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         
-        cell.likeButton.isSelected = heroes[indexPath.row].isLiked
+        let hero = heroesStorage.allHeroes[indexPath.row]
+        cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
        
+        
         cell.registrationHandler = { [weak self] in
-            guard let self = self, heroes.indices.contains(indexPath.row) else { return }
-            
-            let isLiked = !self.heroes[indexPath.row].isLiked
-            self.heroes[indexPath.row].isLiked = isLiked
-            
-            let hero = self.heroes[indexPath.row]
-            
-            if isLiked {
-                self.heroesStorage.addLiked(hero: hero)
-            } else {
-                self.heroesStorage.removeLiked(hero: hero)
-            }
+            guard let self = self else { return }
+            heroesStorage.completeHero(withID: hero.heroID)
+            cell.likeButton.isSelected = heroesStorage.getHero(by: hero.heroID).isLiked
         }
         
-        let loadOperation = BlockOperation { [weak self] in
+        imageLoadQueue.addOperation { [weak self] in
             guard let self = self else { return }
-            imageFetcher.fetchImage(from: heroes[indexPath.row].imageURL) { result in
-                
+            imageFetcher.fetchImage(from: hero.imageURL) { result in
                 switch result {
                 case .success(let image):
-                    DispatchQueue.main.async {
-                        cell.configure(model: self.heroes[indexPath.row], with: image)
+                    if hero.heroID == hero.heroID {
+                        DispatchQueue.main.async {
+                            cell.configure(model: hero, with: image)
+                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
-            self.operations.removeValue(forKey: indexPath)
         }
-        operations[indexPath] = loadOperation
-        imageLoadQueue.addOperation(loadOperation)
         return cell
     }
     

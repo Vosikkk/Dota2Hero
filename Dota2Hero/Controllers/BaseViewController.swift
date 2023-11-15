@@ -9,20 +9,11 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    var heroes: Heroes = [] {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.heroesTableView.reloadData()
-            }
-        }
-    }
-    
-    
     var screenSize: CGFloat? {
         return UIScreen.current?.bounds.height
     }
     
-    var heroesStorage: TemporaryStorageForHeroes
+    var heroesStorage: HeroDataManager
     var imageFetcher: ImageFetcher
     
     let heroesTableView: UITableView = {
@@ -31,7 +22,7 @@ class BaseViewController: UIViewController {
         return tableView
     }()
     
-    init(heroesStorage: TemporaryStorageForHeroes, imageFetcher: ImageFetcher) {
+    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcher) {
         self.heroesStorage = heroesStorage
         self.imageFetcher = imageFetcher
         super.init(nibName: nil, bundle: nil)
@@ -40,6 +31,12 @@ class BaseViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        heroesTableView.frame = view.frame
+    }
+    
     
     func setupUI() {
         view.backgroundColor = .systemBackground
@@ -51,10 +48,11 @@ class BaseViewController: UIViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        heroesTableView.frame = view.frame
-    }
+    func updateTable() {
+         DispatchQueue.main.async {
+             self.heroesTableView.reloadData()
+         }
+     }
 }
 
 

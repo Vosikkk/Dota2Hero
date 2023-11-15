@@ -20,7 +20,7 @@ class HeroDetailsViewController: UIViewController {
     
     private var hero: Dota2HeroModel!
       
-    let heroesStorage: TemporaryStorageForHeroes
+    let heroesStorage: HeroDataManager
     
     let gradientLayer = CAGradientLayer()
     
@@ -141,7 +141,7 @@ class HeroDetailsViewController: UIViewController {
         return stack
     }()
     
-    init(factory: LabelFactory, heroesStorage: TemporaryStorageForHeroes) {
+    init(factory: LabelFactory, heroesStorage: HeroDataManager) {
         self.heroesStorage = heroesStorage
         self.factory = factory
         super.init(nibName: nil, bundle: nil)
@@ -166,18 +166,15 @@ class HeroDetailsViewController: UIViewController {
         let action = UIAction { [weak self] _ in
             self?.didTapLikeButton()
         }
-        likedButton.isSelected = hero.isLiked
+        likedButton.setSelected(selected: true, animated: false)
         
         likedButton.addAction(action, for: .touchUpInside)
     }
     
     func didTapLikeButton() {
         hero.isLiked = !hero.isLiked
-        if !hero.isLiked {
-            heroesStorage.removeLiked(hero: hero)
-        } else {
-            heroesStorage.addLiked(hero: hero)
-        }
+        heroesStorage.completeHero(withID: hero.heroID)
+        likedButton.isSelected = hero.isLiked
     }
     
     private func configureGradientLayer() {

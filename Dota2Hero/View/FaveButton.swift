@@ -126,7 +126,7 @@ class FaveButton: UIButton {
         let color = isSelected ? selectedColor : normalColor
         
         faveIcon.animate(isSelected, fillColor: color, duration: duration, delay: duration > 0.0 ? Constants.faveIconShowDelay : 0.0)
-        
+      
         guard duration > 0.0 else { return }
         
         if isSelected {
@@ -159,24 +159,41 @@ class FaveButton: UIButton {
         return DotColors(self.dotFirstColor, self.dotSecondColor)
     }
     
+    public func setSelected(selected: Bool, animated: Bool) {
+           guard selected != self.isSelected else {
+               return
+           }
+           guard animated == false else {
+               self.isSelected = selected
+               return
+           }
+           
+           self.animationsEnabled = false
+           self.isSelected = selected
+           self.animationsEnabled = true
+           
+           animateSelect(self.isSelected, duration: 0.0) // trigger state change without animation
+       }
+   
     
     // MARK: Action
     
     func addActions() {
-        let action = UIAction { [weak self] _ in
-            self?.toggle(self!)
-        }
-        self.addAction(action, for: .primaryActionTriggered)
+        self.addTarget(self, action: #selector(toggle), for: .touchUpInside)
+           
     }
     
-    func toggle(_ sender: FaveButton) {
+   @objc func toggle(_ sender: FaveButton) {
        
         sender.isSelected = !sender.isSelected
-        guard case let delegate as FaveButtonDelegate = self.delegate else { return }
-        
-        let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Constants.duration)) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-            delegate.faveButton(sender, didSelected: sender.isSelected)
+        if sender.isSelected {
+            guard case let delegate as FaveButtonDelegate = self.delegate else { return }
+            
+            let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * Constants.duration)) / Double(NSEC_PER_SEC)
+           
+            DispatchQueue.main.asyncAfter(deadline: delay) {
+                delegate.faveButton(sender, didSelected: sender.isSelected)
+            }
         }
     }
 }
