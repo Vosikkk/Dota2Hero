@@ -173,6 +173,10 @@ class HeroDetailsViewController: UIViewController {
         likedButton.setSelected(selected: true, animated: false)
         
         likedButton.addAction(action, for: .touchUpInside)
+        
+        if #available(iOS 16, *) {
+            navigationItem.style = .navigator
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

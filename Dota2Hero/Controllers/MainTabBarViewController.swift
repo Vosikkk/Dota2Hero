@@ -39,8 +39,7 @@ class MainTabBarViewController: UITabBarController {
         vc2.tabBarItem = createTabBarItem(
             imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
         
-        tabBar.tintColor = .tabBarTint
-        tabBar.unselectedItemTintColor = .tabBarTint
+      
         setViewControllers([vc1, vc2], animated: true)
     }
     
