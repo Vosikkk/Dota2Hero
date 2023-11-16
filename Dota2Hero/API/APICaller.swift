@@ -13,10 +13,6 @@ protocol APIManager {
     var url: URL { get }
 }
 
-enum APIError: Error {
-    case bad
-}
-
 final class Dota2HeroFetcher: APIManager {
     
     var url: URL {

@@ -7,7 +7,10 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, NavigationBarDota2Logo {
+    
+    
+    // MARK: - Properties
     
     var screenSize: CGFloat? {
         return UIScreen.current?.bounds.height
@@ -16,11 +19,16 @@ class BaseViewController: UIViewController {
     var heroesStorage: HeroDataManager
     var imageFetcher: ImageFetcher
     
+    
+    
     let heroesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(Dota2HeroTableViewCell.self, forCellReuseIdentifier: Dota2HeroTableViewCell.identifier)
         return tableView
     }()
+    
+    
+    // MARK: - Inirialization
     
     init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcher) {
         self.heroesStorage = heroesStorage
@@ -32,6 +40,8 @@ class BaseViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configure View
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         heroesTableView.frame = view.frame
@@ -39,18 +49,18 @@ class BaseViewController: UIViewController {
     
     
     func setupUI() {
+        
         view.backgroundColor = .systemBackground
         view.addSubview(heroesTableView)
         
         configureNavigationBarWithLogo()
         
         heroesTableView.allowsSelection = false
-        
     }
     
     func updateTable() {
-         DispatchQueue.main.async {
-             self.heroesTableView.reloadData()
+         DispatchQueue.main.async { [weak self] in
+             self?.heroesTableView.reloadData()
          }
      }
 }

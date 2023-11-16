@@ -19,6 +19,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     var registrationHandler: (() -> Void)?
     
     private var heroID: Int?
+    
     private var tapedImage: UIImage?
     
     weak var delegate: Dota2HeroTableViewCellDelegate?
@@ -34,10 +35,10 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     private var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(
-                x: ConstantsConstraints.indicatorXOffset,
-                y: ConstantsConstraints.indicatorYOffset,
-                width: ConstantsSize.indicatorWidth,
-                height: ConstantsSize.indicatorHeight),
+                x: СonstraintConstants.indicatorXOffset,
+                y: СonstraintConstants.indicatorYOffset,
+                width: SizeConstants.indicatorWidth,
+                height: SizeConstants.indicatorHeight),
             circleColor: .red,
             labelColor: .tintColorForHeroStatsLabel,
             labelTextSize: 13)
@@ -47,10 +48,10 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     private var agilityIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(
-                x: ConstantsConstraints.indicatorXOffset,
-                y: ConstantsConstraints.indicatorYOffset,
-                width: ConstantsSize.indicatorWidth,
-                height: ConstantsSize.indicatorHeight),
+                x: СonstraintConstants.indicatorXOffset,
+                y: СonstraintConstants.indicatorYOffset,
+                width: SizeConstants.indicatorWidth,
+                height: SizeConstants.indicatorHeight),
             circleColor: .green,
             labelColor: .tintColorForHeroStatsLabel,
             labelTextSize: 13)
@@ -60,10 +61,10 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     private var intelligenceIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(
-                x: ConstantsConstraints.indicatorXOffset,
-                y: ConstantsConstraints.indicatorYOffset,
-                width: ConstantsSize.indicatorWidth,
-                height: ConstantsSize.indicatorHeight),
+                x: СonstraintConstants.indicatorXOffset,
+                y: СonstraintConstants.indicatorYOffset,
+                width: SizeConstants.indicatorWidth,
+                height: SizeConstants.indicatorHeight),
             circleColor: .blue,
             labelColor: .tintColorForHeroStatsLabel,
             labelTextSize: 13)
@@ -95,7 +96,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return label
     }()
     
-    private var imageHeroView: UIImageView = {
+     var imageHeroView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "dota2_logo")
@@ -111,9 +112,9 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         let button = FaveButton(
             frame: CGRect(
                 x: UIScreen.current!.bounds.width - 50,
-                y: ConstantsConstraints.likeButtonYOffset,
-                width: ConstantsSize.buttonWidth,
-                height: ConstantsSize.buttonHeight),
+                y: СonstraintConstants.likeButtonYOffset,
+                width: SizeConstants.buttonWidth,
+                height: SizeConstants.buttonHeight),
             faveIconNormal: UIImage(named: "unlike"))
         return button
     }()
@@ -136,9 +137,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         imageHeroView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapImageView)))
         
         
-        let action = UIAction { [weak self] _ in
-            self?.didTapButton()
-        }
+        let action = UIAction { [weak self] _ in self?.didTapButton() }
         likeButton.addAction(action, for: .primaryActionTriggered)
         
         likeButton.delegate = self
@@ -173,29 +172,28 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         
         let imageHeroViewConstraints = [
             imageHeroView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageHeroView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: ConstantsConstraints.imageTopOffset),
-            imageHeroView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: ConstantsConstraints.imageBottomOffset),
-            imageHeroView.widthAnchor.constraint(equalToConstant: ConstantsSize.imageWidth)
+            imageHeroView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: СonstraintConstants.imageTopOffset),
+            imageHeroView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: СonstraintConstants.imageBottomOffset),
+            imageHeroView.widthAnchor.constraint(equalToConstant: SizeConstants.imageWidth)
         ]
       
         let dispalyHeroNameConstraints = [
-            dispalyHeroName.leftAnchor.constraint(equalTo: imageHeroView.rightAnchor, constant: ConstantsConstraints.dispalyHeroNameLeftOffset),
-            dispalyHeroName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: ConstantsConstraints.dispalyHeroNameTopOffset)
+            dispalyHeroName.leftAnchor.constraint(equalTo: imageHeroView.rightAnchor, constant: СonstraintConstants.dispalyHeroNameLeftOffset),
+            dispalyHeroName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: СonstraintConstants.dispalyHeroNameTopOffset)
         ]
         
         let rolesLabelViewConstraints = [
             rolesLabel.leadingAnchor.constraint(equalTo: dispalyHeroName.leadingAnchor),
-            rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: ConstantsConstraints.rolesLabelTopOffset),
-            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: ConstantsConstraints.rolesLabelTrailingOffset),
-            rolesLabel.bottomAnchor.constraint(lessThanOrEqualTo: baseStackView.topAnchor, constant: ConstantsConstraints.rolesLabelBottomOffset)
+            rolesLabel.topAnchor.constraint(equalTo: dispalyHeroName.bottomAnchor, constant: СonstraintConstants.rolesLabelTopOffset),
+            rolesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: СonstraintConstants.rolesLabelTrailingOffset),
+            rolesLabel.bottomAnchor.constraint(lessThanOrEqualTo: baseStackView.topAnchor, constant: СonstraintConstants.rolesLabelBottomOffset)
             
         ]
         
-       
         let stackConstraints = [
             baseStackView.leadingAnchor.constraint(equalTo: rolesLabel.leadingAnchor),
-            baseStackView.topAnchor.constraint(equalTo: rolesLabel.bottomAnchor, constant: ConstantsConstraints.stackTopOffset),
-            baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: ConstantsConstraints.stackBottomOffset),
+            baseStackView.topAnchor.constraint(equalTo: rolesLabel.bottomAnchor, constant: СonstraintConstants.stackTopOffset),
+            baseStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: СonstraintConstants.stackBottomOffset),
         ]
        
         NSLayoutConstraint.activate(stackConstraints)
@@ -222,7 +220,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     // MARK: - Constants
         
-    private enum ConstantsConstraints {
+    private enum СonstraintConstants {
         
         static let imageTopOffset: CGFloat = 5.0
         static let imageBottomOffset: CGFloat = -5.0
@@ -239,7 +237,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         
     }
     
-    private enum ConstantsSize {
+    private enum SizeConstants {
         static let imageWidth: CGFloat = 150.0
         static let buttonWidth: CGFloat = 38.0
         static let buttonHeight: CGFloat = 38.0

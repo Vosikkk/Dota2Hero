@@ -10,10 +10,15 @@ import UIKit
 class MainTabBarViewController: UITabBarController {
 
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBar()
     }
+    
+    
+    // MARK: - Helper Methods
     
     private func setTabBar() {
         
@@ -21,17 +26,23 @@ class MainTabBarViewController: UITabBarController {
         let imageFetcher: ImageFetcher = ImageFetcher()
         let heroesStorage: HeroDataManager = HeroDataManager()
         let factory: LabelFactory = LabelFactory()
-        let vc1 = UINavigationController(rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher, heroesStorage: heroesStorage))
-        let vc2 = UINavigationController(rootViewController: LikedHeroesViewController(heroesStorage: heroesStorage, imageFetcher: imageFetcher, factory: factory))
         
-        vc1.tabBarItem = createTabBarItem(imageName: "house", selectedImageName: "house.fill")
-        vc2.tabBarItem = createTabBarItem(imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
+        let vc1 = UINavigationController(
+            rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher, heroesStorage: heroesStorage))
         
-        tabBar.tintColor = .systemOrange
-        tabBar.unselectedItemTintColor = .systemOrange
+        let vc2 = UINavigationController(
+            rootViewController: LikedHeroesViewController(heroesStorage: heroesStorage, imageFetcher: imageFetcher, factory: factory))
+        
+        vc1.tabBarItem = createTabBarItem(
+            imageName: "house", selectedImageName: "house.fill")
+        
+        vc2.tabBarItem = createTabBarItem(
+            imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
+        
+        tabBar.tintColor = .tabBarTint
+        tabBar.unselectedItemTintColor = .tabBarTint
         setViewControllers([vc1, vc2], animated: true)
     }
-    
     
     
     private func createTabBarItem(imageName: String, selectedImageName: String) -> UITabBarItem {
@@ -42,18 +53,3 @@ class MainTabBarViewController: UITabBarController {
     }
 }
 
-protocol NavigationBarDota2Logo {
-    func configureNavigationBarWithLogo()
-}
-
-extension UIViewController: NavigationBarDota2Logo {
-    func configureNavigationBarWithLogo() {
-        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 36))
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.image = UIImage(named: "dota2_logo")
-        
-        let middleView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 36))
-        middleView.addSubview(logoImageView)
-        navigationItem.titleView = middleView
-    }
-}

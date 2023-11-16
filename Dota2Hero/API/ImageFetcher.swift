@@ -5,7 +5,7 @@
 //  Created by Саша Восколович on 06.11.2023.
 //
 
-import Foundation
+
 import UIKit
 
 class ImageFetcher {
@@ -21,7 +21,6 @@ class ImageFetcher {
         }
         
         DispatchQueue.global(qos: .userInitiated).async {
-            
             if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                 self.cache.setObject(image, forKey: url.absoluteString as NSString)
                 completion(.success(image))

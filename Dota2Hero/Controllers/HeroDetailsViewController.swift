@@ -26,7 +26,11 @@ class HeroDetailsViewController: UIViewController {
    
     private lazy var likedButton: FaveButton = {
         let button = FaveButton(
-            frame: CGRect(x: UIScreen.current!.bounds.width - 50, y: .likedButtonYOffset, width: .buttonSize, height: .buttonSize),
+            frame: CGRect(
+                x: UIScreen.current!.bounds.width - 50,
+                y: .likedButtonYOffset,
+                width: .buttonSize,
+                height: .buttonSize),
             faveIconNormal: UIImage(named: "unlike"))
         return button
     }()
@@ -171,6 +175,11 @@ class HeroDetailsViewController: UIViewController {
         likedButton.addAction(action, for: .touchUpInside)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.popToRootViewController(animated: false)
+    }
+    
     
     // MARK: - Helper Methods
     
@@ -275,8 +284,6 @@ class HeroDetailsViewController: UIViewController {
         static let secondLinebackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
     }
 }
-
-// MARK: - Constants for Constraints
 
 private extension CGFloat {
     static let imageLeadingConstraint: CGFloat = 2.0

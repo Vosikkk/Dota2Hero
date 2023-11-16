@@ -16,6 +16,9 @@ extension Notification.Name {
 
 final class HeroDataManager {
     
+    
+    // MARK: - Properties
+    
    private(set) var likedHeroes: Heroes = [] {
         didSet {
             postNotification(for: .changeInLiked)
@@ -28,16 +31,23 @@ final class HeroDataManager {
         }
     }
     
+    // MARK: - Public Methods
+    
+    // Retrieve hero by ID
     func getHero(by ID: Int) -> Dota2HeroModel {
         let index = allHeroes.indexOfHero(withID: ID)
         return allHeroes[index]
     }
     
+    
+    // Update hero in the allHeroes array
     func updateInAll(_ hero: Dota2HeroModel) {
         let index = allHeroes.indexOfHero(withID: hero.heroID)
         allHeroes[index].isLiked = hero.isLiked
     }
     
+    
+    // Toggle like status of a hero and update both allHeroes and likedHeroes arrays
     func completeHero(withID id: Int) {
         var hero = getHero(by: id)
         hero.isLiked.toggle()
@@ -45,6 +55,8 @@ final class HeroDataManager {
         updateInLiked(hero)
     }
     
+    
+    // Update likedHeroes array based on a hero's like status
     func updateInLiked(_ hero: Dota2HeroModel) {
         if !hero.isLiked {
             likedHeroes.removeAll { $0.heroID == hero.heroID }
@@ -53,11 +65,15 @@ final class HeroDataManager {
         }
     }
     
-    
+    // Add all heroes to the allHeroes array
     func addAllHeroes(heroes: Heroes) {
         allHeroes = heroes
     }
     
+    
+    // MARK: - Private Methods
+        
+    // Post a notification for a given name
     private func postNotification(for name: Notification.Name) {
            NotificationCenter.default.post(
                name: name,

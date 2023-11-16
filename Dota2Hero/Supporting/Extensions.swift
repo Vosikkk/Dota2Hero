@@ -80,6 +80,25 @@ extension MakeSpecialLabel where Self: UITableViewCell {
     }
 }
 
+
+protocol NavigationBarDota2Logo {
+    func configureNavigationBarWithLogo()
+}
+
+extension NavigationBarDota2Logo where Self: BaseViewController {
+    
+    func configureNavigationBarWithLogo() {
+        
+        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 36))
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.image = UIImage(named: "dota2_logo")
+        
+        let middleView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 36))
+        middleView.addSubview(logoImageView)
+        navigationItem.titleView = middleView
+    }
+}
+
 func Init<T>(_ object: T, block: (T) throws -> ()) rethrows -> T {
     try block(object)
     return object

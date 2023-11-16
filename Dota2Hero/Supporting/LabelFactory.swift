@@ -16,6 +16,7 @@ protocol LabelFactoryProtocol {
 }
 
 final class LabelFactory: LabelFactoryProtocol {
+    
     func createSupoortLabel(text: String, backgroundColor: UIColor ) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

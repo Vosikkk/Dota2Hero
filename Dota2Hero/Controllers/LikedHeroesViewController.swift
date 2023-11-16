@@ -10,9 +10,14 @@ import UIKit
 
 class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDelegate {
     
+    // MARK: - Properties
+    
     private var likedObserver: NSObjectProtocol?
    
     private let factory: LabelFactory
+    
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +25,13 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     }
     
     
+    // MARK: - Initialization
+    
     init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcher, factory: LabelFactory) {
         self.factory = factory
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
         
+        // Listen to your heart
         likedObserver = NotificationCenter.default.addObserver(
             forName: .changeInLiked,
             object: nil,
@@ -43,12 +51,16 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
         }
     }
     
+    // MARK: - Helper Method
+    
     override func setupUI() {
         super.setupUI()
         heroesTableView.delegate = self
         heroesTableView.dataSource = self
     }
     
+    
+    // MARK: - Delegate method
     
     func didTapOnImageHeroView(heroID: Int, image: UIImage) {
         let model = heroesStorage.likedHeroes.filter { $0.heroID == heroID }
@@ -58,9 +70,12 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
 }
 
+
+
+
+// MARK: UITableViewDelegate & UITableViewDataSource
 
 extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource {
    
@@ -72,26 +87,29 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
     
         cell.delegate = self
-        let hero = heroesStorage.likedHeroes[indexPath.row]
         
+        let hero = heroesStorage.likedHeroes[indexPath.row]
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
         
         cell.registrationHandler = { [weak self] in
             guard let self = self else { return }
+            
             tableView.performBatchUpdates {
+                
                 self.heroesStorage.completeHero(withID: hero.heroID)
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                
             } completion: { finished in
                
             }
         }
         
-        imageFetcher.fetchImage(from: heroesStorage.likedHeroes[indexPath.row].imageURL) { [weak self] result in
+        imageFetcher.fetchImage(from: hero.imageURL) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    cell.configure(model: self.heroesStorage.likedHeroes[indexPath.row], with: image)
+                    cell.configure(model: hero, with: image)
                 }
             case .failure(let error):
                 print(error.localizedDescription)

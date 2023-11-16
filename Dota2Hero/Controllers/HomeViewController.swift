@@ -9,22 +9,29 @@ import UIKit
 
 class HomeViewController: BaseViewController {
 
+    //MARK: - Properties
+    
     private let dota2API: Dota2HeroFetcher
 
     private var likedObserver: NSObjectProtocol?
     
-    let imageLoadQueue = OperationQueue()
+    private let imageLoadQueue = OperationQueue()
+    
+    
+    // MARK: - Initialization
     
     init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: HeroDataManager) {
         self.dota2API = dota2API
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
-       
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -33,6 +40,10 @@ class HomeViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        // We are not on the controller, so we have to listen, what user changing on other controllers
+        // So we need to reload our table
+        
         likedObserver = NotificationCenter.default.addObserver(
             forName: .changeInAllHeroes,
             object: nil,
@@ -43,10 +54,15 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // And when we are on the controller, observer become useless, we don't need reload our table every tap
+        
         if let observer = likedObserver {
             NotificationCenter.default.removeObserver(observer)
         }
     }
+    
+    // MARK: - Helper Methods
     
     
     override func setupUI() {
@@ -56,7 +72,7 @@ class HomeViewController: BaseViewController {
     }
    
     private func fetchHeroes() {
-        dota2API.fetch(page: 1, pageSize: 11) { [weak self] result in
+        dota2API.fetch(page: Constants.pageOfFetch, pageSize: Constants.pageSizeOfFetch) { [weak self] result in
             switch result {
             case .success(let heroes):
                 self?.heroesStorage.addAllHeroes(heroes: heroes)
@@ -66,8 +82,14 @@ class HomeViewController: BaseViewController {
             }
         }
     }
+    
+    private struct Constants {
+        static let pageOfFetch: Int = 1
+        static let pageSizeOfFetch: Int = 15
+    }
 }
 
+// MARK: UITableViewDelegate & UITableViewDataSource
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
    
@@ -79,12 +101,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         
         let hero = heroesStorage.allHeroes[indexPath.row]
+       
+        // Just make our button red without animation
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
        
         
         cell.registrationHandler = { [weak self] in
             guard let self = self else { return }
             heroesStorage.completeHero(withID: hero.heroID)
+            
+            // And here animate
             cell.likeButton.isSelected = heroesStorage.getHero(by: hero.heroID).isLiked
         }
         
@@ -93,10 +119,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             imageFetcher.fetchImage(from: hero.imageURL) { result in
                 switch result {
                 case .success(let image):
-                    if hero.heroID == hero.heroID {
                         DispatchQueue.main.async {
                             cell.configure(model: hero, with: image)
-                        }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
