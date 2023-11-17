@@ -62,13 +62,22 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     // MARK: - Delegate method
     
-    func didTapOnImageHeroView(heroID: Int, image: UIImage) {
-        let model = heroesStorage.likedHeroes.filter { $0.heroID == heroID }
-        if let hero = model.first {
-            let vc = HeroDetailsViewController(factory: factory, heroesStorage: heroesStorage)
-            vc.configureUI(with: hero, and: image)
-            navigationController?.pushViewController(vc, animated: true)
+    func didTapOnImageHeroView(heroID: Int) {
+        let hero = heroesStorage.getHero(by: heroID)
+        var image: UIImage?
+        
+        imageFetcher.fetchImage(from: hero.imageURL) { result in
+            switch result {
+            case .success(let img):
+                image = img
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
+        
+        let vc = HeroDetailsViewController(factory: factory, heroesStorage: heroesStorage)
+        vc.configureUI(with: hero, and: image!)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -8,6 +8,8 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+   
+    
 
     //MARK: - Properties
     
@@ -83,6 +85,7 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    
     private struct Constants {
         static let pageOfFetch: Int = 1
         static let pageSizeOfFetch: Int = 15
@@ -101,7 +104,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         
         let hero = heroesStorage.allHeroes[indexPath.row]
-       
+        
         // Just make our button red without animation
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
        

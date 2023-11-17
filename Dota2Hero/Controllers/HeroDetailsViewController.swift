@@ -216,28 +216,6 @@ class HeroDetailsViewController: UIViewController {
     }
     
     
-    func configureUI(with model: Dota2HeroModel, and image: UIImage ) {
-        hero = model
-        imageHeroView.image = image
-        heroNameLabel.text = hero.localizedName
-        
-        let labelsToUpdate: [(UILabel, String, String)] = [
-            (baseManaLabel, baseManaLabel.text!, String(hero.baseMana)),
-            (baseManaRegenLabel, baseManaRegenLabel.text!, String(hero.baseManaRegen)),
-            (baseHealthLabel, baseHealthLabel.text!, String(hero.baseHealth)),
-            (baseHealthRegenLabel, baseHealthRegenLabel.text!, String(hero.baseHealthRegen)),
-            (baseAttack,baseAttack.text!, "\(hero.baseAttackMin) - \(hero.baseAttackMax)"),
-            (attackRangeLabel, attackRangeLabel.text!, String(hero.attackRange)),
-            (moveSpeedLabel, moveSpeedLabel.text!, String(hero.moveSpeed)),
-            (attackSpeedLabel, attackSpeedLabel.text!, String(hero.attackSpeed))
-        ]
-        for (label, prefix, value) in labelsToUpdate {
-            updateLabelWithPrefix(label: label, prefix: prefix, value: value)
-        }
-    }
-    
-    
-    
     private func configureConstraints() {
         
         let imageHeroViewConstraints = [
@@ -267,10 +245,31 @@ class HeroDetailsViewController: UIViewController {
         
     }
     
+    func configureUI(with model: Dota2HeroModel, and image: UIImage ) {
+           hero = model
+           imageHeroView.image = image
+           heroNameLabel.text = hero.localizedName
+           
+           let labelsToUpdate: [(UILabel, String, String)] = [
+               (baseManaLabel, baseManaLabel.text!, String(hero.baseMana)),
+               (baseManaRegenLabel, baseManaRegenLabel.text!, String(hero.baseManaRegen)),
+               (baseHealthLabel, baseHealthLabel.text!, String(hero.baseHealth)),
+               (baseHealthRegenLabel, baseHealthRegenLabel.text!, String(hero.baseHealthRegen)),
+               (baseAttack,baseAttack.text!, "\(hero.baseAttackMin) - \(hero.baseAttackMax)"),
+               (attackRangeLabel, attackRangeLabel.text!, String(hero.attackRange)),
+               (moveSpeedLabel, moveSpeedLabel.text!, String(hero.moveSpeed)),
+               (attackSpeedLabel, attackSpeedLabel.text!, String(hero.attackSpeed))
+           ]
+           for (label, prefix, value) in labelsToUpdate {
+               updateLabelWithPrefix(label: label, prefix: prefix, value: value)
+           }
+       }
+       
+    
     
     // MARK: - Constants
     
-    private struct TextConstants {
+     struct TextConstants {
         static let health = NSLocalizedString("HEALTH:", comment: "")
         static let healthRegen = NSLocalizedString("HEALTH REGEN:", comment: "")
         static let mana = NSLocalizedString("MANA:", comment: "")

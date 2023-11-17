@@ -8,7 +8,7 @@
 import UIKit
 
 protocol Dota2HeroTableViewCellDelegate: AnyObject {
-    func didTapOnImageHeroView(heroID: Int, image: UIImage)
+    func didTapOnImageHeroView(heroID: Int)
 }
 
 class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
@@ -18,7 +18,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     var registrationHandler: (() -> Void)?
     
-    private var heroID: Int?
+    private(set) var heroID: Int?
     
     private var tapedImage: UIImage?
     
@@ -32,7 +32,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     // MARK: - UI Components
     
-    private var strenghtIndicator: CircleValueView = {
+     var strenghtIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(
                 x: СonstraintConstants.indicatorXOffset,
@@ -45,7 +45,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return circle
     }()
     
-    private var agilityIndicator: CircleValueView = {
+     var agilityIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(
                 x: СonstraintConstants.indicatorXOffset,
@@ -58,7 +58,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return circle
     }()
     
-    private var intelligenceIndicator: CircleValueView = {
+     var intelligenceIndicator: CircleValueView = {
         let circle = CircleValueView(
             frame: CGRect(
                 x: СonstraintConstants.indicatorXOffset,
@@ -71,7 +71,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return circle
     }()
    
-    private var baseStackView: UIStackView = {
+     var baseStackView: UIStackView = {
            let stackView = UIStackView()
            stackView.translatesAutoresizingMaskIntoConstraints = false
            stackView.axis = .vertical
@@ -80,7 +80,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
            return stackView
        }()
     
-    private var rolesLabel: UILabel = {
+     var rolesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -88,7 +88,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         return label
     }()
     
-    private var dispalyHeroName: UILabel = {
+     var dispalyHeroName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Dota 2"
@@ -160,8 +160,8 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     // MARK: - Image View Tap Action
     
     @objc func didTapImageView() {
-        if let heroID = heroID, let image = tapedImage {
-            delegate?.didTapOnImageHeroView(heroID: heroID, image: image)
+        if let heroID = heroID {
+            delegate?.didTapOnImageHeroView(heroID: heroID)
         }
     }
     
@@ -208,7 +208,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     func configure(model: Dota2HeroModel, with image: UIImage) {
         heroID = model.heroID
-        tapedImage = image
         imageHeroView.image = image
         rolesLabel.attributedText = createLabel(with: model.attackType, and: model.roles)
         dispalyHeroName.text = model.localizedName
