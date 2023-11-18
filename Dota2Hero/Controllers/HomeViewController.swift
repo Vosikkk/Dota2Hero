@@ -74,7 +74,7 @@ class HomeViewController: BaseViewController {
     }
    
     private func fetchHeroes() {
-        dota2API.fetch(page: Constants.pageOfFetch, pageSize: Constants.pageSizeOfFetch) { [weak self] result in
+        dota2API.fetch(APIEndpoint.heroes, page: Constants.pageOfFetch, pageSize: Constants.pageSizeOfFetch) { [weak self] result in
             switch result {
             case .success(let heroes):
                 self?.heroesStorage.addAllHeroes(heroes: heroes)
@@ -82,10 +82,10 @@ class HomeViewController: BaseViewController {
             case .failure(let error):
                 print(error)
             }
+            
         }
     }
-    
-    
+   
     private struct Constants {
         static let pageOfFetch: Int = 1
         static let pageSizeOfFetch: Int = 15
@@ -102,9 +102,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
-        
+       
         let hero = heroesStorage.allHeroes[indexPath.row]
-        
+     
         // Just make our button red without animation
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
        
@@ -119,11 +119,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         imageLoadQueue.addOperation { [weak self] in
             guard let self = self else { return }
-            imageFetcher.fetchImage(from: hero.imageURL) { result in
+            imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
                 switch result {
                 case .success(let image):
-                        DispatchQueue.main.async {
-                            cell.configure(model: hero, with: image)
+                    DispatchQueue.main.async {
+                        cell.configure(model: hero, with: image)
                     }
                 case .failure(let error):
                     print(error.localizedDescription)

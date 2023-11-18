@@ -14,6 +14,9 @@
 		380539B42AFA7D5B0035A75F /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B32AFA7D5B0035A75F /* Easing.swift */; };
 		380539B62AFACE460035A75F /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B52AFACE460035A75F /* Ring.swift */; };
 		380539B82AFAD1FD0035A75F /* Spark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B72AFAD1FD0035A75F /* Spark.swift */; };
+		38306E0A2B08F5A4003DB8CD /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E092B08F5A4003DB8CD /* APIEndpoint.swift */; };
+		38306E0E2B08F9F8003DB8CD /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E0D2B08F9F8003DB8CD /* HTTPMethod.swift */; };
+		38306E102B08FC4B003DB8CD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E0F2B08FC4B003DB8CD /* Environment.swift */; };
 		38316C382AF44B31007E77F1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* APICaller.swift */; };
 		385AF7342AFC264200523B11 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385AF7332AFC264200523B11 /* BaseViewController.swift */; };
 		3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */; };
@@ -40,6 +43,9 @@
 		380539B32AFA7D5B0035A75F /* Easing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
 		380539B52AFACE460035A75F /* Ring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
 		380539B72AFAD1FD0035A75F /* Spark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark.swift; sourceTree = "<group>"; };
+		38306E092B08F5A4003DB8CD /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		38306E0D2B08F9F8003DB8CD /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		38306E0F2B08FC4B003DB8CD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		38316C372AF44B31007E77F1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		385AF7332AFC264200523B11 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 			children = (
 				3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */,
 				38316C372AF44B31007E77F1 /* APICaller.swift */,
+				38306E092B08F5A4003DB8CD /* APIEndpoint.swift */,
+				38306E0D2B08F9F8003DB8CD /* HTTPMethod.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -154,6 +162,7 @@
 				38EF84172AF2E99B00D0F5D1 /* Info.plist */,
 				38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */,
 				38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */,
+				38306E0F2B08FC4B003DB8CD /* Environment.swift */,
 			);
 			path = Dota2Hero;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38EF84202AF2EA6000D0F5D1 /* MainTabBarViewController.swift in Sources */,
+				38306E0A2B08F5A4003DB8CD /* APIEndpoint.swift in Sources */,
 				380539AE2AFA5F4B0035A75F /* FaveIcon.swift in Sources */,
 				38F8003D2AFD04B500820623 /* HeroDetailsViewController.swift in Sources */,
 				38F8003F2AFD171B00820623 /* LabelFactory.swift in Sources */,
@@ -245,7 +255,9 @@
 				380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */,
 				380539B82AFAD1FD0035A75F /* Spark.swift in Sources */,
 				38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */,
+				38306E102B08FC4B003DB8CD /* Environment.swift in Sources */,
 				38EF84222AF2EE7D00D0F5D1 /* HomeViewController.swift in Sources */,
+				38306E0E2B08F9F8003DB8CD /* HTTPMethod.swift in Sources */,
 				3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */,
 				3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */,
 				38316C382AF44B31007E77F1 /* APICaller.swift in Sources */,

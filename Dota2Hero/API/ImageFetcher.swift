@@ -12,8 +12,9 @@ class ImageFetcher {
    
     private let cache = NSCache<NSString, UIImage>()
     
-    func fetchImage(from url: URL?, completion: @escaping (Result<UIImage, Error>) -> Void) {
-        guard let url = url else { completion(.failure(ImageFetcherError.badURL)); return }
+    func fetchImage(from endpoint: APIEndpoint, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        
+        guard let url = endpoint.request.url else { completion(.failure(ImageFetcherError.badURL)); return }
         
         if let cachedImage = cache.object(forKey: url.absoluteString as NSString) {
             completion(.success(cachedImage))

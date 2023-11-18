@@ -66,7 +66,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
         let hero = heroesStorage.getHero(by: heroID)
         var image: UIImage?
         
-        imageFetcher.fetchImage(from: hero.imageURL) { result in
+        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
             switch result {
             case .success(let img):
                 image = img
@@ -113,7 +113,7 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         
-        imageFetcher.fetchImage(from: hero.imageURL) { [weak self] result in
+        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let image):
