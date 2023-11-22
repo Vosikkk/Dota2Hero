@@ -108,7 +108,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         // Just make our button red without animation
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
        
-        
+      
         cell.registrationHandler = { [weak self] in
             guard let self = self else { return }
             heroesStorage.completeHero(withID: hero.heroID)

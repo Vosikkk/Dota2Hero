@@ -103,3 +103,21 @@ func Init<T>(_ object: T, block: (T) throws -> ()) rethrows -> T {
     try block(object)
     return object
 }
+
+extension CAGradientLayer {
+    
+    static func gradientLayer(in frame: CGRect) -> Self {
+        let layer = Self()
+        layer.colors = colors()
+        layer.frame = frame
+        return layer
+    }
+    
+    private static func colors() -> [CGColor] {
+        let beginColor: UIColor = UIColor(red: 26/255, green: 43/255, blue: 62/255, alpha: 1.0)
+        let endColor: UIColor = UIColor(red: 20/255, green: 30/255, blue: 48/255, alpha: 1.0)
+        
+        return [beginColor.cgColor, endColor.cgColor]
+    }
+    
+}

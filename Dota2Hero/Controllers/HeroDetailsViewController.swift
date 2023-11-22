@@ -177,6 +177,8 @@ class HeroDetailsViewController: UIViewController {
         if #available(iOS 16, *) {
             navigationItem.style = .navigator
         }
+        
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -194,14 +196,10 @@ class HeroDetailsViewController: UIViewController {
     }
     
     private func configureGradientLayer() {
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [
-            AppColors.gradientStart,
-            AppColors.gradientEnd
-        ]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        let gradientLayer = CAGradientLayer.gradientLayer(in: view.bounds)
+        gradientLayer.zPosition = -1 
+        view.layer.addSublayer(gradientLayer)
+
     }
     
     private func updateLabelWithPrefix(label: UILabel, prefix: String, value: String) {
@@ -310,3 +308,4 @@ private extension CGFloat {
     static let spacingForSupportStacks: CGFloat = 10
     static let spacingForMainStacks: CGFloat = 3
 }
+

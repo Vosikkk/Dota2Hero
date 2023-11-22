@@ -26,6 +26,8 @@ final class LabelFactory: LabelFactoryProtocol {
         label.backgroundColor = backgroundColor
         label.layer.cornerRadius = 5.0
         label.layer.masksToBounds = true
+        label.isAccessibilityElement = true
+        label.accessibilityTraits.update(with: .updatesFrequently)
         return label
     }
     
@@ -35,6 +37,8 @@ final class LabelFactory: LabelFactoryProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .white
+        label.isAccessibilityElement = true
+        label.accessibilityTraits.update(with: .updatesFrequently)
         return label
     }
 }

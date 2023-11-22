@@ -84,7 +84,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping 
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -93,6 +93,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Dota 2"
         label.font = .systemFont(ofSize: 18, weight: .bold)
+         
         return label
     }()
     
@@ -143,6 +144,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         likeButton.delegate = self
         
         configureConstraints()
+        setAccessibility()
     }
    
     
@@ -216,6 +218,14 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         strenghtIndicator.label.text = String("\(model.baseStr) + \(model.strGain)")
     }
     
+    private func setAccessibility() {
+        let allLabels = [dispalyHeroName, rolesLabel, intelligenceIndicator.label, agilityIndicator.label, strenghtIndicator.label]
+           
+           allLabels.forEach { label in
+               label.isAccessibilityElement = true
+               label.accessibilityTraits.update(with: .updatesFrequently)
+           }
+    }
     
     // MARK: - Constants
         

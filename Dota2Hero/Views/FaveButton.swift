@@ -45,14 +45,20 @@ class FaveButton: UIButton {
     private var faveIconImage: UIImage?
     var faveIcon: FaveIcon!
     private var animationsEnabled = true
+    
+    private var valueFormat: String {
+        NSLocalizedString("%@", comment: "like/dislike value format")
+    }
    
     private var isSelectedAnimated: Bool = false
    
     override var isSelected: Bool {
         didSet {
+            updateAccessibilityValue()
             guard self.animationsEnabled else { return }
             animateSelect(self.isSelected, duration: Constants.duration)
             isSelectedAnimated = false
+            
         }
     }
     
@@ -64,6 +70,10 @@ class FaveButton: UIButton {
         }
         faveIconImage = icon
         applyInit()
+        isAccessibilityElement = true
+        accessibilityLabel = NSLocalizedString("Like/Dislike", comment: "Like/dislike accessibility label")
+        accessibilityTraits.update(with: .updatesFrequently)
+        updateAccessibilityValue()
     }
     
     override init(frame: CGRect) {
@@ -75,6 +85,10 @@ class FaveButton: UIButton {
        
     }
     
+    private func updateAccessibilityValue() {
+            let likeOrDislikeString = isSelected ? "like" : "dislike"
+            accessibilityValue = String(format: valueFormat, likeOrDislikeString)
+        }
    
     private func applyInit(){
             
