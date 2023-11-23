@@ -9,13 +9,13 @@ import UIKit
 
 
 
-protocol LabelFactoryProtocol {
+protocol Factory {
     func createMainLabel() -> UILabel
     func createSupoortLabel(text: String, backgroundColor: UIColor) -> UILabel
     
 }
 
-final class LabelFactory: LabelFactoryProtocol {
+final class LabelFactory: Factory {
     
     func createSupoortLabel(text: String, backgroundColor: UIColor ) -> UILabel {
         let label = UILabel()

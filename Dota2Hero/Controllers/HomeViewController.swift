@@ -13,7 +13,7 @@ class HomeViewController: BaseViewController {
 
     //MARK: - Properties
     
-    private let dota2API: Dota2HeroFetcher
+    private let dota2API: APIManager
 
     private var likedObserver: NSObjectProtocol?
     
@@ -22,7 +22,7 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Initialization
     
-    init(dota2API: Dota2HeroFetcher, imageFetcher: ImageFetcher, heroesStorage: HeroDataManager) {
+    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesStorage: HeroDataManager) {
         self.dota2API = dota2API
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
     }

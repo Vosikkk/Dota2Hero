@@ -13,8 +13,31 @@ extension Notification.Name {
     static let changeInAllHeroes = Notification.Name("changedInGeneralStorage")
 }
 
+protocol HeroesProvider {
+    var allHeroes: Heroes { get }
+    var likedHeroes: Heroes { get }
+    func getHero(by ID: Int) -> Dota2HeroModel
+}
 
-final class HeroDataManager {
+protocol HeroesUpdater {
+    func updateInAll(_ hero: Dota2HeroModel)
+}
+
+protocol LikedHeroesUpdater {
+    func updateInLiked(_ hero: Dota2HeroModel)
+}
+
+protocol NotificationsSender {
+    func postNotification(for name: Notification.Name)
+}
+
+protocol HeroInteractionHandler: HeroesUpdater, LikedHeroesUpdater {
+    func completeHero(withID id: Int)
+}
+
+
+
+final class HeroDataManager: HeroesProvider, NotificationsSender,  HeroInteractionHandler {
     
     
     // MARK: - Properties
@@ -74,7 +97,7 @@ final class HeroDataManager {
     // MARK: - Private Methods
         
     // Post a notification for a given name
-    private func postNotification(for name: Notification.Name) {
+    func postNotification(for name: Notification.Name) {
            NotificationCenter.default.post(
                name: name,
                object: nil

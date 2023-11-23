@@ -17,7 +17,7 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     }
     
     var heroesStorage: HeroDataManager
-    var imageFetcher: ImageFetcher
+    var imageFetcher: ImageFetcherService
     
     
     
@@ -30,7 +30,7 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     
     // MARK: - Inirialization
     
-    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcher) {
+    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcherService) {
         self.heroesStorage = heroesStorage
         self.imageFetcher = imageFetcher
         super.init(nibName: nil, bundle: nil)

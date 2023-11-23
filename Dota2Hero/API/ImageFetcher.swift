@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ImageFetcher {
+protocol ImageFetcherService {
+    func fetchImage(from endpoint: APIEndpoint, completion: @escaping (Result<UIImage, Error>) -> Void)
+}
+
+class ImageFetcher: ImageFetcherService {
    
     private let cache = NSCache<NSString, UIImage>()
     

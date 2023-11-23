@@ -14,7 +14,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     private var likedObserver: NSObjectProtocol?
    
-    private let factory: LabelFactory
+    private let factory: Factory
     
     
     // MARK: - View Lifecycle
@@ -27,7 +27,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     // MARK: - Initialization
     
-    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcher, factory: LabelFactory) {
+    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcherService, factory: Factory) {
         self.factory = factory
         super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
         

@@ -22,10 +22,10 @@ class MainTabBarViewController: UITabBarController {
     
     private func setTabBar() {
         
-        let dota2API: Dota2HeroFetcher = Dota2HeroFetcher()
-        let imageFetcher: ImageFetcher = ImageFetcher()
+        let dota2API: APIManager = Dota2HeroFetcher()
+        let imageFetcher: ImageFetcherService = ImageFetcher()
         let heroesStorage: HeroDataManager = HeroDataManager()
-        let factory: LabelFactory = LabelFactory()
+        let factory: Factory = LabelFactory()
         
         let vc1 = UINavigationController(
             rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher, heroesStorage: heroesStorage))

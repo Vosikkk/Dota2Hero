@@ -19,7 +19,7 @@ class HeroDetailsViewController: UIViewController {
     
     let gradientLayer = CAGradientLayer()
     
-    let factory: LabelFactory
+    let factory: Factory
     
     
     // MARK: - UI Components
@@ -144,7 +144,7 @@ class HeroDetailsViewController: UIViewController {
     
     // MARK: - Initialization
     
-    init(factory: LabelFactory, heroesStorage: HeroDataManager) {
+    init(factory: Factory, heroesStorage: HeroDataManager) {
         self.heroesStorage = heroesStorage
         self.factory = factory
         super.init(nibName: nil, bundle: nil)
