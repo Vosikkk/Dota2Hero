@@ -9,34 +9,33 @@
 import UIKit
 
 protocol ImageFetcherService {
-    func fetchImage(from endpoint: APIEndpoint, completion: @escaping (Result<UIImage, Error>) -> Void)
+    func fetchImage(from endpoint: APIEndpoint, completion: @escaping (Result<UIImage, Dota2HeroError>) -> Void)
 }
 
 class ImageFetcher: ImageFetcherService {
    
-    private let cache = NSCache<NSString, UIImage>()
+    private let cache: Cache
     
-    func fetchImage(from endpoint: APIEndpoint, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    init(cache: Cache) {
+        self.cache = cache
+    }
+    
+    func fetchImage(from endpoint: APIEndpoint, completion: @escaping (Result<UIImage, Dota2HeroError>) -> Void) {
         
-        guard let url = endpoint.request.url else { completion(.failure(ImageFetcherError.badURL)); return }
+        guard let url = endpoint.request.url else { completion(.failure(Dota2HeroError.badURL)); return }
         
-        if let cachedImage = cache.object(forKey: url.absoluteString as NSString) {
+        if let cachedImage = cache.load(for: url.absoluteString) {
             completion(.success(cachedImage))
             return
         }
-        
         DispatchQueue.global(qos: .userInitiated).async {
             if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                self.cache.setObject(image, forKey: url.absoluteString as NSString)
+                self.cache.save(image, for: url.absoluteString)
                 completion(.success(image))
             } else {
-                completion(.failure(ImageFetcherError.networkError))
+                completion(.failure(Dota2HeroError.networkError))
             }
         }
     }
 }
 
-enum ImageFetcherError: Error {
-    case networkError
-    case badURL
-}
