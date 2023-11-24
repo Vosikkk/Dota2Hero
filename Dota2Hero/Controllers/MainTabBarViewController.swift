@@ -8,24 +8,30 @@
 import UIKit
 
 class MainTabBarViewController: UITabBarController {
-
     
-    // MARK: - View Lifecycle
+    private let dota2API: APIManager
+    private let imageFetcher: ImageFetcherService
+    private let heroesStorage: HeroDataManager
+    private let factory: Factory
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesStorage: HeroDataManager, factory: Factory) {
+        self.dota2API = dota2API
+        self.imageFetcher = imageFetcher
+        self.heroesStorage = heroesStorage
+        self.factory = factory
+        super.init(nibName: nil, bundle: nil)
         setTabBar()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     
     // MARK: - Helper Methods
     
     private func setTabBar() {
-        
-        let dota2API: APIManager = Dota2HeroFetcher()
-        let imageFetcher: ImageFetcherService = ImageFetcher()
-        let heroesStorage: HeroDataManager = HeroDataManager()
-        let factory: Factory = LabelFactory()
         
         let vc1 = UINavigationController(
             rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher, heroesStorage: heroesStorage))
@@ -39,7 +45,7 @@ class MainTabBarViewController: UITabBarController {
         vc2.tabBarItem = createTabBarItem(
             imageName: "hand.thumbsup", selectedImageName: "hand.thumbsup.fill")
         
-      
+        
         setViewControllers([vc1, vc2], animated: true)
     }
     
