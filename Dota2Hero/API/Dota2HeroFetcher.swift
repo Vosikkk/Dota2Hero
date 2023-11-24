@@ -19,14 +19,16 @@ final class Dota2HeroFetcher: APIManager {
         let request = endpoint.request
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
+            if  error != nil {
                 completion(.failure(Dota2HeroError.networkError))
                 return
             }
+            
             if let data = data {
                 do {
                     let startIndex = (page - 1) * pageSize
-                    let heroes = try JSONDecoder().decode(Heroes.self, from: data)
+                    
+                    let heroes = try data.decodeJson(for: Heroes.self)
                     
                     let endIndex = min(startIndex + pageSize, heroes.count)
                     let paginatedHeroes = Array(heroes[startIndex..<endIndex])

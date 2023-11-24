@@ -152,6 +152,13 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // When reuse we don't want to see image which has been before
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageHeroView.image = nil
+    }
+    
     // MARK: - Button Action
     
      private func didTapButton() {

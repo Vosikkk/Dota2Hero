@@ -19,13 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        
-        UINavigationBar.appearance().backgroundColor = .backgroundColorForDetail
-        UINavigationBar.appearance().tintColor = .tabBarTint
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-       
         return true
     }
 

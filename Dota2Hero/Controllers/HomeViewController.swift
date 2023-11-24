@@ -82,7 +82,6 @@ class HomeViewController: BaseViewController {
             case .failure(let error):
                 print(error)
             }
-            
         }
     }
    
@@ -96,13 +95,16 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
    
+   
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return heroesStorage.allHeroes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
-       
+        
         let hero = heroesStorage.allHeroes[indexPath.row]
      
         // Just make our button red without animation
@@ -110,7 +112,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
        
       
         cell.registrationHandler = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             heroesStorage.completeHero(withID: hero.heroID)
             
             // And here animate
@@ -118,7 +120,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         imageLoadQueue.addOperation { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
                 switch result {
                 case .success(let image):

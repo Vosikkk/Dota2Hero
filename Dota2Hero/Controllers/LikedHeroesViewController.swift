@@ -101,7 +101,7 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
         
         cell.registrationHandler = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             
             tableView.performBatchUpdates {
                 
@@ -113,8 +113,7 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         
-        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { [weak self] result in
-            guard let self = self else { return }
+        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {

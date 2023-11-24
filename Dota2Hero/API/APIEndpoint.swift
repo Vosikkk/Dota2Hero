@@ -57,6 +57,7 @@ enum APIEndpoint {
 }
 
 fileprivate extension URLRequest {
+   
     mutating func addHeaders(_ headers: Headers) {
         headers.forEach { header, value in
             addValue(value, forHTTPHeaderField: header)

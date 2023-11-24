@@ -121,3 +121,14 @@ extension CAGradientLayer {
     }
     
 }
+
+extension Data {
+    
+    func decodeJson<T: Decodable>(for type: T.Type) throws -> T {
+            do {
+                return try JSONDecoder().decode(T.self, from: self)
+            } catch {
+                throw error
+            }
+        }
+}
