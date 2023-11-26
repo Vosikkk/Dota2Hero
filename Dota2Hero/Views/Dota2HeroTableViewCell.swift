@@ -20,8 +20,6 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
     
     private(set) var heroID: Int?
     
-    private var tapedImage: UIImage?
-    
     weak var delegate: Dota2HeroTableViewCellDelegate?
     
     static let identifier = "Dota2HeroTableViewCell"

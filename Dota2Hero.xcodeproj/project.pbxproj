@@ -20,9 +20,12 @@
 		38316C382AF44B31007E77F1 /* Dota2HeroFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* Dota2HeroFetcher.swift */; };
 		385AF7342AFC264200523B11 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385AF7332AFC264200523B11 /* BaseViewController.swift */; };
 		3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */; };
-		3884CAB42AF9814A00C06AFD /* HeroDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB32AF9814A00C06AFD /* HeroDataManager.swift */; };
+		3884CAB42AF9814A00C06AFD /* HeroesDataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB32AF9814A00C06AFD /* HeroesDataStorageManager.swift */; };
 		388DD70F2B113FED00BC0D8A /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388DD70E2B113FED00BC0D8A /* ImageCache.swift */; };
 		388DD7112B11427700BC0D8A /* Dota2Hero+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */; };
+		38907BCE2B138B590093D9AC /* HeroesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38907BCD2B138B590093D9AC /* HeroesProvider.swift */; };
+		38907BD02B138BEB0093D9AC /* HeroesUdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */; };
+		38907BD22B138C840093D9AC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38907BD12B138C840093D9AC /* NotificationManager.swift */; };
 		38AA23022AF6FABB008A2D68 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA23012AF6FABB008A2D68 /* Extensions.swift */; };
 		38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */; };
 		38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */; };
@@ -51,9 +54,12 @@
 		38316C372AF44B31007E77F1 /* Dota2HeroFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2HeroFetcher.swift; sourceTree = "<group>"; };
 		385AF7332AFC264200523B11 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
-		3884CAB32AF9814A00C06AFD /* HeroDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDataManager.swift; sourceTree = "<group>"; };
+		3884CAB32AF9814A00C06AFD /* HeroesDataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDataStorageManager.swift; sourceTree = "<group>"; };
 		388DD70E2B113FED00BC0D8A /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dota2Hero+Error.swift"; sourceTree = "<group>"; };
+		38907BCD2B138B590093D9AC /* HeroesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesProvider.swift; sourceTree = "<group>"; };
+		38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesUdapter.swift; sourceTree = "<group>"; };
+		38907BD12B138C840093D9AC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		38AA23012AF6FABB008A2D68 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		38EF84062AF2E99900D0F5D1 /* Dota2Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dota2Hero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +102,11 @@
 		38316C342AF438FE007E77F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3884CAB32AF9814A00C06AFD /* HeroDataManager.swift */,
+				3884CAB32AF9814A00C06AFD /* HeroesDataStorageManager.swift */,
+				38907BD12B138C840093D9AC /* NotificationManager.swift */,
+				38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */,
 				38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */,
+				38907BCD2B138B590093D9AC /* HeroesProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,15 +257,17 @@
 				380539AE2AFA5F4B0035A75F /* FaveIcon.swift in Sources */,
 				38F8003D2AFD04B500820623 /* HeroDetailsViewController.swift in Sources */,
 				38F8003F2AFD171B00820623 /* LabelFactory.swift in Sources */,
+				38907BD02B138BEB0093D9AC /* HeroesUdapter.swift in Sources */,
 				388DD70F2B113FED00BC0D8A /* ImageCache.swift in Sources */,
 				38EF84242AF2EEB100D0F5D1 /* LikedHeroesViewController.swift in Sources */,
 				38EF84262AF307E700D0F5D1 /* Dota2HeroTableViewCell.swift in Sources */,
 				380539B22AFA6BA00035A75F /* Constraints.swift in Sources */,
 				385AF7342AFC264200523B11 /* BaseViewController.swift in Sources */,
 				38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */,
-				3884CAB42AF9814A00C06AFD /* HeroDataManager.swift in Sources */,
+				3884CAB42AF9814A00C06AFD /* HeroesDataStorageManager.swift in Sources */,
 				380539B62AFACE460035A75F /* Ring.swift in Sources */,
 				38AA23022AF6FABB008A2D68 /* Extensions.swift in Sources */,
+				38907BCE2B138B590093D9AC /* HeroesProvider.swift in Sources */,
 				38EF84282AF30A1500D0F5D1 /* Dota2HeroModel.swift in Sources */,
 				380539B42AFA7D5B0035A75F /* Easing.swift in Sources */,
 				380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */,
@@ -268,6 +279,7 @@
 				38306E0E2B08F9F8003DB8CD /* HTTPMethod.swift in Sources */,
 				3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */,
 				3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */,
+				38907BD22B138C840093D9AC /* NotificationManager.swift in Sources */,
 				38316C382AF44B31007E77F1 /* Dota2HeroFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

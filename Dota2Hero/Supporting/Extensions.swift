@@ -99,11 +99,6 @@ extension NavigationBarDota2Logo where Self: BaseViewController {
     }
 }
 
-func Init<T>(_ object: T, block: (T) throws -> ()) rethrows -> T {
-    try block(object)
-    return object
-}
-
 extension CAGradientLayer {
     
     static func gradientLayer(in frame: CGRect) -> Self {
@@ -125,10 +120,15 @@ extension CAGradientLayer {
 extension Data {
     
     func decodeJson<T: Decodable>(for type: T.Type) throws -> T {
-            do {
-                return try JSONDecoder().decode(T.self, from: self)
-            } catch {
-                throw error
-            }
+        do {
+            return try JSONDecoder().decode(T.self, from: self)
+        } catch {
+            throw error
         }
+    }
+}
+
+func Init<T>(_ object: T, block: (T) throws -> ()) rethrows -> T {
+    try block(object)
+    return object
 }

@@ -19,7 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let cacheImage: Cache = ImageCache()
         let dota2API: APIManager = Dota2HeroFetcher()
         let imageFetcher: ImageFetcherService = ImageFetcher(cache: cacheImage)
-        let heroesStorage: HeroDataManager = HeroDataManager()
+        let provider: HeroesProvider = HeroesProviderManager()
+        let updater: HeroesUpdater & LikedHeroesUpdater = HeroesUpdater(heroesProvider: provider)
+        let notification: NotificationsSender = NotificationManager()
+        let heroesDataManager: HeroInteractionHandler = HeroesDataStorageManager(updater: updater, provider: provider, notification: notification)
+        let heroesStorage: HeroesProviderManager = HeroesProviderManager()
         let factory: Factory = LabelFactory()
         
         
@@ -31,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = MainTabBarViewController(
             dota2API: dota2API,
             imageFetcher: imageFetcher,
-            heroesStorage: heroesStorage,
+            heroesManager: heroesDataManager,
             factory: factory)
         
         window?.makeKeyAndVisible()

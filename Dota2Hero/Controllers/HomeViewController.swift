@@ -22,9 +22,9 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Initialization
     
-    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesStorage: HeroDataManager) {
+    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: HeroInteractionHandler) {
         self.dota2API = dota2API
-        super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
+        super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ class HomeViewController: BaseViewController {
         // So we need to reload our table
         
         likedObserver = NotificationCenter.default.addObserver(
-            forName: .changeInAllHeroes,
+            forName: .changeLikeDislike,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
                 self?.updateTable()
@@ -58,7 +58,6 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         // And when we are on the controller, observer become useless, we don't need reload our table every tap
-        
         if let observer = likedObserver {
             NotificationCenter.default.removeObserver(observer)
         }
@@ -77,7 +76,9 @@ class HomeViewController: BaseViewController {
         dota2API.fetch(APIEndpoint.heroes, page: Constants.pageOfFetch, pageSize: Constants.pageSizeOfFetch) { [weak self] result in
             switch result {
             case .success(let heroes):
-                self?.heroesStorage.addAllHeroes(heroes: heroes)
+                if let heroesmanager = self?.heroesManager as? HeroesDataStorageManager {
+                    heroesmanager.add(heroes)
+                }
                 self?.updateTable()
             case .failure(let error):
                 print(error)
@@ -99,13 +100,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroesStorage.allHeroes.count
+        return heroesManager.getAmountOfAll()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         
-        let hero = heroesStorage.allHeroes[indexPath.row]
+        let hero = heroesManager.getInAll(by: indexPath)
      
         // Just make our button red without animation
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
@@ -113,10 +114,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       
         cell.registrationHandler = { [weak self] in
             guard let self else { return }
-            heroesStorage.completeHero(withID: hero.heroID)
+            heroesManager.completeHero(withID: hero.heroID)
             
             // And here animate
-            cell.likeButton.isSelected = heroesStorage.getHero(by: hero.heroID).isLiked
+            cell.likeButton.isSelected = heroesManager.getInAll(by: hero.heroID).isLiked
         }
         
         imageLoadQueue.addOperation { [weak self] in

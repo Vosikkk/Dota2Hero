@@ -16,7 +16,7 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
         return UIScreen.current?.bounds.height
     }
     
-    var heroesStorage: HeroDataManager
+    var heroesManager: HeroInteractionHandler
     var imageFetcher: ImageFetcherService
     
     
@@ -30,8 +30,8 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     
     // MARK: - Inirialization
     
-    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcherService) {
-        self.heroesStorage = heroesStorage
+    init(heroesManager: HeroInteractionHandler, imageFetcher: ImageFetcherService) {
+        self.heroesManager = heroesManager
         self.imageFetcher = imageFetcher
         super.init(nibName: nil, bundle: nil)
     }

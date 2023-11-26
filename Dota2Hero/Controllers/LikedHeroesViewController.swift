@@ -27,13 +27,13 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     // MARK: - Initialization
     
-    init(heroesStorage: HeroDataManager, imageFetcher: ImageFetcherService, factory: Factory) {
+    init(heroesManager: HeroInteractionHandler, imageFetcher: ImageFetcherService, factory: Factory) {
         self.factory = factory
-        super.init(heroesStorage: heroesStorage, imageFetcher: imageFetcher)
+        super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
         
         // Listen to your heart
         likedObserver = NotificationCenter.default.addObserver(
-            forName: .changeInLiked,
+            forName: .changeLikeDislike,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
                 self?.updateTable()
@@ -63,7 +63,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     // MARK: - Delegate method
     
     func didTapOnImageHeroView(heroID: Int) {
-        let hero = heroesStorage.getHero(by: heroID)
+        let hero = heroesManager.getInAll(by: heroID)
         var image: UIImage?
         
         imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
@@ -75,7 +75,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
             }
         }
         
-        let vc = HeroDetailsViewController(factory: factory, heroesStorage: heroesStorage)
+        let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
         vc.configureUI(with: hero, and: image!)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -89,7 +89,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
 extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroesStorage.likedHeroes.count
+        return heroesManager.getAmountOfLiked()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,15 +97,14 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
     
         cell.delegate = self
         
-        let hero = heroesStorage.likedHeroes[indexPath.row]
+        let hero = heroesManager.getInLiked(by: indexPath)
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
         
         cell.registrationHandler = { [weak self] in
             guard let self else { return }
             
             tableView.performBatchUpdates {
-                
-                self.heroesStorage.completeHero(withID: hero.heroID)
+                self.heroesManager.completeHero(withID: hero.heroID)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 
             } completion: { finished in
