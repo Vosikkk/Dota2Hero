@@ -19,11 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let cacheImage: Cache = ImageCache()
         let dota2API: APIManager = Dota2HeroFetcher()
         let imageFetcher: ImageFetcherService = ImageFetcher(cache: cacheImage)
-        let provider: HeroesProvider = HeroesProviderManager()
-        let updater: HeroesUpdater & LikedHeroesUpdater = HeroesUpdater(heroesProvider: provider)
+        let updater: HeroesUpdater & LikedHeroesUpdater = AllHeroesUpdater()
         let notification: NotificationsSender = NotificationManager()
-        let heroesDataManager: HeroInteractionHandler = HeroesDataStorageManager(updater: updater, provider: provider, notification: notification)
-        let heroesStorage: HeroesProviderManager = HeroesProviderManager()
+        let heroesDataManager: DataManager = HeroesDataManager(updater: updater, notification: notification)
         let factory: Factory = LabelFactory()
         
         

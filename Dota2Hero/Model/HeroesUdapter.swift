@@ -9,33 +9,26 @@ import Foundation
 
 
 protocol HeroesUpdater {
-    func update(_ hero: Dota2HeroModel)
+    func update(_ hero: Dota2HeroModel, in storage: inout Heroes)
 }
 
 protocol LikedHeroesUpdater {
-    func updateInLiked(_ hero: Dota2HeroModel)
+    func updateInLiked(_ hero: Dota2HeroModel, in storage: inout Heroes)
 }
-
 
 
 class AllHeroesUpdater: HeroesUpdater, LikedHeroesUpdater {
     
-    private var heroesProvider: HeroesProvider
-    
-    init(heroesProvider: HeroesProvider) {
-        self.heroesProvider = heroesProvider
+    func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
+        let index = storage.indexOfHero(withID: hero.heroID)
+        storage[index].isLiked = hero.isLiked
     }
     
-    func update(_ hero: Dota2HeroModel) {
-        let index = heroesProvider.allHeroes.indexOfHero(withID: hero.heroID)
-        heroesProvider.allHeroes[index].isLiked = hero.isLiked
-    }
-    
-    func updateInLiked(_ hero: Dota2HeroModel) {
+    func updateInLiked(_ hero: Dota2HeroModel, in storage: inout Heroes) {
         if !hero.isLiked {
-            heroesProvider.likedHeroes.removeAll { $0.heroID == hero.heroID }
+            storage.removeAll { $0.heroID == hero.heroID }
         } else {
-            heroesProvider.likedHeroes.append(hero)
+            storage.append(hero)
         }
     }
 }

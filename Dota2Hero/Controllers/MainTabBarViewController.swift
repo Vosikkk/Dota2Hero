@@ -11,10 +11,10 @@ class MainTabBarViewController: UITabBarController {
     
     private let dota2API: APIManager
     private let imageFetcher: ImageFetcherService
-    private let heroesManager: HeroInteractionHandler
+    private let heroesManager: DataManager
     private let factory: Factory
     
-    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: HeroInteractionHandler, factory: Factory) {
+    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: DataManager, factory: Factory) {
         self.dota2API = dota2API
         self.imageFetcher = imageFetcher
         self.heroesManager = heroesManager

@@ -27,7 +27,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     // MARK: - Initialization
     
-    init(heroesManager: HeroInteractionHandler, imageFetcher: ImageFetcherService, factory: Factory) {
+    init(heroesManager: DataManager, imageFetcher: ImageFetcherService, factory: Factory) {
         self.factory = factory
         super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
         
@@ -63,7 +63,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     // MARK: - Delegate method
     
     func didTapOnImageHeroView(heroID: Int) {
-        let hero = heroesManager.getInAll(by: heroID)
+        let hero = heroesManager.getHero(by: heroID)
         var image: UIImage?
         
         imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
@@ -89,7 +89,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
 extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroesManager.getAmountOfLiked()
+        return heroesManager.likedHeroes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,7 +97,7 @@ extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource 
     
         cell.delegate = self
         
-        let hero = heroesManager.getInLiked(by: indexPath)
+        let hero = heroesManager.likedHeroes[indexPath.row]
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
         
         cell.registrationHandler = { [weak self] in

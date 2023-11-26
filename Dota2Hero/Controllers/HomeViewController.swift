@@ -22,7 +22,7 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Initialization
     
-    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: HeroInteractionHandler) {
+    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: DataManager) {
         self.dota2API = dota2API
         super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
     }
@@ -76,9 +76,7 @@ class HomeViewController: BaseViewController {
         dota2API.fetch(APIEndpoint.heroes, page: Constants.pageOfFetch, pageSize: Constants.pageSizeOfFetch) { [weak self] result in
             switch result {
             case .success(let heroes):
-                if let heroesmanager = self?.heroesManager as? HeroesDataStorageManager {
-                    heroesmanager.add(heroes)
-                }
+                self?.heroesManager.allHeroes = heroes
                 self?.updateTable()
             case .failure(let error):
                 print(error)
@@ -100,13 +98,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroesManager.getAmountOfAll()
+        return heroesManager.allHeroes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
         
-        let hero = heroesManager.getInAll(by: indexPath)
+        let hero = heroesManager.allHeroes[indexPath.row]
      
         // Just make our button red without animation
         cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
@@ -117,7 +115,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             heroesManager.completeHero(withID: hero.heroID)
             
             // And here animate
-            cell.likeButton.isSelected = heroesManager.getInAll(by: hero.heroID).isLiked
+            cell.likeButton.isSelected = heroesManager.getHero(by: hero.heroID).isLiked
         }
         
         imageLoadQueue.addOperation { [weak self] in

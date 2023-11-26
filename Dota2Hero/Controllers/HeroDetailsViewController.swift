@@ -15,7 +15,7 @@ class HeroDetailsViewController: UIViewController {
     
     private var hero: Dota2HeroModel!
       
-    let heroesManager: HeroInteractionHandler
+    let heroesManager: DataManager
     
     let gradientLayer = CAGradientLayer()
     
@@ -144,7 +144,7 @@ class HeroDetailsViewController: UIViewController {
     
     // MARK: - Initialization
     
-    init(factory: Factory, heroesManager: HeroInteractionHandler) {
+    init(factory: Factory, heroesManager: DataManager) {
         self.heroesManager = heroesManager
         self.factory = factory
         super.init(nibName: nil, bundle: nil)
