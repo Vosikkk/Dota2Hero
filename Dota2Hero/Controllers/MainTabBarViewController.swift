@@ -9,15 +9,13 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController {
     
-    private let dota2API: APIManager
-    private let imageFetcher: ImageFetcherService
+    private let fetcher: FetcherService
     private let heroesManager: DataManager
     private let factory: Factory
     
-    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: DataManager, factory: Factory) {
-        self.dota2API = dota2API
-        self.imageFetcher = imageFetcher
+    init(heroesManager: DataManager, fetcher: FetcherService, factory: Factory) {
         self.heroesManager = heroesManager
+        self.fetcher = fetcher
         self.factory = factory
         super.init(nibName: nil, bundle: nil)
         setTabBar()
@@ -34,10 +32,10 @@ class MainTabBarViewController: UITabBarController {
     private func setTabBar() {
         
         let vc1 = UINavigationController(
-            rootViewController: HomeViewController(dota2API: dota2API, imageFetcher: imageFetcher, heroesManager: heroesManager))
+            rootViewController: HomeViewController(heroesManager: heroesManager, fetcher: fetcher))
         
         let vc2 = UINavigationController(
-            rootViewController: LikedHeroesViewController(heroesManager: heroesManager, imageFetcher: imageFetcher, factory: factory))
+            rootViewController: LikedHeroesViewController(heroesManager: heroesManager, fetcher: fetcher, factory: factory))
         
         vc1.tabBarItem = createTabBarItem(
             imageName: "house", selectedImageName: "house.fill")

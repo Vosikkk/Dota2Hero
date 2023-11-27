@@ -17,8 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         let cacheImage: Cache = ImageCache()
-        let dota2API: APIManager = Dota2HeroFetcher()
+        let heroFetcher: APIHeroService = HeroFetcher()
         let imageFetcher: ImageFetcherService = ImageFetcher(cache: cacheImage)
+        let fetcher: FetcherService = Fetcher(heroFetcher: heroFetcher, imageFetcher: imageFetcher)
+        
         let updater: HeroesUpdater & LikedHeroesUpdater = AllHeroesUpdater()
         let notification: NotificationsSender = NotificationManager()
         let heroesDataManager: DataManager = HeroesDataManager(updater: updater, notification: notification)
@@ -31,9 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = MainTabBarViewController(
-            dota2API: dota2API,
-            imageFetcher: imageFetcher,
             heroesManager: heroesDataManager,
+            fetcher: fetcher,
             factory: factory)
         
         window?.makeKeyAndVisible()

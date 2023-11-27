@@ -9,22 +9,7 @@ import UIKit
 
 class HomeViewController: BaseViewController {
    
-    // MARK: - Properties
-    
-    private let dota2API: APIManager
-    
-    // MARK: - Initialization
-    
-    init(dota2API: APIManager, imageFetcher: ImageFetcherService, heroesManager: DataManager) {
-        self.dota2API = dota2API
-        super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -43,7 +28,6 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         heroesTableView.reloadData()
         updateSnapshot(reloadOf: heroesManager.allHeroes)
-        
     }
     
     
@@ -68,14 +52,18 @@ class HomeViewController: BaseViewController {
     // MARK: - Helper Methods
     
     private func fetchHeroes() {
-        dota2API.fetch(APIEndpoint.heroes, page: Constants.pageOfFetch, pageSize: Constants.pageSizeOfFetch) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let heroes):
-                heroesManager.allHeroes = heroes
-                updateSnapshot(reloadOf: heroesManager.allHeroes)
-            case .failure(let error):
-                print(error)
+        Task {
+            do {
+                let result = try await fetcher.getHeros(
+                    by: APIEndpoint.heroes,
+                    page: Constants.pageOfFetch,
+                    pageSize: Constants.pageSizeOfFetch)
+                
+                let heroes = try result.get()
+                    heroesManager.allHeroes = heroes
+                    updateSnapshot(reloadOf: heroesManager.allHeroes)
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }
@@ -86,7 +74,7 @@ class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: UITableViewDelegate & UITableViewDataSource
+// MARK: UITableViewDelegate
 
 extension HomeViewController: UITableViewDelegate {
    

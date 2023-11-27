@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EC942AF5AA620001C1EC /* CircleValueView.swift */; };
+		3804C6732B1542C70059CD0C /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804C6722B1542C70059CD0C /* Fetcher.swift */; };
 		380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539AB2AFA5B4E0035A75F /* FaveButton.swift */; };
 		380539AE2AFA5F4B0035A75F /* FaveIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539AD2AFA5F4B0035A75F /* FaveIcon.swift */; };
 		380539B22AFA6BA00035A75F /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539B12AFA6BA00035A75F /* Constraints.swift */; };
@@ -17,7 +18,7 @@
 		38306E0A2B08F5A4003DB8CD /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E092B08F5A4003DB8CD /* APIEndpoint.swift */; };
 		38306E0E2B08F9F8003DB8CD /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E0D2B08F9F8003DB8CD /* HTTPMethod.swift */; };
 		38306E102B08FC4B003DB8CD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E0F2B08FC4B003DB8CD /* Environment.swift */; };
-		38316C382AF44B31007E77F1 /* Dota2HeroFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* Dota2HeroFetcher.swift */; };
+		38316C382AF44B31007E77F1 /* HeroFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* HeroFetcher.swift */; };
 		385AF7342AFC264200523B11 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385AF7332AFC264200523B11 /* BaseViewController.swift */; };
 		3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */; };
 		3884CAB42AF9814A00C06AFD /* HeroesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		3803EC942AF5AA620001C1EC /* CircleValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleValueView.swift; sourceTree = "<group>"; };
+		3804C6722B1542C70059CD0C /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		380539AB2AFA5B4E0035A75F /* FaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveButton.swift; sourceTree = "<group>"; };
 		380539AD2AFA5F4B0035A75F /* FaveIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveIcon.swift; sourceTree = "<group>"; };
 		380539B12AFA6BA00035A75F /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
@@ -50,7 +52,7 @@
 		38306E092B08F5A4003DB8CD /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		38306E0D2B08F9F8003DB8CD /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		38306E0F2B08FC4B003DB8CD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		38316C372AF44B31007E77F1 /* Dota2HeroFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dota2HeroFetcher.swift; sourceTree = "<group>"; };
+		38316C372AF44B31007E77F1 /* HeroFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroFetcher.swift; sourceTree = "<group>"; };
 		385AF7332AFC264200523B11 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDataManager.swift; sourceTree = "<group>"; };
@@ -125,9 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */,
-				38316C372AF44B31007E77F1 /* Dota2HeroFetcher.swift */,
+				38316C372AF44B31007E77F1 /* HeroFetcher.swift */,
 				38306E092B08F5A4003DB8CD /* APIEndpoint.swift */,
 				38306E0D2B08F9F8003DB8CD /* HTTPMethod.swift */,
+				3804C6722B1542C70059CD0C /* Fetcher.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -276,7 +279,8 @@
 				3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */,
 				3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */,
 				38907BD22B138C840093D9AC /* NotificationManager.swift in Sources */,
-				38316C382AF44B31007E77F1 /* Dota2HeroFetcher.swift in Sources */,
+				3804C6732B1542C70059CD0C /* Fetcher.swift in Sources */,
+				38316C382AF44B31007E77F1 /* HeroFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

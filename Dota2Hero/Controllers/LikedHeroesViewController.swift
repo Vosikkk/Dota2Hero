@@ -9,11 +9,9 @@ import UIKit
 
 
 class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDelegate {
-    
-    // MARK: - Properties
-    
-    private var likedObserver: NSObjectProtocol?
    
+    // MARK: - Properties
+       
     private let factory: Factory
     
     lazy var dataSource: DataSource = {
@@ -61,9 +59,9 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     // MARK: - Initialization
     
-    init(heroesManager: DataManager, imageFetcher: ImageFetcherService, factory: Factory) {
+    init(heroesManager: DataManager, fetcher: FetcherService, factory: Factory) {
         self.factory = factory
-        super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
+        super.init(heroesManager: heroesManager, fetcher: fetcher)
     }
     
     required init?(coder: NSCoder) {
@@ -75,25 +73,22 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     
     func didTapOnImageHeroView(heroID: Int) {
         let hero = heroesManager.getHero(by: heroID)
-        var image: UIImage?
-        
-        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
-            switch result {
-            case .success(let img):
-                image = img
-            case .failure(let error):
+        Task {
+            do {
+                let result = try await fetcher.getImage(from: APIEndpoint.image(hero.img))
+                let image = try result.get()
+                let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
+                vc.configureUI(with: hero, and: image)
+                navigationController?.pushViewController(vc, animated: true)
+            } catch {
                 print(error.localizedDescription)
             }
         }
-        
-        let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
-        vc.configureUI(with: hero, and: image!)
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 
-// MARK: UITableViewDelegate & UITableViewDataSource
+// MARK: UITableViewDelegate
 
 extension LikedHeroesViewController: UITableViewDelegate {
    

@@ -27,7 +27,7 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     }
     
     var heroesManager: DataManager
-    var imageFetcher: ImageFetcherService
+    var fetcher: FetcherService
     
     let heroesTableView: UITableView = {
         let tableView = UITableView()
@@ -38,9 +38,9 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     
     // MARK: - Inirialization
     
-    init(heroesManager: DataManager, imageFetcher: ImageFetcherService) {
+    init(heroesManager: DataManager, fetcher: FetcherService) {
+        self.fetcher = fetcher
         self.heroesManager = heroesManager
-        self.imageFetcher = imageFetcher
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -68,27 +68,24 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     
     
     func loadImage(for hero: Dota2HeroModel, into cell: Dota2HeroTableViewCell, array: Heroes) {
-        
-        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let image):
-                DispatchQueue.main.async {
-                    cell.configure(model: hero, with: image)
-                    self.updateSnapshot(reloadOf: array)
-                }
-            case .failure(let error):
+        Task {
+            do {
+                let result = try await fetcher.getImage(from: APIEndpoint.image(hero.img))
+                let image = try result.get()
+                cell.configure(model: hero, with: image)
+                updateSnapshot(reloadOf: array)
+            } catch {
                 print(error.localizedDescription)
             }
         }
     }
     
     func updateSnapshot(reloadOf array: Heroes) {
-         var snapshot = Snapshot()
-         snapshot.appendSections([.main])
-         snapshot.appendItems(array)
-         updaterHandler?(snapshot)
-     }
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(array)
+        updaterHandler?(snapshot)
+    }
 }
 
 

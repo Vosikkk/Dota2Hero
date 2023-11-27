@@ -5,15 +5,14 @@
 //  Created by Саша Восколович on 02.11.2023.
 //
 
-import Foundation
+import UIKit
 
 
-protocol APIManager {
+protocol APIHeroService {
     func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int, completion: @escaping (Result<Heroes, Dota2HeroError>) -> Void)
 }
 
-final class Dota2HeroFetcher: APIManager {
-    
+final class HeroFetcher: APIHeroService {
     
     func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int, completion: @escaping (Result<Heroes, Dota2HeroError>) -> Void) {
         let request = endpoint.request
