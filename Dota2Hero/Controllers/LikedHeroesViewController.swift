@@ -16,13 +16,47 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
    
     private let factory: Factory
     
+    lazy var dataSource: DataSource = {
+        return .init(tableView: heroesTableView) { [weak self] tableView, indexPath, item in
+           
+            guard let self else { return UITableViewCell() }
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as! Dota2HeroTableViewCell
+            
+            cell.delegate = self
+            cell.likeButton.setSelected(selected: item.isLiked, animated: false)
+            
+            cell.registrationHandler = {
+                self.heroesManager.completeHero(withID: item.heroID)
+                // And here animate
+                let workItem = DispatchWorkItem {
+                    self.updateSnapshot(reloadOf: self.heroesManager.likedHeroes)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: workItem)
+            }
+            loadImage(for: item, into: cell, array: heroesManager.likedHeroes)
+            return cell
+        }
+    }()
+    
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        updaterHandler = { [weak self] snapshot in
+            DispatchQueue.main.async {
+                self?.dataSource.apply(snapshot, animatingDifferences: false)
+            }
+        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateSnapshot(reloadOf: heroesManager.likedHeroes)
+    }
+    
     
     
     // MARK: - Initialization
@@ -30,33 +64,10 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     init(heroesManager: DataManager, imageFetcher: ImageFetcherService, factory: Factory) {
         self.factory = factory
         super.init(heroesManager: heroesManager, imageFetcher: imageFetcher)
-        
-        // Listen to your heart
-        likedObserver = NotificationCenter.default.addObserver(
-            forName: .changeLikeDislike,
-            object: nil,
-            queue: OperationQueue.main) { [weak self] notification in
-                self?.updateTable()
-            }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-   
-    deinit {
-        if let observer = likedObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
-    // MARK: - Helper Method
-    
-    override func setupUI() {
-        super.setupUI()
-        heroesTableView.delegate = self
-        heroesTableView.dataSource = self
     }
     
     
@@ -82,49 +93,10 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
 }
 
 
-
-
 // MARK: UITableViewDelegate & UITableViewDataSource
 
-extension LikedHeroesViewController: UITableViewDelegate, UITableViewDataSource {
+extension LikedHeroesViewController: UITableViewDelegate {
    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return heroesManager.likedHeroes.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as? Dota2HeroTableViewCell else { return UITableViewCell() }
-    
-        cell.delegate = self
-        
-        let hero = heroesManager.likedHeroes[indexPath.row]
-        cell.likeButton.setSelected(selected: hero.isLiked, animated: false)
-        
-        cell.registrationHandler = { [weak self] in
-            guard let self else { return }
-            
-            tableView.performBatchUpdates {
-                self.heroesManager.completeHero(withID: hero.heroID)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                
-            } completion: { finished in
-               
-            }
-        }
-        
-        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { result in
-            switch result {
-            case .success(let image):
-                DispatchQueue.main.async {
-                    cell.configure(model: hero, with: image)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let size = screenSize {
             return size / 5

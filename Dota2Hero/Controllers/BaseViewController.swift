@@ -12,14 +12,22 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     
     // MARK: - Properties
     
+    typealias DataSource = UITableViewDiffableDataSource<Section, Dota2HeroModel>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Dota2HeroModel>
+    
     var screenSize: CGFloat? {
         return UIScreen.current?.bounds.height
     }
     
+    var updaterHandler: ((Snapshot) -> Void)?
+    
+    
+    enum Section {
+        case main
+    }
+    
     var heroesManager: DataManager
     var imageFetcher: ImageFetcherService
-    
-    
     
     let heroesTableView: UITableView = {
         let tableView = UITableView()
@@ -58,10 +66,28 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
         heroesTableView.allowsSelection = false
     }
     
-    func updateTable() {
-         DispatchQueue.main.async { [weak self] in
-             self?.heroesTableView.reloadData()
-         }
+    
+    func loadImage(for hero: Dota2HeroModel, into cell: Dota2HeroTableViewCell, array: Heroes) {
+        
+        imageFetcher.fetchImage(from: APIEndpoint.image(hero.img)) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    cell.configure(model: hero, with: image)
+                    self.updateSnapshot(reloadOf: array)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func updateSnapshot(reloadOf array: Heroes) {
+         var snapshot = Snapshot()
+         snapshot.appendSections([.main])
+         snapshot.appendItems(array)
+         updaterHandler?(snapshot)
      }
 }
 

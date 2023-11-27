@@ -10,7 +10,7 @@ import Foundation
 typealias Heroes = [Dota2HeroModel]
 
 
-struct Dota2HeroModel: Codable {
+struct Dota2HeroModel: Codable, Hashable {
    
     let name, localizedName, primaryAttr, attackType: String
     let roles: [String]
