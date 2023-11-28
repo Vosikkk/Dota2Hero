@@ -9,38 +9,36 @@ import UIKit
 
 
 protocol APIHeroService {
-    func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int, completion: @escaping (Result<Heroes, Dota2HeroError>) -> Void)
+    func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int) async throws -> Heroes
 }
 
 final class HeroFetcher: APIHeroService {
     
-    func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int, completion: @escaping (Result<Heroes, Dota2HeroError>) -> Void) {
+    
+    func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int) async throws -> Heroes {
         let request = endpoint.request
-        
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-            if  error != nil {
-                completion(.failure(Dota2HeroError.networkError))
-                return
-            }
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
             
-            if let data = data {
-                do {
-                    let startIndex = (page - 1) * pageSize
-                    
-                    let heroes = try data.decodeJson(for: Heroes.self)
-                    
-                    let endIndex = min(startIndex + pageSize, heroes.count)
-                    let paginatedHeroes = Array(heroes[startIndex..<endIndex])
-                    completion(.success(paginatedHeroes))
-                    
-                } catch let decodingError as DecodingError {
-                    completion(.failure(Dota2HeroError.decodingError(decodingError.localizedDescription)))
-                    
-                } catch {
-                    completion(.failure(Dota2HeroError.unknown))
-                }
-            }
+            let startIndex = (page - 1) * pageSize
+            let heroes = try data.decodeJson(for: Heroes.self)
+            
+            let endIndex = min(startIndex + pageSize, heroes.count)
+            let paginatedHeroes = Array(heroes[startIndex..<endIndex])
+            return paginatedHeroes
+            
+        } catch let decodingError as DecodingError {
+            
+            throw Dota2HeroError.decodingError(decodingError.localizedDescription)
+            
+        } catch is URLError {
+            
+            throw Dota2HeroError.networkError
+            
+        } catch {
+            
+            throw Dota2HeroError.unknown
         }
-        dataTask.resume()
     }
+    
 }

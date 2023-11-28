@@ -70,8 +70,7 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     func loadImage(for hero: Dota2HeroModel, into cell: Dota2HeroTableViewCell, array: Heroes) {
         Task {
             do {
-                let result = try await fetcher.getImage(from: APIEndpoint.image(hero.img))
-                let image = try result.get()
+                let image = try await fetcher.getImage(by: APIEndpoint.image(hero.img))
                 cell.configure(model: hero, with: image)
                 updateSnapshot(reloadOf: array)
             } catch {

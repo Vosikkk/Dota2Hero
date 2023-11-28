@@ -9,8 +9,8 @@ import UIKit
 
 
 protocol FetcherService {
-    func getHeros(by endpoint: APIEndpoint, page: Int, pageSize: Int) async throws-> Result<Heroes, Dota2HeroError>
-    func getImage(from endpoint: APIEndpoint) async throws -> Result<UIImage, Dota2HeroError>
+    func getHeroes(by endpoint: APIEndpoint, page: Int, pageSize: Int) async throws -> Heroes
+    func getImage(by endpoint: APIEndpoint) async throws -> UIImage
 }
 
 class Fetcher: FetcherService {
@@ -24,19 +24,12 @@ class Fetcher: FetcherService {
         self.imageFetcher = imageFetcher
     }
     
-    func getHeros(by endpoint: APIEndpoint, page: Int, pageSize: Int) async throws -> Result<Heroes, Dota2HeroError> {
-        return await withCheckedContinuation { continuation in
-            heroFetcher.fetch(endpoint, page: page, pageSize: pageSize) { result in
-                continuation.resume(returning: result)
-            }
-        }
+    
+    func getHeroes(by endpoint: APIEndpoint, page: Int, pageSize: Int) async throws -> Heroes {
+          return try await heroFetcher.fetch(endpoint, page: page, pageSize: pageSize)
     }
     
-    func getImage(from endpoint: APIEndpoint) async throws -> Result<UIImage, Dota2HeroError> {
-        return await withCheckedContinuation { continuation in
-            imageFetcher.fetchImage(from: endpoint) { result in
-                continuation.resume(returning: result)
-            }
-        }
+    func getImage(by endpoint: APIEndpoint) async throws -> UIImage {
+        return try await imageFetcher.fetchImage(from: endpoint)
     }
 }

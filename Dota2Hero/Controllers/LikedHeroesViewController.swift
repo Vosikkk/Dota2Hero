@@ -75,8 +75,8 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
         let hero = heroesManager.getHero(by: heroID)
         Task {
             do {
-                let result = try await fetcher.getImage(from: APIEndpoint.image(hero.img))
-                let image = try result.get()
+              
+                let image = try await fetcher.getImage(by: APIEndpoint.image(hero.img))
                 let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
                 vc.configureUI(with: hero, and: image)
                 navigationController?.pushViewController(vc, animated: true)

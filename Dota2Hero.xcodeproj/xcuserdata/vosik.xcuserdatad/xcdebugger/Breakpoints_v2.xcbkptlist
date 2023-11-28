@@ -23,54 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AF61FF8C-0D4E-40D4-A7C8-A09A261B6EF9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dota2Hero/API/ImageFetcher.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "fetchImage(from:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AF61FF8C-0D4E-40D4-A7C8-A09A261B6EF9 - 82d66ed082295eb8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dota2Hero.ImageFetcher.fetchImage(from: Dota2Hero.APIEndpoint, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/ImageFetcher.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "1096">
-               </Location>
-               <Location
-                  uuid = "AF61FF8C-0D4E-40D4-A7C8-A09A261B6EF9 - 1fe6d3419943fdb1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in Dota2Hero.ImageFetcher.fetchImage(from: Dota2Hero.APIEndpoint, completion: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Dota2Hero"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vosik/Dota2Hero/Dota2Hero/API/ImageFetcher.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "156">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9D8ADD77-325C-4553-9FF7-5C10346D88E1"
             shouldBeEnabled = "No"
             ignoreCount = "0"

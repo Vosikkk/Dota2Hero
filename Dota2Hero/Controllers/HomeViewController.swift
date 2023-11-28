@@ -31,7 +31,6 @@ class HomeViewController: BaseViewController {
     }
     
     
-    
     lazy var dataSource: DataSource = {
         return .init(tableView: heroesTableView) { [weak self] tableView, indexPath, item in
             guard let self else { return UITableViewCell() }
@@ -54,20 +53,17 @@ class HomeViewController: BaseViewController {
     private func fetchHeroes() {
         Task {
             do {
-                let result = try await fetcher.getHeros(
-                    by: APIEndpoint.heroes,
-                    page: Constants.pageOfFetch,
-                    pageSize: Constants.pageSizeOfFetch)
+                let heroes = try await fetcher.getHeroes(by: APIEndpoint.heroes, page: 1, pageSize: 20)
                 
-                let heroes = try result.get()
-                    heroesManager.allHeroes = heroes
-                    updateSnapshot(reloadOf: heroesManager.allHeroes)
+                heroesManager.allHeroes = heroes
+                updateSnapshot(reloadOf: heroesManager.allHeroes)
+                
             } catch {
-                print(error.localizedDescription)
+                print("Error occured: \(error.localizedDescription)")
             }
         }
     }
-   
+    
     private struct Constants {
         static let pageOfFetch: Int = 1
         static let pageSizeOfFetch: Int = 15
