@@ -15,6 +15,7 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     private let factory: Factory
     
     lazy var dataSource: DataSource = {
+        
         return .init(tableView: heroesTableView) { [weak self] tableView, indexPath, item in
            
             guard let self else { return UITableViewCell() }
@@ -75,27 +76,14 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
         let hero = heroesManager.getHero(by: heroID)
         Task {
             do {
-              
                 let image = try await fetcher.getImage(by: APIEndpoint.image(hero.img))
                 let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
                 vc.configureUI(with: hero, and: image)
                 navigationController?.pushViewController(vc, animated: true)
             } catch {
-                print(error.localizedDescription)
+                print("Error occured: \(error.localizedDescription)")
             }
         }
     }
 }
 
-
-// MARK: UITableViewDelegate
-
-extension LikedHeroesViewController: UITableViewDelegate {
-   
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let size = screenSize {
-            return size / 5
-        }
-        return 150
-    }
-}

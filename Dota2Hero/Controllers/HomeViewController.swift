@@ -8,7 +8,24 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
-   
+    
+    
+    lazy var dataSource: DataSource = {
+        return .init(tableView: heroesTableView) { [weak self] tableView, indexPath, item in
+            guard let self else { return UITableViewCell() }
+            let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as! Dota2HeroTableViewCell
+            
+            cell.likeButton.setSelected(selected: item.isLiked, animated: false)
+            
+            cell.registrationHandler = {
+                self.heroesManager.completeHero(withID: item.heroID)
+                // And here animate
+                cell.likeButton.isSelected = self.heroesManager.getHero(by: item.heroID).isLiked
+            }
+            loadImage(for: item, into: cell, array: heroesManager.allHeroes)
+            return cell
+        }
+    }()
 
     // MARK: - View Lifecycle
     
@@ -31,33 +48,14 @@ class HomeViewController: BaseViewController {
     }
     
     
-    lazy var dataSource: DataSource = {
-        return .init(tableView: heroesTableView) { [weak self] tableView, indexPath, item in
-            guard let self else { return UITableViewCell() }
-            let cell = tableView.dequeueReusableCell(withIdentifier: Dota2HeroTableViewCell.identifier, for: indexPath) as! Dota2HeroTableViewCell
-            
-            cell.likeButton.setSelected(selected: item.isLiked, animated: false)
-            
-            cell.registrationHandler = {
-                self.heroesManager.completeHero(withID: item.heroID)
-                // And here animate
-                cell.likeButton.isSelected = self.heroesManager.getHero(by: item.heroID).isLiked
-            }
-            loadImage(for: item, into: cell, array: heroesManager.allHeroes)
-            return cell
-        }
-    }()
-    
     // MARK: - Helper Methods
     
     private func fetchHeroes() {
         Task {
             do {
                 let heroes = try await fetcher.getHeroes(by: APIEndpoint.heroes, page: 1, pageSize: 20)
-                
                 heroesManager.allHeroes = heroes
                 updateSnapshot(reloadOf: heroesManager.allHeroes)
-                
             } catch {
                 print("Error occured: \(error.localizedDescription)")
             }
@@ -70,15 +68,4 @@ class HomeViewController: BaseViewController {
     }
 }
 
-// MARK: UITableViewDelegate
-
-extension HomeViewController: UITableViewDelegate {
-   
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let size = screenSize {
-            return size / 5
-        }
-        return 150
-    }
-}
 

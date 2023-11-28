@@ -33,22 +33,17 @@ class ImageFetcher: ImageFetcherService {
         }
         
         do {
-            
             let (data, _) = try await URLSession.shared.data(from: url)
             
             if let res = UIImage(data: data) {
                 image = res
                 cache.save(image, for: url.absoluteString)
-                
             } else {
                 throw Dota2HeroError.networkError
             }
-            
         } catch {
-            
             throw Dota2HeroError.networkError
         }
-        
         return image
     }
 }

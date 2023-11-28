@@ -74,7 +74,7 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
                 cell.configure(model: hero, with: image)
                 updateSnapshot(reloadOf: array)
             } catch {
-                print(error.localizedDescription)
+                print("Error occured: \(error.localizedDescription)")
             }
         }
     }
@@ -87,6 +87,15 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     }
 }
 
+extension BaseViewController: UITableViewDelegate {
+   
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let size = screenSize {
+            return size / 5
+        }
+        return 150
+    }
+}
 
 
 
