@@ -79,7 +79,8 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
                 let image = try await fetcher.getImage(by: APIEndpoint.image(hero.img))
                 let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
                 vc.configureUI(with: hero, and: image)
-                navigationController?.pushViewController(vc, animated: true)
+                show(vc, sender: self)
+              //  navigationController?.pushViewController(vc, animated: true)
             } catch {
                 print("Error occured: \(error.localizedDescription)")
             }
