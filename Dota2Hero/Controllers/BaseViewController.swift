@@ -21,11 +21,6 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     
     var updaterHandler: ((Snapshot) -> Void)?
     
-    
-    enum Section {
-        case main
-    }
-    
     var heroesManager: DataManager
     var fetcher: FetcherService
     
@@ -67,6 +62,9 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
     }
     
     
+    
+    // MARK: - Helper Methods
+    
     func loadImage(for hero: Dota2HeroModel, into cell: Dota2HeroTableViewCell, array: Heroes) {
         Task {
             do {
@@ -85,7 +83,15 @@ class BaseViewController: UIViewController, NavigationBarDota2Logo {
         snapshot.appendItems(array)
         updaterHandler?(snapshot)
     }
+    
+    // MARK: - Nested type
+    
+    enum Section {
+        case main
+    }
 }
+
+// MARK: - UITableViewDelegate
 
 extension BaseViewController: UITableViewDelegate {
    

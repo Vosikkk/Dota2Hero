@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     
+    // MARK: - Properties
     
     lazy var dataSource: DataSource = {
         return .init(tableView: heroesTableView) { [weak self] tableView, indexPath, item in

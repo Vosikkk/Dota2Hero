@@ -7,10 +7,17 @@
 
 import UIKit
 
+// Protocol defining the contract for a service that fetches Dota 2 heroes from an API
 
 protocol APIHeroService {
+    
+    // Asynchronous method to fetch a paginated list of heroes from a given API endpoint
+    
     func fetch(_ endpoint: APIEndpoint, page: Int, pageSize: Int) async throws -> Heroes
 }
+
+
+// Class implementing the APIHeroService protocol
 
 final class HeroFetcher: APIHeroService {
     
@@ -20,8 +27,10 @@ final class HeroFetcher: APIHeroService {
         let request = endpoint.request
         
         do {
+            
             let (data, _) = try await URLSession.shared.data(for: request)
             
+            // Calculate the range of heroes to extract based on pagination parameters
             let startIndex = (page - 1) * pageSize
             let heroes = try data.decodeJson(for: Heroes.self)
             

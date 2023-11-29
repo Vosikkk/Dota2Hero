@@ -7,10 +7,13 @@
 
 import Foundation
 
-
+// Protocol defining the contract for updating a collection of heroes
+    
 protocol HeroesUpdater {
     func update(_ hero: Dota2HeroModel, in storage: inout Heroes)
 }
+
+// Protocol defining the contract for updating a collection of liked heroes
 
 protocol LikedHeroesUpdater {
     func updateInLiked(_ hero: Dota2HeroModel, in storage: inout Heroes)
@@ -19,10 +22,14 @@ protocol LikedHeroesUpdater {
 
 class AllHeroesUpdater: HeroesUpdater, LikedHeroesUpdater {
     
+    // Method to update a hero in a collection of heroes
+    
     func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
         let index = storage.indexOfHero(withID: hero.heroID)
         storage[index].isLiked = hero.isLiked
     }
+    
+    // Method to update a hero in a collection of liked heroes
     
     func updateInLiked(_ hero: Dota2HeroModel, in storage: inout Heroes) {
         if !hero.isLiked {

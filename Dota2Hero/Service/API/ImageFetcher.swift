@@ -8,17 +8,27 @@
 
 import UIKit
 
+// Protocol defining the contract for an image fetching service
+
 protocol ImageFetcherService {
+    
+    // Asynchronous method to fetch an image from a given API endpoint
     func fetchImage(from endpoint: APIEndpoint) async throws -> UIImage
 }
 
 class ImageFetcher: ImageFetcherService {
     
+    
+    // Cache instance to store and retrieve images
     private let cache: Cache
+    
     
     init(cache: Cache) {
         self.cache = cache
     }
+    
+    
+    // Asynchronous method to fetch an image from a given API endpoint
     
     func fetchImage(from endpoint: APIEndpoint) async throws -> UIImage {
         

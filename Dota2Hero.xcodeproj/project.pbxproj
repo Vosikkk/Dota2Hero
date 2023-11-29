@@ -25,7 +25,6 @@
 		388DD70F2B113FED00BC0D8A /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388DD70E2B113FED00BC0D8A /* ImageCache.swift */; };
 		388DD7112B11427700BC0D8A /* Dota2Hero+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */; };
 		38907BD02B138BEB0093D9AC /* HeroesUdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */; };
-		38907BD22B138C840093D9AC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38907BD12B138C840093D9AC /* NotificationManager.swift */; };
 		38AA23022AF6FABB008A2D68 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA23012AF6FABB008A2D68 /* Extensions.swift */; };
 		38EF840A2AF2E99900D0F5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */; };
 		38EF840C2AF2E99900D0F5D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF840B2AF2E99900D0F5D1 /* SceneDelegate.swift */; };
@@ -59,7 +58,6 @@
 		388DD70E2B113FED00BC0D8A /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dota2Hero+Error.swift"; sourceTree = "<group>"; };
 		38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesUdapter.swift; sourceTree = "<group>"; };
-		38907BD12B138C840093D9AC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		38AA23012AF6FABB008A2D68 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		38EF84062AF2E99900D0F5D1 /* Dota2Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dota2Hero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EF84092AF2E99900D0F5D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,9 +100,7 @@
 		38316C342AF438FE007E77F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */,
-				38907BD12B138C840093D9AC /* NotificationManager.swift */,
-				38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */,
+				388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */,
 				38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */,
 			);
 			path = Model;
@@ -135,6 +131,17 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		383F2ACC2B1787A5003105FA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				388DD70E2B113FED00BC0D8A /* ImageCache.swift */,
+				3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */,
+				38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */,
+				38316C362AF44B11007E77F1 /* API */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		3884CAB02AF97F9F00C06AFD /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,9 +149,7 @@
 				380539B12AFA6BA00035A75F /* Constraints.swift */,
 				380539B32AFA7D5B0035A75F /* Easing.swift */,
 				38F8003E2AFD171B00820623 /* LabelFactory.swift */,
-				388DD70E2B113FED00BC0D8A /* ImageCache.swift */,
 				38306E0F2B08FC4B003DB8CD /* Environment.swift */,
-				388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -168,8 +173,8 @@
 		38EF84082AF2E99900D0F5D1 /* Dota2Hero */ = {
 			isa = PBXGroup;
 			children = (
+				383F2ACC2B1787A5003105FA /* Service */,
 				3884CAB02AF97F9F00C06AFD /* Supporting */,
-				38316C362AF44B11007E77F1 /* API */,
 				38316C352AF4390D007E77F1 /* Views */,
 				38316C342AF438FE007E77F1 /* Model */,
 				38316C332AF438C9007E77F1 /* Controllers */,
@@ -278,7 +283,6 @@
 				38306E0E2B08F9F8003DB8CD /* HTTPMethod.swift in Sources */,
 				3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */,
 				3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */,
-				38907BD22B138C840093D9AC /* NotificationManager.swift in Sources */,
 				3804C6732B1542C70059CD0C /* Fetcher.swift in Sources */,
 				38316C382AF44B31007E77F1 /* HeroFetcher.swift in Sources */,
 			);

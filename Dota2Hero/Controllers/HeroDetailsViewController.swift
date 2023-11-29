@@ -265,7 +265,7 @@ class HeroDetailsViewController: UIViewController {
        
     
     
-    // MARK: - Constants
+    // MARK: - Nested Types
     
      struct TextConstants {
         static let health = NSLocalizedString("HEALTH:", comment: "")

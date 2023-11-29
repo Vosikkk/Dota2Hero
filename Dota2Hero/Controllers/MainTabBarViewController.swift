@@ -9,9 +9,16 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController {
     
+    
+    // MARK: - Properties
+    
     private let fetcher: FetcherService
     private let heroesManager: DataManager
     private let factory: Factory
+    
+    
+    
+    // MARK: - Initialization
     
     init(heroesManager: DataManager, fetcher: FetcherService, factory: Factory) {
         self.heroesManager = heroesManager
@@ -47,6 +54,8 @@ class MainTabBarViewController: UITabBarController {
         setViewControllers([vc1, vc2], animated: true)
     }
     
+    
+    // MARK: - Helper Methods
     
     private func createTabBarItem(imageName: String, selectedImageName: String) -> UITabBarItem {
         let tabBarItem = UITabBarItem()

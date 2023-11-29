@@ -9,6 +9,7 @@ import Foundation
 
 
 enum Dota2HeroError: LocalizedError {
+   
     case networkError
     case badURL
     case decodingError(String)
@@ -27,5 +28,4 @@ enum Dota2HeroError: LocalizedError {
             return NSLocalizedString("Unknown error", comment: "Description for Unknown")
         }
     }
-    
 }
