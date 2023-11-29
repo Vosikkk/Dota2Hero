@@ -97,13 +97,13 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		38316C342AF438FE007E77F1 /* Model */ = {
+		38316C342AF438FE007E77F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */,
 				38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		38316C352AF4390D007E77F1 /* Views */ = {
@@ -131,7 +131,7 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		383F2ACC2B1787A5003105FA /* Service */ = {
+		383F2ACC2B1787A5003105FA /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				388DD70E2B113FED00BC0D8A /* ImageCache.swift */,
@@ -139,7 +139,7 @@
 				38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */,
 				38316C362AF44B11007E77F1 /* API */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		3884CAB02AF97F9F00C06AFD /* Supporting */ = {
@@ -173,10 +173,10 @@
 		38EF84082AF2E99900D0F5D1 /* Dota2Hero */ = {
 			isa = PBXGroup;
 			children = (
-				383F2ACC2B1787A5003105FA /* Service */,
+				383F2ACC2B1787A5003105FA /* Services */,
 				3884CAB02AF97F9F00C06AFD /* Supporting */,
 				38316C352AF4390D007E77F1 /* Views */,
-				38316C342AF438FE007E77F1 /* Model */,
+				38316C342AF438FE007E77F1 /* Models */,
 				38316C332AF438C9007E77F1 /* Controllers */,
 				38EF84122AF2E99B00D0F5D1 /* Assets.xcassets */,
 				38EF84142AF2E99B00D0F5D1 /* LaunchScreen.storyboard */,
