@@ -13,25 +13,19 @@ protocol HeroesUpdater {
     func update(_ hero: Dota2HeroModel, in storage: inout Heroes)
 }
 
-// Protocol defining the contract for updating a collection of liked heroes
 
-protocol LikedHeroesUpdater {
-    func updateInLiked(_ hero: Dota2HeroModel, in storage: inout Heroes)
-}
-
-
-class AllHeroesUpdater: HeroesUpdater, LikedHeroesUpdater {
-    
-    // Method to update a hero in a collection of heroes
+class AllHeroesUpdater: HeroesUpdater {
     
     func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
         let index = storage.indexOfHero(withID: hero.heroID)
         storage[index].isLiked = hero.isLiked
     }
+}
+
+
+class LikedHeroesUpdater: HeroesUpdater {
     
-    // Method to update a hero in a collection of liked heroes
-    
-    func updateInLiked(_ hero: Dota2HeroModel, in storage: inout Heroes) {
+    func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
         if !hero.isLiked {
             storage.removeAll { $0.heroID == hero.heroID }
         } else {
@@ -39,3 +33,4 @@ class AllHeroesUpdater: HeroesUpdater, LikedHeroesUpdater {
         }
     }
 }
+

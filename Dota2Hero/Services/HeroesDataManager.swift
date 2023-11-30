@@ -22,7 +22,8 @@ class HeroesDataManager: DataManager {
     
     // An object responsible for updating hero data
    
-    private let updater: HeroesUpdater & LikedHeroesUpdater
+    private let updaterInAll: HeroesUpdater
+    private let updaterInLiked: HeroesUpdater
     
     var likedHeroes: Heroes = []
 
@@ -30,8 +31,9 @@ class HeroesDataManager: DataManager {
 
     // Initializer
     
-    init(updater: HeroesUpdater & LikedHeroesUpdater) {
-        self.updater = updater
+    init(updaterInAll: HeroesUpdater, updaterInLiked: HeroesUpdater) {
+        self.updaterInAll = updaterInAll
+        self.updaterInLiked = updaterInLiked
     }
     
     // Method to mark a hero as complete (liked/disliked)
@@ -39,8 +41,8 @@ class HeroesDataManager: DataManager {
     func completeHero(withID id: Int) {
         var hero = getHero(by: id)
         hero.isLiked.toggle()
-        updater.update(hero, in: &allHeroes)
-        updater.updateInLiked(hero, in: &likedHeroes)
+        updaterInAll.update(hero, in: &allHeroes)
+        updaterInLiked.update(hero, in: &likedHeroes)
     }
     
     // Method to get a hero by its ID

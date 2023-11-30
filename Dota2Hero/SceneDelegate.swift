@@ -21,9 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let imageFetcher: ImageFetcherService = ImageFetcher(cache: cacheImage)
         let fetcher: FetcherService = Fetcher(heroFetcher: heroFetcher, imageFetcher: imageFetcher)
         
-        let updater: HeroesUpdater & LikedHeroesUpdater = AllHeroesUpdater()
+        let updaterInAll: HeroesUpdater = AllHeroesUpdater()
+        let updaterInLiked: HeroesUpdater = LikedHeroesUpdater()
         
-        let heroesDataManager: DataManager = HeroesDataManager(updater: updater)
+        let heroesDataManager: DataManager = HeroesDataManager(updaterInAll: updaterInAll, updaterInLiked: updaterInLiked)
         let factory: Factory = LabelFactory()
         
         
