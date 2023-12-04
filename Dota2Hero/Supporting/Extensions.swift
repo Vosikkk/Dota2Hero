@@ -65,14 +65,14 @@ extension MakeSpecialLabel where Self: UITableViewCell {
         let attributedString = NSMutableAttributedString()
         let attackTypeString = NSMutableAttributedString(string: "\(attackType.uppercased()) - ", attributes: [
             .font: UIFont.systemFont(ofSize: 12, weight: .bold),
-            .foregroundColor: UIColor.tintColorForAttackTypeLabel
+            .foregroundColor: UIColor.red
         ])
         attributedString.append(attackTypeString)
         if !roles.isEmpty {
             let rolesString = roles.map { $0.uppercased() }.joined(separator: ", ")
             let rolesAttributedString = NSAttributedString(string: rolesString, attributes: [
                 .font: UIFont.systemFont(ofSize: 12),
-                .foregroundColor: UIColor.tintColorForRolesLabel
+                .foregroundColor: UIColor.red
             ])
             attributedString.append(rolesAttributedString)
         }
@@ -132,3 +132,6 @@ func Init<T>(_ object: T, block: (T) throws -> ()) rethrows -> T {
     try block(object)
     return object
 }
+
+
+

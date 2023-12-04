@@ -38,7 +38,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
                 width: SizeConstants.indicatorWidth,
                 height: SizeConstants.indicatorHeight),
             circleColor: .red,
-            labelColor: .tintColorForHeroStatsLabel,
+            labelColor: .red,
             labelTextSize: 13)
         return circle
     }()
@@ -51,7 +51,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
                 width: SizeConstants.indicatorWidth,
                 height: SizeConstants.indicatorHeight),
             circleColor: .green,
-            labelColor: .tintColorForHeroStatsLabel,
+            labelColor: .red,
             labelTextSize: 13)
         return circle
     }()
@@ -64,7 +64,7 @@ class Dota2HeroTableViewCell: UITableViewCell, MakeSpecialLabel {
                 width: SizeConstants.indicatorWidth,
                 height: SizeConstants.indicatorHeight),
             circleColor: .blue,
-            labelColor: .tintColorForHeroStatsLabel,
+            labelColor: .red,
             labelTextSize: 13)
         return circle
     }()

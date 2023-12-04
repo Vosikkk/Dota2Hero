@@ -22,7 +22,7 @@ final class LabelFactory: Factory {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .tintColorForNameLabel
+        label.textColor = .white
         label.backgroundColor = backgroundColor
         label.layer.cornerRadius = 5.0
         label.layer.masksToBounds = true

@@ -159,7 +159,7 @@ class HeroDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .backgroundColorForDetail
+        view.backgroundColor = .darkGray
         view.addSubview(imageHeroView)
         view.addSubview(mainStack)
         view.addSubview(heroNameLabel)
