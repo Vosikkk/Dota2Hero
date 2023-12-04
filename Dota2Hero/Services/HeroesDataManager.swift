@@ -45,7 +45,7 @@ class HeroesDataManager: DataManager {
         updaterInLiked.update(hero, in: &likedHeroes)
     }
     
-    // Method to get a hero by its ID
+    // Method to get a he ro by its ID
     
     func getHero(by ID: Int) -> Dota2HeroModel {
         let index = allHeroes.indexOfHero(withID: ID)
