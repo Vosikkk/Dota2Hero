@@ -13,7 +13,7 @@ protocol HeroesUpdater {
     func update(_ hero: Dota2HeroModel, in storage: inout Heroes)
 }
 
-
+    
 class AllHeroesUpdater: HeroesUpdater {
     
     func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
