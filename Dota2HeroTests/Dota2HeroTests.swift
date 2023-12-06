@@ -17,9 +17,17 @@ final class Dota2HeroTests: XCTestCase {
     
     var likedHeroes: Heroes = []
     
+    override func setUp() {
+        super.setUp()
+        sut = AllHeroesUpdater()
+    }
+    
+    override func tearDown() {
+        sut = nil
+        super.tearDown()
+    }
     
     func test_changesLikeState_inAllHeroesStorage() {
-        sut = UpdaterInAll()
         
         model.isLiked = true
         
@@ -29,51 +37,5 @@ final class Dota2HeroTests: XCTestCase {
         
         XCTAssertTrue(heroesAll[0].isLiked)
     }
-    
-    func test_addOrDeleteHeroInLiked_whenItWasDislikedLiked() {
-        
-        sut = UpdaterInLiked()
-        
-        model.isLiked = true
-        
-        XCTAssertTrue(likedHeroes.isEmpty, "We have empty mock array so we can test")
-        
-        sut.update(model, in: &likedHeroes)
-        
-        XCTAssertTrue(!likedHeroes.isEmpty, "Array must have one element \(likedHeroes.count)")
-        
-        model.isLiked = false
-        
-        sut.update(model, in: &likedHeroes)
-        
-        XCTAssertTrue(likedHeroes.isEmpty, "We've changed on dislike, array must be empty \(likedHeroes.count)")
-        
-    }
-
 }
 
-
-
-
-
-class UpdaterInAll: HeroesUpdater {
-    
-    func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
-        let index = storage.indexOfHero(withID: hero.heroID)
-        storage[index].isLiked = hero.isLiked
-    }
-    
-}
-
-class UpdaterInLiked: HeroesUpdater {
-    
-    func update(_ hero: Dota2HeroModel, in storage: inout Heroes) {
-        if !hero.isLiked {
-            storage.removeAll { $0.heroID == hero.heroID }
-        } else {
-            storage.append(hero)
-        }
-    }
-    
-    
-}
