@@ -1,22 +1,22 @@
 //
-//  AppDelegate.swift
-//  Dota2Hero
+//  TestingAppDelegate.swift
+//  Dota2HeroTests
 //
-//  Created by Саша Восколович on 01.11.2023.
+//  Created by Саша Восколович on 12.12.2023.
 //
 
 import UIKit
 
+@objc(TestingAppDelegate)
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+class TestingAppDelegate: UIResponder, UIApplicationDelegate {
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        TabBarCustomizer.customizeTabBar()
+        
+        print(">>> Launching with testing app delegate")
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
+
+
 
