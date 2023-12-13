@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3802F6422B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802F6412B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift */; };
 		3803EC952AF5AA620001C1EC /* CircleValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EC942AF5AA620001C1EC /* CircleValueView.swift */; };
 		3804C6732B1542C70059CD0C /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804C6722B1542C70059CD0C /* Fetcher.swift */; };
 		380539AC2AFA5B4E0035A75F /* FaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380539AB2AFA5B4E0035A75F /* FaveButton.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3802F6412B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		3803EC942AF5AA620001C1EC /* CircleValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleValueView.swift; sourceTree = "<group>"; };
 		3804C6722B1542C70059CD0C /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		380539AB2AFA5B4E0035A75F /* FaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveButton.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				38D3F44A2B1A9BF70014C8A8 /* Dota2HeroTests.swift */,
 				38BDE7572B28FA1F00F0A2EE /* TestingAppDelegate.swift */,
 				38BDE75D2B29006F00F0A2EE /* AppLaunchTests.swift */,
+				3802F6412B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift */,
 			);
 			path = Dota2HeroTests;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38BDE75E2B29006F00F0A2EE /* AppLaunchTests.swift in Sources */,
+				3802F6422B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift in Sources */,
 				38D3F44B2B1A9BF70014C8A8 /* Dota2HeroTests.swift in Sources */,
 				38BDE7582B28FA1F00F0A2EE /* TestingAppDelegate.swift in Sources */,
 			);
