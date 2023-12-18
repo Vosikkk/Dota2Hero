@@ -13,7 +13,7 @@ class HeroDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var hero: Dota2HeroModel!
+    var hero: Dota2HeroModel!
       
     let heroesManager: DataManager
     
@@ -24,7 +24,7 @@ class HeroDetailsViewController: UIViewController {
     
     // MARK: - UI Components
    
-    private lazy var likedButton: FaveButton = {
+    private(set) lazy var likedButton: FaveButton = {
         let button = FaveButton(
             frame: CGRect(
                 x: UIScreen.current!.bounds.width - 50,
@@ -181,6 +181,11 @@ class HeroDetailsViewController: UIViewController {
        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("Runing test")
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.popToRootViewController(animated: false)
@@ -190,9 +195,16 @@ class HeroDetailsViewController: UIViewController {
     // MARK: - Helper Methods
     
     private func didTapLikeButton() {
+        
+        #if DEBUG
+        likedButton.isSelected = true
+        #endif
+       
+        #if !TESTING
         hero.isLiked = !hero.isLiked
         heroesManager.completeHero(withID: hero.heroID)
         likedButton.isSelected = hero.isLiked
+        #endif
     }
     
     private func configureGradientLayer() {

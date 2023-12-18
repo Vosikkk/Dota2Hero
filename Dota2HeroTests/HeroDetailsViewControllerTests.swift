@@ -11,37 +11,21 @@ import XCTest
 
 final class HeroDetailsViewControllerTests: XCTestCase {
 
-
-    var factory: Factory!
-    var heroManager: DataManager!
-    var updaterAll: HeroesUpdater!
-    var updaterLike: HeroesUpdater!
-    
-    
-    override func setUp() {
-        super.setUp()
-        factory = LabelFactory()
-        updaterAll = AllHeroesUpdater()
-        updaterLike = LikedHeroesUpdater()
-        heroManager = HeroesDataManager(updaterInAll: updaterAll, updaterInLiked: updaterLike)
-    }
-    
-    override func tearDown() {
-        factory = nil
-        updaterAll = nil
-        updaterLike = nil
-        heroManager = nil
-        super.tearDown()
-    }
-    
-    
-    
-    
     func test_loading() {
-        let sut = HeroDetailsViewController(factory: factory, heroesManager: heroManager)
+        let sut = HeroDetailsViewController(factory: LabelFactory(), heroesManager: HeroesDataManager(updaterInAll: AllHeroesUpdater(), updaterInLiked: LikedHeroesUpdater()))
         sut.loadViewIfNeeded()
+        sut.viewDidAppear(false)
         XCTAssertNotNil(sut)
-        
     }
-
+    
+    func test_buttonTapped_ShouldBeTrue() {
+        let sut = HeroDetailsViewController(factory: LabelFactory(), heroesManager: HeroesDataManager(updaterInAll: AllHeroesUpdater(), updaterInLiked: LikedHeroesUpdater()))
+        
+        sut.loadViewIfNeeded()
+        
+        tap(sut.likedButton)
+        XCTAssertTrue(sut.likedButton.isSelected)
+    }
+    
 }
+

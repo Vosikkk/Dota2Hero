@@ -21,6 +21,7 @@
 		38306E102B08FC4B003DB8CD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306E0F2B08FC4B003DB8CD /* Environment.swift */; };
 		38316C382AF44B31007E77F1 /* HeroFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38316C372AF44B31007E77F1 /* HeroFetcher.swift */; };
 		385AF7342AFC264200523B11 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385AF7332AFC264200523B11 /* BaseViewController.swift */; };
+		386648622B30EFCB0048D742 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386648612B30EFCB0048D742 /* TestHelpers.swift */; };
 		3884CAB22AF97FDE00C06AFD /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */; };
 		3884CAB42AF9814A00C06AFD /* HeroesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */; };
 		388DD70F2B113FED00BC0D8A /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388DD70E2B113FED00BC0D8A /* ImageCache.swift */; };
@@ -70,6 +71,7 @@
 		38306E0F2B08FC4B003DB8CD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		38316C372AF44B31007E77F1 /* HeroFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroFetcher.swift; sourceTree = "<group>"; };
 		385AF7332AFC264200523B11 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		386648612B30EFCB0048D742 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		3884CAB12AF97FDE00C06AFD /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDataManager.swift; sourceTree = "<group>"; };
 		388DD70E2B113FED00BC0D8A /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				38BDE7572B28FA1F00F0A2EE /* TestingAppDelegate.swift */,
 				38BDE75D2B29006F00F0A2EE /* AppLaunchTests.swift */,
 				3802F6412B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift */,
+				386648612B30EFCB0048D742 /* TestHelpers.swift */,
 			);
 			path = Dota2HeroTests;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38BDE75E2B29006F00F0A2EE /* AppLaunchTests.swift in Sources */,
+				386648622B30EFCB0048D742 /* TestHelpers.swift in Sources */,
 				3802F6422B2A556A00B6CD92 /* HeroDetailsViewControllerTests.swift in Sources */,
 				38D3F44B2B1A9BF70014C8A8 /* Dota2HeroTests.swift in Sources */,
 				38BDE7582B28FA1F00F0A2EE /* TestingAppDelegate.swift in Sources */,
@@ -568,6 +572,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-DTESTING";
 				PRODUCT_BUNDLE_IDENTIFIER = Vosik.Dota2Hero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
