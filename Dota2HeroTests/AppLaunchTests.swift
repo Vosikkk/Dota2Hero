@@ -9,21 +9,9 @@ import XCTest
 
 final class AppLaunchTests: XCTestCase {
 
-   
-    var sut: TestingAppDelegate!
-    
-    override func setUp() {
-        super.setUp()
-        sut = TestingAppDelegate()
-    }
-    
-    override func tearDown() {
-        sut = nil
-        super.tearDown()
-    }
-    
     
     func test_DidFinishLaunching_ShouldBeTrue() {
+        let sut = TestingAppDelegate()
         let didFinishLaunching = sut.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
         XCTAssertTrue(didFinishLaunching)
     }

@@ -132,6 +132,8 @@
 		38316C342AF438FE007E77F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */,
+				38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */,
 				388DD7102B11427700BC0D8A /* Dota2Hero+Error.swift */,
 				38EF84272AF30A1500D0F5D1 /* Dota2HeroModel.swift */,
 			);
@@ -167,8 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				388DD70E2B113FED00BC0D8A /* ImageCache.swift */,
-				3884CAB32AF9814A00C06AFD /* HeroesDataManager.swift */,
-				38907BCF2B138BEB0093D9AC /* HeroesUdapter.swift */,
 				38316C362AF44B11007E77F1 /* API */,
 			);
 			path = Services;

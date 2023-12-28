@@ -27,5 +27,25 @@ final class HeroDetailsViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.likedButton.isSelected)
     }
     
+    func test_tappingImageOnLikedViewController_shouldPushHeroDetailsViewController() {
+        let sut = LikedHeroesViewController(heroesManager: HeroesDataManager(updaterInAll: AllHeroesUpdater(), updaterInLiked: LikedHeroesUpdater()), fetcher: Fetcher(heroFetcher: HeroFetcher(), imageFetcher: ImageFetcher(cache: ImageCache())), factory: LabelFactory())
+        
+        let navigation = UINavigationController(rootViewController: sut)
+        
+        sut.didTapOnImageHeroView(heroID: 0)
+        executeRunLoop()
+        
+        XCTAssertEqual(navigation.viewControllers.count, 2, "navigation stack")
+        
+        let pushedVC = navigation.viewControllers.last
+        
+        guard let detailsVC = pushedVC as? HeroDetailsViewController else {
+            XCTFail("Expected HeroDetailsViewController + but was \(String(describing: pushedVC))")
+            return
+        }
+        
+        XCTAssertEqual(detailsVC.moveSpeedLabel.text, "Test sending info to the controller")
+        
+    }
 }
 

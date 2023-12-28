@@ -95,7 +95,7 @@ class HeroDetailsViewController: UIViewController {
             backgroundColor: AppColors.firstLinebackgroundColor)
     }()
     
-    private lazy var moveSpeedLabel: UILabel = {
+    lazy var moveSpeedLabel: UILabel = {
         return factory.createSupoortLabel(
             text: TextConstants.moveSpeed,
             backgroundColor: AppColors.secondLinebackgroundColor)

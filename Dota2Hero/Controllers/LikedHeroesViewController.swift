@@ -73,6 +73,8 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
     // MARK: - Delegate method
     
     func didTapOnImageHeroView(heroID: Int) {
+        
+        #if !TESTING
         let hero = heroesManager.getHero(by: heroID)
         Task {
             do {
@@ -84,6 +86,10 @@ class LikedHeroesViewController: BaseViewController, Dota2HeroTableViewCellDeleg
                 print("Error occured: \(error.localizedDescription)")
             }
         }
+        #endif
+        let vc = HeroDetailsViewController(factory: factory, heroesManager: heroesManager)
+        vc.moveSpeedLabel.text = "Test sending info to the controller"
+        show(vc, sender: self)
     }
 }
 
